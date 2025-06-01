@@ -1,0 +1,46 @@
+---
+---
+
+@import 'simple-texture-blog'; // Keep everything from the original theme
+
+/* 🔧 Minimal additions for code block font + line numbers */
+
+/* Add monospace font */
+pre, code {
+  font-family: 'JetBrains Mono', 'Fira Code', SFMono-Regular, Menlo, Monaco, monospace;
+//   font-size: 3em; /* ← increase as needed */
+}
+
+.highlight {
+    position: relative; /* <-- ensures line numbers are positioned relative to code block */
+  }
+
+/* Line numbers support */
+.highlight pre {
+  padding-left: 3.5em;
+  position: relative;
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', SFMono-Regular, Menlo, Monaco, monospace;
+  font-size: 1.2em; /* ← increase as needed */
+}
+
+// .highlight .lineno {
+//     position: absolute;
+//     left: 0;
+//     width: 3em;
+//     padding-right: 0.5em;
+//     text-align: right;
+//     color: #888;
+//     border-right: 1px solid #ccc;
+//     user-select: none;
+//     font-size: 0.95em;
+//     line-height: 1.5;
+//   }
+  
+.highlight .lineno {
+    color: #ccc;
+    display:inline-block;
+    padding: 0 5px;
+    border-right:1px
+    solid #ccc;
+    }

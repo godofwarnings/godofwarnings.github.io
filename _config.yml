@@ -1,0 +1,90 @@
+# Site Settings
+encoding: UTF-8
+exclude:
+  [
+    '*.gem',
+    '*.gemspec',
+    'doc',
+    'docs',
+    'Gemfile',
+    'Gemfile.lock',
+    'node_modules',
+    'Rakefile',
+    'starter-kit',
+    'yizeng.github.io',
+    'vendor',
+  ]
+lang: en
+permalink: /:year/:month/:day/:title/
+theme: jekyll-theme-simple-texture
+# remote_theme: "jekyll/minima@1e8a445"
+
+whitelist: [jekyll-feed, jekyll-redirect-from, jekyll-seo-tag, jekyll-sitemap]
+plugins:
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  -
+    scope:
+      path: "assets/**/*.*"
+    values:
+      sitemap: false
+
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  auto_id_prefix: 'heading-'
+  input: GFM
+  math_engine: mathjax
+  smart_quotes: ['apos', 'apos', 'quot', 'quot']
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+  toc_levels: 1..3
+
+sass:
+  style: compressed
+
+# Site Data
+# url: http://yizeng.me # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: # the subpath of your site, e.g. /blog
+title: Radhikesh's Blog
+description: 'Personal blog for Radhikesh, a computer-science undergraduate at IIIT Hyderabad, India'
+keywords: 'software,engineer,testing,full-stack,hyderabad,india,blog,personal,developer,programmer'
+author:
+  name: Radhikesh Agrawal
+  job_title: Computer Science Undergraduate
+  location: Hyderabad, India
+  email: rhagrawal1.0.7@gmail.com
+  social_links:
+    - name: facebook
+      url:
+    - name: github
+      url: https://github.com/godofwarnings/
+    - name: instagram
+      url: https://www.instagram.com/leonardodipitt
+    - name: linkedin
+      url: https://www.linkedin.com/in/radhikeshagrawal/
+home:
+  section1:
+  section2:
+  section3:
+blog:
+  cc_license: http://creativecommons.org/licenses/by-sa/4.0/ # A link to CC License
+  cc_license_image: /assets/images/theme/cc-by-sa.png # Choose one at https://creativecommons.org/choose/
+  # footer_content: Radhikesh Agrawal, a computer science undergraduate based in Hyderabad, India.
+
+# disqus:
+#   shortname: asdasd
+#   public_key: ULZ0b9TFdfCUJSKQd4WCKv2v3u25YoG7YG8zXPewkWrT35lZ0Se9YnxLzoV6VM8W
+# google_tag_manager: 'GTM-P5NFP45'
+# addthis_public_id: ra-53819e27689934f9 # AddThis sharing plugin. See http://www.addthis.com/
+
+paths:
+  home: /
+  blog: /blog/
+  categories: /blog/categories/
+  tags: /blog/tags/

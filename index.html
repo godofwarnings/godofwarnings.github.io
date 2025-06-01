@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="author" content="Radhikesh Agrawal">
+  <!-- <meta name="description" content="Radhikesh Agrawal" /> -->
+  <meta name="keywords" content="software,engineer,developer,testing,s" />
+
+
+  <title>Radhikesh Agrawal</title>
+  <link rel="stylesheet" href="/home/assets/stylesheets/style.css">
+
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="/home/assets/stylesheets/font-awesome/css/font-awesome.min.css">
+  <!-- Font Awesome 6 Free CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhHzANLzNFMSDsaYOmNKRodynamicBNjsEnLE0=" crossorigin="" />
+
+  <!-- Leaflet JS (ensure this is linked before your map script) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- WOW.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+
+  <!-- In your <head> section -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<body id="page-top" class="homepage" data-spy="scroll" data-target=".navbar-fixed-top">
+  <!-- Navigation -->
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand page-scroll" href="#page-top" title="Page Top">
+          <i class="fa-solid fa-snowflake"></i> <span class="light">Radhikesh</span> Agrawal
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+          <li class="hidden">
+            <a href="#page-top"></a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#about">About Me</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#what-i-do">What I Do</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#blog">Blog</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+  <!-- Intro Header -->
+  <header class="intro">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="heading-text">
+              <style>
+                /* 
+                  IMPORTANT: Ensure Cinzel font is imported correctly in your <head> or at the top of CSS:
+                  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+                */
+
+                /* If .brand-heading is used elsewhere and you need to keep its 40px for other elements,
+                   you can override it specifically for the AC style like this: */
+                .my-name-ac-style-container.brand-heading {
+                  font-size: 20px;
+                  /* NEW: Reduced base font size. Was 40px. Adjust this for overall size. */
+                  padding-top: 20px;
+                  /* Kept from original .brand-heading */
+                }
+
+                .my-name-ac-style-container {
+                  text-align: center;
+                  text-transform: uppercase;
+                  font-family: 'Cinzel', serif;
+                  /* Ensure this is being applied */
+                  font-weight: 350;
+                  /* padding-top: 20px; -- Now handled by .my-name-ac-style-container.brand-heading */
+                  /* font-size: ... -- Now handled by .my-name-ac-style-container.brand-heading */
+                }
+
+                .my-name-ac-style-container .my-name-ac-line1 {
+                  color: #e1dede;
+                  display: flex;
+                  justify-content: center;
+                  align-items: baseline;
+                  line-height: 1;
+                  /* NEW: Adjusted margin-bottom to increase space. Was -0.3em. Closer to 0 means more space. */
+                  margin-bottom: -0em;
+                  /* Or try 0em, or even a small positive like 0.1em */
+                }
+
+                .my-name-ac-style-container .my-name-ac-char-large {
+                  font-size: 1.5em;
+                  /* These ems are now relative to the new 28px base */
+                  /* e.g., 28px * 2.5 = 70px for 'M' */
+                  font-weight: 700;
+                  margin-right: -0.05em;
+                }
+
+                .my-name-ac-style-container .my-name-ac-char-small {
+                  font-size: 1.2em;
+                  /* e.g., 28px * 2.0 = 56px for 'y' */
+                }
+
+                .my-name-ac-style-container .my-name-ac-line2 {
+                  color: #FF2020;
+                  font-size: 1em;
+                  /* e.g., 28px * 1.5 = 42px for 'Name' */
+                  /* NEW: Adjusted line-height as well. Could also increase this for more space. */
+                  line-height: 0.7em;
+                  /* Was 0.5em. Adjust as needed. */
+                  letter-spacing: 0.1em;
+                }
+              </style>
+              <!-- <h1 class="brand-heading">Radhikesh Agrawal</h1> -->
+
+
+              <div class="my-name-ac-style-container brand-heading">
+                <div class="my-name-ac-line1">
+                  <span class="my-name-ac-char-large">R</span><span class="my-name-ac-char-small">adhikesh</span>
+                </div>
+                <div class="my-name-ac-line2">Agrawal</div>
+              </div>
+
+
+
+
+              <p class="intro-text">Computer Science Undergraduate, Hyderabad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Profile Picture Section -->
+  <!-- <style>
+    .profile-pic-container {
+      text-align: center;
+      margin: 20px 0 40px 0;
+    }
+  
+    .profile-pic {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #fff;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+  
+  <div class="profile-pic-container">
+    <img src="home/assets/images/pfp.jpg" alt="Profile Picture" class="profile-pic">
+  </div> -->
+
+  <style>
+    /* Font import - ensure it's loaded */
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap");
+
+    .aurora-welcome-section {
+      --bg: #000000;
+      /* Section background color - Black */
+
+      /* --- In Rainbows Inspired Colors --- */
+      --clr-1: #dd210c;
+      /* Alizarin - reddish-orange */
+      --clr-2: #e7ba09;
+      /* Sun Flower - bright yellow */
+      --clr-3: #0d046f;
+      /* Peter River - blue */
+      --clr-4: #1dd614;
+      /* Turquoise - greenish-blue */
+      /* --- End of Color Change --- */
+
+      --blur: 1rem;
+      --fs: clamp(2.5rem, 7vw, 6rem);
+      --ls: clamp(-1.5px, -0.25vw, -3px);
+
+      padding: 40px 20px;
+      display: grid;
+      place-items: center;
+      background-color: var(--bg);
+      color: #fff;
+      font-family: "Inter", "DM Sans", Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .aurora-welcome-section *,
+    .aurora-welcome-section *::before,
+    .aurora-welcome-section *::after {
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+    .aurora-welcome-section .content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .aurora-welcome-section .title {
+      font-size: var(--fs);
+      font-weight: 800;
+      letter-spacing: var(--ls);
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+      color: #fff;
+      margin: 0;
+      /* --- Fix for All Caps --- */
+      text-transform: none;
+      /* --- End of Fix --- */
+    }
+
+    .aurora-welcome-section .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: #ddd;
+      margin-top: 0.5em;
+      text-transform: none;
+      /* Also ensure subtitle isn't all caps */
+    }
+
+    .aurora-welcome-section .aurora {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      mix-blend-mode: darken;
+      pointer-events: none;
+    }
+
+    .aurora-welcome-section .aurora__item {
+      overflow: hidden;
+      position: absolute;
+      width: 60vw;
+      height: 60vw;
+      background-color: var(--clr-1);
+      /* Default, overridden by nth-of-type */
+      border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+      filter: blur(var(--blur));
+      mix-blend-mode: overlay;
+    }
+
+    .aurora-welcome-section .aurora__item:nth-of-type(1) {
+      background-color: var(--clr-1);
+      top: -50%;
+      animation: aurora-border 6s ease-in-out infinite,
+        aurora-1 12s ease-in-out infinite alternate;
+    }
+
+    .aurora-welcome-section .aurora__item:nth-of-type(2) {
+      background-color: var(--clr-2);
+      /* Changed from clr-3 in original snippet */
+      right: 0;
+      top: 0;
+      animation: aurora-border 6s ease-in-out infinite,
+        aurora-2 12s ease-in-out infinite alternate;
+    }
+
+    .aurora-welcome-section .aurora__item:nth-of-type(3) {
+      background-color: var(--clr-3);
+      /* Changed from clr-2 in original snippet */
+      left: 0;
+      bottom: 0;
+      animation: aurora-border 6s ease-in-out infinite,
+        aurora-3 8s ease-in-out infinite alternate;
+    }
+
+    .aurora-welcome-section .aurora__item:nth-of-type(4) {
+      background-color: var(--clr-4);
+      right: 0;
+      bottom: -50%;
+      animation: aurora-border 6s ease-in-out infinite,
+        aurora-4 24s ease-in-out infinite alternate;
+    }
+
+    /* Keyframes remain the same */
+    @keyframes aurora-1 {
+      0% {
+        top: 0;
+        right: 0;
+      }
+
+      50% {
+        top: 100%;
+        right: 75%;
+      }
+
+      75% {
+        top: 100%;
+        right: 25%;
+      }
+
+      100% {
+        top: 0;
+        right: 0;
+      }
+    }
+
+    @keyframes aurora-2 {
+      0% {
+        top: -50%;
+        left: 0%;
+      }
+
+      60% {
+        top: 100%;
+        left: 75%;
+      }
+
+      85% {
+        top: 100%;
+        left: 25%;
+      }
+
+      100% {
+        top: -50%;
+        left: 0%;
+      }
+    }
+
+    @keyframes aurora-3 {
+      0% {
+        bottom: 0;
+        left: 0;
+      }
+
+      40% {
+        bottom: 100%;
+        left: 75%;
+      }
+
+      65% {
+        bottom: 40%;
+        left: 50%;
+      }
+
+      100% {
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    @keyframes aurora-4 {
+      0% {
+        bottom: -50%;
+        right: 0;
+      }
+
+      50% {
+        bottom: 0%;
+        right: 40%;
+      }
+
+      90% {
+        bottom: 50%;
+        right: 25%;
+      }
+
+      100% {
+        bottom: -50%;
+        right: 0;
+      }
+    }
+
+    @keyframes aurora-border {
+      0% {
+        border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+      }
+
+      25% {
+        border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%;
+      }
+
+      50% {
+        border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%;
+      }
+
+      75% {
+        border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%;
+      }
+
+      100% {
+        border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+      }
+    }
+  </style>
+
+  <!-- HTML remains the same -->
+  <div class="aurora-welcome-section">
+    <div class="content">
+      <h1 class="title">Hi! Welcome to XYZ
+        <div class="aurora">
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+        </div>
+      </h1>
+      <!-- <p class="subtitle">Enjoy your stay!</p> -->
+    </div>
+  </div>
+
+  <div style="margin-top: 80px;">
+    <!-- This div has a <strong>negative top margin</strong> (-20px), pulling it upward. -->
+  </div>
+
+  <style>
+    .profile-pic-container {
+      text-align: center;
+      margin: 20px 0 40px 0;
+      /* Ensure enough space for glow */
+    }
+
+    /* This is now the WRAPPER div */
+    .profile-pic {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      /* Make the wrapper circular */
+      position: relative;
+      /* For positioning the ::before pseudo-element */
+      display: inline-block;
+      /* Allows text-align:center and fits content */
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      /* Original shadow, now on wrapper */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      /* Original transition */
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Styles for the actual image element inside the wrapper */
+    .profile-pic-img {
+      width: 100%;
+      /* Fill the wrapper */
+      height: 100%;
+      /* Fill the wrapper */
+      border-radius: 50%;
+      /* Make the image itself circular */
+      object-fit: cover;
+      border: 0px solid #fff;
+      /* The static white border */
+      display: block;
+      /* Removes any potential extra space below the image */
+      position: relative;
+      /* To ensure it's in the stacking context */
+      z-index: 1;
+      /* To make sure image and its white border are ON TOP of the ::before */
+    }
+
+    /* --- Styles for the rotating glowing border on the WRAPPER's ::before --- */
+    .profile-pic::before {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      /* Behind the .profile-pic-img */
+
+      /* Define thickness of the animated part of the border */
+      --animated-border-thickness: 2px;
+      /* This is the width of the white border on .profile-pic-img */
+      --image-white-border-width: 2px;
+
+      /* How much bigger the ::before needs to be on each side than the wrapper */
+      --total-offset: calc(var(--image-white-border-width) + var(--animated-border-thickness));
+
+      /* Position it to encompass the wrapper + image's white border + new animated border */
+      /* The 100% width/height refers to the .profile-pic wrapper (200px) */
+      top: calc(-1 * var(--total-offset));
+      left: calc(-1 * var(--total-offset));
+      width: calc(100% + 2 * var(--total-offset));
+      /* 200px + 2 * (5px + 4px) = 218px */
+      height: calc(100% + 2 * var(--total-offset));
+      /* 200px + 2 * (5px + 4px) = 218px */
+
+      border-radius: 50%;
+      /* Make the pseudo-element circular */
+
+
+      background: conic-gradient(from 0deg,
+          #000000 0%,
+          /* Cyan-ish */
+          #ffffff 25%,
+          /* Magenta-ish */
+          #858484 50%,
+          /* Cyan-ish */
+          #292929 75%,
+          /* Orange-yellow */
+          #000000 100%
+          /* Back to start for smooth loop */
+        );
+
+      animation: rotateBorder 4s linear infinite;
+
+      /* The glow effect - you can adjust colors and spread */
+      /* This glow applies to the conic-gradient background */
+      filter: drop-shadow(0 0 7px #636262) drop-shadow(0 0 10px #000000);
+    }
+
+    @keyframes rotateBorder {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* --- End of new styles --- */
+  </style>
+
+
+  <div class="profile-pic-container">
+    <!-- The .profile-pic class is now on this wrapper div -->
+    <div class="profile-pic">
+      <img src="home/assets/images/pfp.jpg" alt="Profile Picture" class="profile-pic-img">
+      <!-- New class for the img -->
+    </div>
+  </div>
+
+
+  <div style="margin-top: -120px;">
+    <!-- This div has a <strong>negative top margin</strong> (-20px), pulling it upward. -->
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="container content-section text-center">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h2>About Me</h2>
+        <p>I'm a final-year undergraduate and research student at <a href="https://iiit.ac.in" target="_blank">IIIT
+            Hyderabad</a>, pursuing a dual degree in Computer Science (B.Tech) and Computational Natural Sciences (M.S.
+          by Research). My journey so far has been a blend of coding, research, and a bit of everything in between.</p>
+
+        <p>Currently, my research revolves around building foundation models for particle physics, with a focus on data
+          from the Large Hadron Collider. One of my recent works was accepted at the <a
+            href="https://hep-jepa.github.io/" target="_blank">ICLR 2025 Workshop</a>, and I’m now diving deeper into
+          this direction to uncover more insights at the core of high-energy physics.</p>
+
+        <p>Over the past few years, I’ve had the opportunity to explore a wide range of projects — from developing
+          interactive geospatial platforms in collaboration with the <a href="https://www.vr.se/"
+            target="_blank">Swedish Research Council</a>, to creating real-time drone visualization systems using MQTT,
+          OpenLayers, and Pixhawk telemetry. I’ve also built a custom C shell and a distributed file system inspired by
+          Hadoop. I enjoy getting my hands dirty with systems work and learning something new with every challenge I
+          take on.</p>
+
+        <p>Outside this world of (mostly enjoyable) madness, I find myself lost in another — filled with music, guitars,
+          books, gaming (there are a few easter eggs throughout the website) and the occasional deep dive into a
+          curiosity rabbit hole. Whether it’s research or recreation, I’m always exploring with intent and passion.</p>
+      </div>
+      <!-- <div style="margin-top: 30px;">
+            <iframe style="border-radius:12px; max-width: 600px;" src="https://open.spotify.com/embed/album/7eyQXxuf2nGj9d2367Gi5f?utm_source=generator" width="100%" height="380" frameborder="0" allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          </div> -->
+    </div>
+  </section>
+
+  <!-- Ornamental Divider -->
+
+  <!-- Ornamental Divider Placeholder -->
+  <div style="display: flex; justify-content: center; align-items: center; margin: 60px 0;">
+    <img src="home/assets/images/ornament.png" alt="Ornament" style="max-width: 200px; height: auto;">
+  </div>
+
+  <!-- Listen to Some Music Section -->
+  <style>
+    #listen-music {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      background: url('/path/to/your/music-pattern.png') repeat;
+      background-size: auto;
+      padding: 80px 20px;
+      border-radius: 0;
+      margin-top: 50px;
+      color: #ffffff;
+    }
+
+    #listen-music h2 {
+      font-weight: 700;
+      margin-bottom: 50px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .center-vertically {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* Center horizontally */
+      height: 100%;
+      text-align: center;
+    }
+
+    /* Embed size */
+    .spotify-embed iframe {
+      width: 80%;
+      min-height: 352px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .spotify-embed iframe {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <section id="listen-music" class="content-section">
+    <h2>Listen to Some Music</h2>
+
+    <div class="row align-items-center" style="margin-top: 50px; min-height: 400px;">
+      <!-- Left: Tune Jo Na Kaha -->
+      <div class="col-md-6 wow animate__animated animate__fadeInLeft center-vertically spotify-embed"
+        data-wow-offset="100" data-wow-duration="1.5s">
+        <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/0pw3p4gf5homOkvOGOJulF?utm_source=generator&theme=0" width="80%"
+          height="352" frameBorder="0" allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+      </div>
+
+      <!-- Right: Your existing embed -->
+      <div class="col-md-6 wow animate__animated animate__fadeInRight center-vertically spotify-embed"
+        data-wow-offset="100" data-wow-duration="1.5s">
+        <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/album/7eyQXxuf2nGj9d2367Gi5f?utm_source=generator" width="80%"
+          height="352" frameBorder="0" allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- What I Do Section -->
+  <!-- <style>
+    #what-i-do {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      background: url('/path/to/your/pattern-image.png') repeat;
+      background-size: auto;
+      padding: 80px 20px;
+      border-radius: 0;
+      margin-top: 50px;
+      color: #ffffff;
+    }
+
+    #what-i-do h2 {
+      font-weight: 700;
+      margin-bottom: 50px;
+      color: #ffffff;
+    }
+
+    #what-i-do h3 {
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    #what-i-do ul li {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #f0f0f0;
+    }
+
+    #what-i-do .divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      margin: 60px 0;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .center-vertically {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .center-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    #what-i-do p img {
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    #what-i-do p img:hover {
+      transform: scale(1.2);
+    }
+
+    #what-i-do img.img-responsive {
+      max-width: 60%;
+      height: auto;
+      max-height: 450px;
+      border-radius: 12px;
+    }
+  </style> -->
+
+
+  <style>
+    #what-i-do {
+      width: 100vw;
+      margin-left: calc(50% - 50vw); /* Full-bleed section */
+      /* Ensure '/path/to/your/pattern-image.png' is a real, subtle pattern */
+      /* A very subtle dark pattern on a dark background, or a transparent overlay pattern */
+      /* background: #000000 url('home/assets/images/flowers-4931217_1280.png') repeat; */ /* Added a fallback dark bg */
+      background: #000000; /* Added a fallback dark bg */
+      background-size: auto; /* Or '300px 300px' or 'cover' depending on pattern */
+      padding: 80px 20px;
+      border-radius: 0;
+      margin-top: 50px;
+      color: #ffffff; /* Default text color for the section */
+      overflow-x: hidden; /* Prevent horizontal scroll from vw units if any calculation is off */
+    }
+
+    #what-i-do h2 { /* Section Title */
+      font-weight: 700;
+      margin-bottom: 60px; /* Increased margin */
+      color: #ffffff;
+      font-size: 2.8em; /* Make it stand out */
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #what-i-do h3 { /* Sub-section Titles */
+      font-weight: 600;
+      color: #00bfff; /* Deep Sky Blue - an accent color */
+      margin-bottom: 25px;
+      font-size: 1.8em;
+    }
+
+    /* List styling with Font Awesome */
+    #what-i-do ul {
+      list-style-type: none; /* Remove default bullets */
+      padding-left: 0;
+    }
+
+    #what-i-do ul li {
+      margin-bottom: 15px; /* Slightly more space */
+      font-size: 17px;     /* Slightly adjusted */
+      color: #e0e0e0;     /* Slightly softer white for list text */
+      display: flex;         /* Align icon and text nicely */
+      align-items: flex-start; /* Align icon to the top of multi-line text */
+    }
+
+    #what-i-do ul li i { /* Font Awesome Icons */
+      margin-right: 12px;
+      color: #00bfff; /* Accent color for icons */
+      font-size: 1.1em; /* Icon size relative to text */
+      width: 22px;      /* Ensure consistent spacing for icons */
+      text-align: center;
+      padding-top: 2px;  /* Fine-tune vertical alignment with text */
+    }
+    /* End of list styling */
+
+    #what-i-do .divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.2); /* Made divider a bit softer */
+      margin: 70px 0; /* Increased margin for dividers */
+      width: 85%;     /* Slightly less width */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .center-vertically {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%; /* Be careful with this if content is very tall */
+      padding: 20px 0; /* Add some vertical padding */
+    }
+
+    .center-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 20px; /* Add some padding around the image */
+    }
+
+    /* Tech stack icons (Python, PyTorch, etc.) */
+    #what-i-do .tech-icons p { /* Target the p tag holding the icons */
+        margin-bottom: 25px; /* Space after tech icons, before list */
+    }
+    #what-i-do .tech-icons img { /* Individual tech icon */
+      margin-right: 10px;
+      margin-bottom: 10px; /* For wrapping */
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0.9;
+    }
+
+    #what-i-do .tech-icons img:hover {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    /* End of tech stack icons styling */
+
+    #what-i-do img.img-responsive { /* Main images for each block */
+      max-width: 70%; /* Slightly increased for better visibility */
+      height: auto;
+      max-height: 400px; /* Adjusted max height */
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Add a subtle shadow to images */
+    }
+
+    /* Ensure Bootstrap columns have some padding if g-1 is too small */
+    #what-i-do .row > div[class*="col-"] {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+</style>
+
+<section id="what-i-do" class="content-section">
+  <h2 class="text-center">What I Do</h2>
+
+  <!-- Block 1: Research -->
+  <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
+    <div class="col-md-6 wow animate__animated animate__fadeInLeft center-image" data-wow-offset="100" data-wow-duration="1.5s">
+      <img src="home/assets/images/strange-art-of-the-phenomenon-v0-ctcu4jog6ztd1.webp" alt="Research" class="img-responsive">
+    </div>
+    <div class="col-md-6 wow animate__animated animate__fadeInRight center-vertically" data-wow-offset="100" data-wow-duration="1.5s">
+      <div>
+        <h3>Research & Particle Physics</h3>
+        <div class="tech-icons"> <!-- Wrapper for tech icons -->
+          <p>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="40" title="Python" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" width="40" title="PyTorch" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R" width="40" title="R" />
+          </p>
+        </div>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-atom"></i>Applying Self-Supervised Learning (e.g., JEPA) for Foundation Models in High Energy Physics.</li>
+          <li><i class="fas fa-microscope"></i>Expertise in data analysis, simulation, and statistical modeling for particle jet phenomena at the LHC.</li>
+          <li><i class="fas fa-chart-line"></i>Proficient in developing and evaluating deep learning architectures for physics research.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Block 2: Web Development -->
+  <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
+    <div class="col-md-6 order-md-2 wow animate__animated animate__fadeInRight center-image" data-wow-offset="100" data-wow-duration="1.5s">
+      <img src="home/assets/images/full-stack-developer-cartoon-by-vincentdnl.avif" alt="Web Development" class="img-responsive">
+    </div>
+    <div class="col-md-6 order-md-1 wow animate__animated animate__fadeInLeft center-vertically" data-wow-offset="100" data-wow-duration="1.5s">
+      <div>
+        <h3>Web & Full Stack Development</h3>
+        <div class="tech-icons">
+          <p>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="40" title="HTML5" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="40" title="CSS3" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" title="JavaScript" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="40" title="React" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="40" title="Node.js" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" width="40" title="Docker" />
+          </p>
+        </div>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-laptop-code"></i>Skilled in building responsive UIs with React, HTML5, and CSS3 for interactive applications.</li>
+          <li><i class="fas fa-server"></i>Experienced in Node.js for backend development, API design, and real-time data handling (e.g., MQTT).</li>
+          <li><i class="fas fa-map-marked-alt"></i>Proficient with mapping libraries like OpenLayers for geospatial data visualization and analysis.</li>
+          <li><i class="fas fa-database"></i>Familiar with database integration (SQL/NoSQL) and containerization using Docker.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Block 3: Systems & Backend Engineering -->
+  <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
+    <div class="col-md-6 wow animate__animated animate__fadeInLeft center-image" data-wow-offset="100" data-wow-duration="1.5s">
+      <img src="home/assets/images/ch08-map-ebook.png" alt="Systems Engineering" class="img-responsive">
+    </div>
+    <div class="col-md-6 wow animate__animated animate__fadeInRight center-vertically" data-wow-offset="100" data-wow-duration="1.5s">
+      <div>
+        <h3>Systems Programming & Distributed Systems</h3>
+        <div class="tech-icons">
+          <p>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" width="40" title="C"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" width="40" title="C++"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" width="40" title="Linux"/>
+          </p>
+        </div>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-terminal"></i>Proficient in C/C++ for low-level systems programming, including shell development and OS concepts.</li>
+          <li><i class="fas fa-network-wired"></i>Strong understanding of networking protocols, concurrency control, and building distributed file systems.</li>
+          <li><i class="fab fa-linux"></i>Comfortable working in Linux environments, with expertise in system calls and process management.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Block 4: Machine Learning Applications -->
+  <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
+    <div class="col-md-6 order-md-2 wow animate__animated animate__fadeInRight center-image" data-wow-offset="100" data-wow-duration="1.5s">
+      <img src="home/assets/images/data-science-art-blog.webp" alt="Machine Learning" class="img-responsive">
+    </div>
+    <div class="col-md-6 order-md-1 wow animate__animated animate__fadeInLeft center-vertically" data-wow-offset="100" data-wow-duration="1.5s">
+      <div>
+        <h3>AI/ML Engineering & NLP</h3>
+        <div class="tech-icons">
+          <p>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="40" title="Python" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" width="40" title="PyTorch" />
+            <img src="https://miro.medium.com/v2/resize:fit:604/1*uSM9QqCl2DJtejQSnwkCnw.png" alt="PyTorch Lightning" width="40" title="PyTorch Lightning" style="background-color: white; border-radius: 4px; padding: 2px;"/>
+            <img src="https://cdn.brandfetch.io/idr9gzUWjr/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Weights & Biases" width="40" title="Weights & Biases (W&B)"/>
+          </p>
+        </div>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-brain"></i>Expertise in PyTorch, PyTorch Lightning, and experiment tracking with tools like Weights & Biases (W&B).</li>
+          <li><i class="fas fa-cogs"></i>Skilled in model optimization, performance profiling, and deploying ML models.</li>
+          <!-- <li><i class="fas fa-comments"></i>Strong background in Natural Language Processing: Transformer models (BERT, RoBERTa, Mistral), text summarization, and sentiment analysis.</li> -->
+          <li><i class="fas fa-robot"></i>Experience with Generative AI concepts, LLMs, and developing applications leveraging advanced language models.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+  <!-- Ornamental Divider Placeholder -->
+  <div style="display: flex; justify-content: center; align-items: center; margin: 60px 0;">
+    <img src="home/assets/images/ornament2.png" alt="Ornament" style="max-width: 450px; height: auto;">
+  </div>
+
+
+
+  <!-- Download Section -->
+  <section id="blog" class="content-section text-center">
+    <div class="download-section">
+      <div class="container">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2>My Blog</h2>
+          <p>I scribble down random thoughts and make notes of things
+            I pick up, mostly to copy and paste later.
+            Hopefully, you’ll find something useful in there too.</p>
+          <a href="/blog" class="btn btn-default btn-lg">Visit My Blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="container content-section text-center">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h2>Contact</h2>
+        <p>Feel free to contact me anytime for anything.</p>
+        </p>
+        <ul class="list-inline banner-social-buttons">
+          <!-- <li>
+                        <a href="http://stackoverflow.com/users/1177636/yi-zeng" class="btn btn-default btn-lg" target="_blank" title="StackOverflow"><i class="fa fa-stack-overflow fa-fw"></i> <span class="network-name">stack-overflow</span></a>
+                    </li> -->
+
+          <li>
+            <a href="http://linkedin.com/in/radhikeshagrawal/" class="btn btn-default btn-lg" target="_blank"
+              title="LinkedIn"><i class="fab fa-linkedin fa-fw"></i> <span class="network-name">linkedin</span></a>
+          </li>
+
+          <li>
+            <a href="http://github.com/godofwarnings/" class="btn btn-default btn-lg" target="_blank" title="GitHub"><i
+                class="fab fa-github fa-fw"></i> <span class="network-name">github</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- Map Section -->
+
+  <!-- <style>
+      /* Custom styles for the map elements */
+      #map .custom-map-marker {
+          background-color: #E74C3C; /* A nice contrasting red/orange */
+          border-radius: 50%;
+          width: 20px !important; /* Important to override Leaflet's inline styles */
+          height: 20px !important;
+          border: 3px solid #fff;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+          /* To center the circle on the coordinate */
+          margin-left: -13px !important; /* -(width/2 + border) */
+          margin-top: -13px !important;  /* -(height/2 + border) */
+      }
+  
+      /* Styling the popup */
+      #map .leaflet-popup-content-wrapper {
+          background-color: #f8f8f8; /* Light background for popup */
+          color: #333; /* Dark text for readability */
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+  
+      #map .leaflet-popup-content {
+          margin: 12px 18px; /* More padding inside popup */
+          font-family: 'Arial', sans-serif; /* Or your website's font */
+          font-size: 14px;
+          line-height: 1.6;
+      }
+      #map .leaflet-popup-content h3 {
+          margin: 0 0 5px 0;
+          font-size: 16px;
+          color: #E74C3C; /* Match marker color or use a theme color */
+      }
+  
+      #map .leaflet-popup-tip-container {
+          /* Optionally hide or style the tip if needed */
+      }
+  
+      #map .leaflet-popup-close-button {
+          color: #888;
+          padding: 8px 8px 0 0;
+      }
+      #map .leaflet-popup-close-button:hover {
+          color: #333;
+      }
+  
+      /* Styling zoom controls for a lighter look */
+      #map .leaflet-control-zoom a {
+          background-color: #f8f8f8;
+          color: #333;
+          border-bottom: 1px solid #ddd;
+      }
+      #map .leaflet-control-zoom a:hover {
+          background-color: #fff;
+          color: #000;
+      }
+      #map .leaflet-bar a.leaflet-disabled {
+          background-color: #f0f0f0;
+          color: #bbb;
+      }
+  
+  </style> -->
+
+  <style>
+    /* Styles for the map container itself */
+    #map {
+      height: 400px;
+      width: 100%;
+      /* Takes full width of its parent container */
+      border-radius: 12px;
+      /* Soft rounded corners */
+      /* A subtle border, good on a dark background. Adjust color if needed. */
+      border: 1px solid #4a4a4a;
+      /* A shadow to give depth. Adjust values as you like. */
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      /* VERY IMPORTANT: Clips map tiles to the border-radius */
+      margin-top: 30px;
+      /* Example: Adds space above the map */
+      margin-bottom: 30px;
+      /* Example: Adds space below the map */
+      /* If you want horizontal margins and it's not full-width in its parent: */
+      /* margin-left: auto; */
+      /* margin-right: auto; */
+      /* max-width: 90%; */
+      /* Example if you don't want it full browser width */
+    }
+
+    /* --- PREVIOUS CUSTOM STYLES FOR LEAFLET ELEMENTS --- */
+    #map .custom-map-marker {
+      background-color: #E74C3C;
+      border-radius: 50%;
+      width: 20px !important;
+      height: 20px !important;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      margin-left: -13px !important;
+      margin-top: -13px !important;
+    }
+
+    #map .leaflet-popup-content-wrapper {
+      background-color: #f8f8f8;
+      color: #333;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    #map .leaflet-popup-content {
+      margin: 12px 18px;
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    #map .leaflet-popup-content h3 {
+      margin: 0 0 5px 0;
+      font-size: 16px;
+      color: #E74C3C;
+    }
+
+    #map .leaflet-popup-tip-container {
+      /* Optionally hide or style the tip if needed */
+    }
+
+    #map .leaflet-popup-close-button {
+      color: #888;
+      padding: 8px 8px 0 0;
+    }
+
+    #map .leaflet-popup-close-button:hover {
+      color: #333;
+    }
+
+    #map .leaflet-control-zoom a {
+      background-color: #f8f8f8;
+      color: #333;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #map .leaflet-control-zoom a:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    #map .leaflet-bar a.leaflet-disabled {
+      background-color: #f0f0f0;
+      color: #bbb;
+    }
+  </style>
+
+  <!-- <div id="map" style="height: 400px; width: 100%;"></div> -->
+  <div id="map"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var map = L.map('map').setView([17.4065, 78.4772], 13);
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+      }).addTo(map);
+
+      var customMarkerIcon = L.divIcon({
+        className: 'custom-map-marker',
+        iconSize: [20, 20],
+      });
+
+      L.marker([17.4065, 78.4772], { icon: customMarkerIcon }).addTo(map)
+        .bindPopup('<h3>Hyderabad</h3><p>Find Me!</p>')
+        .openPopup();
+    });
+  </script>
+
+  <!-- <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          var map = L.map('map').setView([17.4065, 78.4772], 13); // Center at IIIT Hyderabad, adjusted zoom
+  
+          // 1. Using a lighter, more aesthetic tile layer from CARTO (formerly CartoDB)
+          L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+              attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
+              subdomains: 'abcd', // Standard for CARTO
+              maxZoom: 20
+          }).addTo(map);
+  
+          // --- Comment out the old OpenStreetMap default tile layer ---
+          // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          //   attribution: '© OpenStreetMap contributors'
+          // }).addTo(map);
+  
+          // 2. Custom Marker using L.DivIcon for more CSS control
+          var customMarkerIcon = L.divIcon({
+              className: 'custom-map-marker', // CSS class defined above
+              iconSize: [20, 20], // Size of the icon
+              // iconAnchor: [10, 10], // Point of the icon which will correspond to marker's location
+              // popupAnchor: [0, -10] // Point from which the popup should open relative to the iconAnchor
+          });
+  
+          L.marker([17.4065, 78.4772], { icon: customMarkerIcon }).addTo(map)
+              .bindPopup('<h3>Hyderabad</h3><p>Find Me!</p>') // Using h3 for styling
+              .openPopup();
+  
+          // Optional: Disable map zoom with scroll wheel if it interferes with page scrolling
+          // map.scrollWheelZoom.disable();
+      });
+  </script> -->
+
+  <!-- <div id="map" style="height: 400px; width: 100%;"></div> -->
+
+  <!-- Ornamental Divider Placeholder -->
+  <div style="display: flex; justify-content: center; align-items: center; margin: 60px 0;">
+    <img src="home/assets/images/ornament3.png" alt="Ornament" style="width: 450px; height: 120px;">
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p><a href="/">radhikesh.agrawal</a>
+    </div>
+  </footer>
+
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="/assets/javascripts/jquery-3.2.1.min.js"><\/script>')
+  </script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/home/assets/javascripts/bootstrap.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="/home/assets/javascripts/jquery.easing.min.js"></script>
+
+  <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAARwolMqJZ7jU5z0AIY3IZ_qY_o-xjYN0"></script> -->
+
+  <!-- <script>
+        // Initialize the map once the page is loaded
+        document.addEventListener("DOMContentLoaded", function() {
+          var map = L.map('map').setView([17.4065, 78.4772], 9); // Center at IIIT Hyderabad
+      
+          // Tile layer from OpenStreetMap
+          // L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+          //  attribution: '&copy; OpenStreetMap contributors & CartoDB'
+          // }).addTo(map);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(map);
+              
+      
+          // Add a marker
+          L.marker([17.4065, 78.4772]).addTo(map)
+            .bindPopup('Hyderabad')
+            .openPopup();
+        });
+      </script>
+       -->
+
+  <!-- Custom JavaScripts -->
+  <script src="/home/assets/javascripts/grayscale.js"></script>
+
+  <!-- Custom Google Analytics -->
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script async src="/home/assets/javascripts/autotrack.js"></script>
+  <script src="/home/assets/javascripts/analytics-tracking.js"></script>
+</body>
+
+</html>
