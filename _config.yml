@@ -16,7 +16,6 @@ exclude:
   ]
 lang: en
 permalink: /:year/:month/:day/:title/
-# theme: jekyll-theme-simple-texture
 remote_theme: yizeng/jekyll-theme-simple-texture
 # remote_theme: "jekyll/minima@1e8a445"
 
@@ -26,7 +25,6 @@ plugins:
   - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-remote-theme
 
 defaults:
   -
