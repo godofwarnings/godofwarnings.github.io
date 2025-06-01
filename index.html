@@ -366,7 +366,7 @@
       /* Sun Flower - bright yellow */
       --clr-3: #0d046f;
       /* Peter River - blue */
-      --clr-4: #1dd614;
+      --clr-4: #064802;
       /* Turquoise - greenish-blue */
       /* --- End of Color Change --- */
 
@@ -590,7 +590,7 @@
   <!-- HTML remains the same -->
   <div class="aurora-welcome-section">
     <div class="content">
-      <h1 class="title">Hi there! Welcome to my website!
+      <h1 class="title">Welcome to my corner of the internet!
         <div class="aurora">
           <div class="aurora__item"></div>
           <div class="aurora__item"></div>
@@ -768,51 +768,98 @@
   </div>
 
   <!-- Listen to Some Music Section -->
-  <style>
-    #listen-music {
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      background: url('/path/to/your/music-pattern.png') repeat;
-      background-size: auto;
-      padding: 80px 20px;
-      border-radius: 0;
-      margin-top: 50px;
-      color: #ffffff;
-    }
+        
+<style>
+  #listen-music {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    
+    /* The main element will now have the solid background color */
+    background-color: #000000; /* This will be visible behind the semi-transparent image */
+    
+    padding: 80px 20px;
+    border-radius: 0;
+    margin-top: 50px;
+    color: #ffffff; /* Text color for content inside */
 
-    #listen-music h2 {
-      font-weight: 700;
-      margin-bottom: 50px;
-      text-align: center;
-      color: #ffffff;
-    }
+    position: relative; /* Crucial for positioning the ::before pseudo-element */
+    z-index: 0; /* Establish a stacking context, content will be above ::before */
+    overflow: hidden; /* Good practice if ::before might slightly exceed bounds due to blur/glow */
+  }
 
-    .center-vertically {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      /* Center horizontally */
-      height: 100%;
-      text-align: center;
-    }
+  /* The ::before pseudo-element will hold our background image */
+  #listen-music::before {
+    content: ""; /* Required for pseudo-elements */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; /* Cover the entire parent */
+    bottom: 0; /* Cover the entire parent */
+    
+    background-image: url('home/assets/images/waveform.jpg'); /* Your image path */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    opacity: 0.4; /* --- REDUCED OPACITY for the image layer --- Adjust value (0.0 to 1.0) */
+    
+    /* --- GLOW EFFECT for the image layer --- */
+    /* Adjust color (rgba), blur radius (15px), and spread (optional) */
+    /* Using a light glow, e.g., white or a light blue */
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3)) 
+            drop-shadow(0 0 25px rgba(100, 150, 255, 0.2)); 
+    /* You can stack multiple drop-shadows for a more complex glow.
+       Example: A soft white general glow, and a hint of blue.
+       Alternatively, for a simpler glow:
+       filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)); 
+    */
 
-    /* Embed size */
+    z-index: -1; /* Place the pseudo-element BEHIND the content of #listen-music */
+  }
+
+
+  /* ... rest of your existing styles ... */
+  #listen-music h2 {
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #ffffff;
+    position: relative; /* Ensure text is above the ::before's layer */
+    z-index: 1;
+  }
+
+  .center-vertically {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    position: relative; /* Ensure content is above the ::before's layer */
+    z-index: 1;
+  }
+
+  .spotify-embed iframe {
+    width: 80%;
+    min-height: 352px;
+    border-radius: 12px;
+    position: relative; /* Ensure embeds are above the ::before's layer */
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
     .spotify-embed iframe {
-      width: 80%;
-      min-height: 352px;
-      border-radius: 12px;
+      width: 100%;
     }
+  }
+</style>
 
-    @media (max-width: 768px) {
-      .spotify-embed iframe {
-        width: 100%;
-      }
-    }
-  </style>
+  
 
   <section id="listen-music" class="content-section">
     <h2>Listen to Some Music</h2>
+
+    
 
     <div class="row align-items-center" style="margin-top: 50px; min-height: 400px;">
       <!-- Left: Tune Jo Na Kaha -->
