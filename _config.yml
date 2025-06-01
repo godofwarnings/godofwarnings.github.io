@@ -16,7 +16,7 @@ exclude:
   ]
 lang: en
 permalink: /:year/:month/:day/:title/
-remote_theme: jekyll-theme-simple-texture
+remote_theme: yizeng/jekyll-theme-simple-texture
 # remote_theme: "jekyll/minima@1e8a445"
 
 whitelist: [jekyll-feed, jekyll-redirect-from, jekyll-seo-tag, jekyll-sitemap]
