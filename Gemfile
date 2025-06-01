@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 gem 'erb'
 gem 'csv'
+gem 'jekyll-remote-theme'
 gem 'jekyll-theme-simple-texture', tag: 'v0.5.3'
-gem "jekyll-remote-theme"
 # gem "minima", github: "jekyll/minima", ref: "1e8a445"
-# gem "github-pages", group: :jekyll_plugins
-gem "jekyll", "~> 4.2.0" # or the latest stable
+gem "github-pages", group: :jekyll_plugins
+# gem "jekyll", "~> 4.2.0" # or the latest stable
 
 gem "webrick", "~> 1.8"
 
