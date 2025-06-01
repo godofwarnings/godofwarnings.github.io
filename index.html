@@ -23,7 +23,8 @@
   <!-- Font Awesome 6 Free CDN -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
 
@@ -50,6 +51,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome (Pro version was used, you might need to adjust icons if using Free) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -166,142 +173,167 @@
                   letter-spacing: 0.1em;
                 }
 
-                 /* --- New Styles for Intro Text Shadow Effect --- */
+                /* --- New Styles for Intro Text Shadow Effect --- */
 
-  /* Define shadow colors for the animation */
-  /* These can be in :root or scoped to a relevant parent container */
-  :root { /* Or .my-name-ac-style-container if you want them more scoped */
-    --intro-shadow-color-1: #f49b90; /* Original: --color-secondary */
-    --intro-shadow-color-2: #f28b7d; /* Original: --color-tertiary */
-    --intro-shadow-color-3: #f07a6a; /* Original: --color-quaternary */
-    --intro-shadow-color-4: #ee6352; /* Original: --color-quinary */
-  }
+                /* Define shadow colors for the animation */
+                /* These can be in :root or scoped to a relevant parent container */
+                :root {
+                  /* Or .my-name-ac-style-container if you want them more scoped */
+                  --intro-shadow-color-1: #f49b90;
+                  /* Original: --color-secondary */
+                  --intro-shadow-color-2: #f28b7d;
+                  /* Original: --color-tertiary */
+                  --intro-shadow-color-3: #f07a6a;
+                  /* Original: --color-quaternary */
+                  --intro-shadow-color-4: #ee6352;
+                  /* Original: --color-quinary */
+                }
 
-  /* This class will apply the animation */
-  .intro-name-shadow-animate {
-    /* It does NOT define: color, font-family, font-size, text-transform etc. 
+                /* This class will apply the animation */
+                .intro-name-shadow-animate {
+                  /* It does NOT define: color, font-family, font-size, text-transform etc. 
        Those are inherited from the Assassin's Creed styles. */
-    animation: introNameShadowKeyframes 2s ease-in;
-    position: relative; /* Good for elements being transformed */
-  }
+                  animation: introNameShadowKeyframes 2s ease-in;
+                  position: relative;
+                  /* Good for elements being transformed */
+                }
 
-  @keyframes introNameShadowKeyframes {
-    0% {
-      text-shadow: none;
-      transform: translate(0, 0);
-    }
-    10% {
-      transform: translate(-1px, -1px); /* Scaled down offset */
-      text-shadow: 1px 1px 0 var(--intro-shadow-color-1); /* Scaled down offset */
-    }
-    20% {
-      transform: translate(-2px, -2px);
-      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
-                   2px 2px 0 var(--intro-shadow-color-2);
-    }
-    30% {
-      transform: translate(-3px, -3px);
-      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
-                   2px 2px 0 var(--intro-shadow-color-2), 
-                   3px 3px 0 var(--intro-shadow-color-3);
-    }
-    40% {
-      transform: translate(-4px, -4px); /* Max offset for this scaled version */
-      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
-                   2px 2px 0 var(--intro-shadow-color-2), 
-                   3px 3px 0 var(--intro-shadow-color-3),
-                   4px 4px 0 var(--intro-shadow-color-4);
-    }
-    50% { /* Hold the full effect */
-      transform: translate(-4px, -4px);
-      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
-                   2px 2px 0 var(--intro-shadow-color-2), 
-                   3px 3px 0 var(--intro-shadow-color-3),
-                   4px 4px 0 var(--intro-shadow-color-4);
-    }
-    /* Start receding back to normal */
-    60% {
-      transform: translate(-3px, -3px);
-      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
-                   2px 2px 0 var(--intro-shadow-color-2), 
-                   3px 3px 0 var(--intro-shadow-color-3);
-    }
-    70% {
-      transform: translate(-2px, -2px);
-      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
-                   2px 2px 0 var(--intro-shadow-color-2);
-    }
-    80% {
-      transform: translate(-1px, -1px);
-      text-shadow: 1px 1px 0 var(--intro-shadow-color-1);
-    }
-    90% {
-       /* Optional: could start fading text-shadow earlier if transform has a little delay */
-      transform: translate(0, 0); /* Quickly snap back or smoothly animate */
-      text-shadow: none;
-    }
-    100% {
-      text-shadow: none;
-      transform: translate(0, 0); /* Fully reset */
-    }
-  }
-  /* --- End of New Styles --- */
+                @keyframes introNameShadowKeyframes {
+                  0% {
+                    text-shadow: none;
+                    transform: translate(0, 0);
+                  }
+
+                  10% {
+                    transform: translate(-1px, -1px);
+                    /* Scaled down offset */
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1);
+                    /* Scaled down offset */
+                  }
+
+                  20% {
+                    transform: translate(-2px, -2px);
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                      2px 2px 0 var(--intro-shadow-color-2);
+                  }
+
+                  30% {
+                    transform: translate(-3px, -3px);
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                      2px 2px 0 var(--intro-shadow-color-2),
+                      3px 3px 0 var(--intro-shadow-color-3);
+                  }
+
+                  40% {
+                    transform: translate(-4px, -4px);
+                    /* Max offset for this scaled version */
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                      2px 2px 0 var(--intro-shadow-color-2),
+                      3px 3px 0 var(--intro-shadow-color-3),
+                      4px 4px 0 var(--intro-shadow-color-4);
+                  }
+
+                  50% {
+                    /* Hold the full effect */
+                    transform: translate(-4px, -4px);
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                      2px 2px 0 var(--intro-shadow-color-2),
+                      3px 3px 0 var(--intro-shadow-color-3),
+                      4px 4px 0 var(--intro-shadow-color-4);
+                  }
+
+                  /* Start receding back to normal */
+                  60% {
+                    transform: translate(-3px, -3px);
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                      2px 2px 0 var(--intro-shadow-color-2),
+                      3px 3px 0 var(--intro-shadow-color-3);
+                  }
+
+                  70% {
+                    transform: translate(-2px, -2px);
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                      2px 2px 0 var(--intro-shadow-color-2);
+                  }
+
+                  80% {
+                    transform: translate(-1px, -1px);
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1);
+                  }
+
+                  90% {
+                    /* Optional: could start fading text-shadow earlier if transform has a little delay */
+                    transform: translate(0, 0);
+                    /* Quickly snap back or smoothly animate */
+                    text-shadow: none;
+                  }
+
+                  100% {
+                    text-shadow: none;
+                    transform: translate(0, 0);
+                    /* Fully reset */
+                  }
+                }
+
+                /* --- End of New Styles --- */
 
                 /* --- New Styles for "Lights" Effect --- */
 
-  .name-lights-effect {
-    /* This class applies the animation. 
+                .name-lights-effect {
+                  /* This class applies the animation. 
        It does NOT set font-family, font-size, etc.
        It WILL attempt to animate the 'color' property based on the keyframes.
     */
-    animation: lightsKeyframes 5s 750ms linear;
-    /* We can set a default text-shadow here if needed,
+                  animation: lightsKeyframes 5s 750ms linear;
+                  /* We can set a default text-shadow here if needed,
        but the animation will override it. */
-  }
+                }
 
-  @keyframes lightsKeyframes { /* Renamed to avoid potential conflicts if "lights" is too generic */
-    0% {
-      text-shadow:
-        0 0 1em hsla(350, 96%, 50%, 0.292),
-        0 0 0.125em hsla(320, 100%, 60%, 0.3),
-        -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
-        1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
-    }
-    
-    30% { 
-      text-shadow:
-        0 0 1em hsla(320, 100%, 50%, 0.5),
-        0 0 0.125em hsla(320, 100%, 60%, 0.5),
-        -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
-        0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
-    }
-    
-    40% { 
-      text-shadow:
-        0 0 1em hsla(320, 100%, 50%, 0.5),
-        0 0 0.125em hsla(320, 100%, 90%, 0.5),
-        -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
-        0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
-    }
-    
-    70% {
-      text-shadow:
-        0 0 1em hsla(320, 100%, 50%, 0.5),
-        0 0 0.125em hsla(320, 100%, 60%, 0.5),
-        0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
-        -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
-    }
-    
-    100% {
-      text-shadow:
-        0 0 1em hsla(320, 100%, 50%, 0.2),
-        0 0 0.125em hsla(320, 100%, 60%, 0.3),
-        1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
-        -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
-    }
-  }
-  /* --- End of New Styles --- */
+                @keyframes lightsKeyframes {
 
+                  /* Renamed to avoid potential conflicts if "lights" is too generic */
+                  0% {
+                    text-shadow:
+                      0 0 1em hsla(350, 96%, 50%, 0.292),
+                      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+                      -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+                      1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+                  }
+
+                  30% {
+                    text-shadow:
+                      0 0 1em hsla(320, 100%, 50%, 0.5),
+                      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+                      -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+                      0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+                  }
+
+                  40% {
+                    text-shadow:
+                      0 0 1em hsla(320, 100%, 50%, 0.5),
+                      0 0 0.125em hsla(320, 100%, 90%, 0.5),
+                      -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+                      0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+                  }
+
+                  70% {
+                    text-shadow:
+                      0 0 1em hsla(320, 100%, 50%, 0.5),
+                      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+                      0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+                      -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+                  }
+
+                  100% {
+                    text-shadow:
+                      0 0 1em hsla(320, 100%, 50%, 0.2),
+                      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+                      1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+                      -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+                  }
+                }
+
+                /* --- End of New Styles --- */
               </style>
               <!-- <h1 class="brand-heading">Radhikesh Agrawal</h1> -->
 
@@ -684,13 +716,13 @@
       background: conic-gradient(from 0deg,
           #000000 0%,
           /* Cyan-ish */
-          #ffffff 25%,
+          #3e013d 25%,
           /* Magenta-ish */
-          #858484 50%,
+          #7f016a 50%,
           /* Cyan-ish */
-          #292929 75%,
+          #3d012a 75%,
           /* Orange-yellow */
-          #000000 100%
+          #67003c 100%
           /* Back to start for smooth loop */
         );
 
@@ -718,7 +750,7 @@
   <div class="profile-pic-container">
     <!-- The .profile-pic class is now on this wrapper div -->
     <div class="profile-pic">
-      <img src="home/assets/images/pfp.jpg" alt="Profile Picture" class="profile-pic-img">
+      <img src="home/assets/images/purple.gif" alt="Profile Picture" class="profile-pic-img">
       <!-- New class for the img -->
     </div>
   </div>
@@ -768,98 +800,576 @@
   </div>
 
   <!-- Listen to Some Music Section -->
-        
-<style>
-  #listen-music {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    
-    /* The main element will now have the solid background color */
-    background-color: #000000; /* This will be visible behind the semi-transparent image */
-    
-    padding: 80px 20px;
-    border-radius: 0;
-    margin-top: 50px;
-    color: #ffffff; /* Text color for content inside */
 
-    position: relative; /* Crucial for positioning the ::before pseudo-element */
-    z-index: 0; /* Establish a stacking context, content will be above ::before */
-    overflow: hidden; /* Good practice if ::before might slightly exceed bounds due to blur/glow */
-  }
+  <style>
+    #listen-music {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
 
-  /* The ::before pseudo-element will hold our background image */
-  #listen-music::before {
-    content: ""; /* Required for pseudo-elements */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0; /* Cover the entire parent */
-    bottom: 0; /* Cover the entire parent */
-    
-    background-image: url('home/assets/images/waveform.jpg'); /* Your image path */
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    
-    opacity: 0.4; /* --- REDUCED OPACITY for the image layer --- Adjust value (0.0 to 1.0) */
-    
-    /* --- GLOW EFFECT for the image layer --- */
-    /* Adjust color (rgba), blur radius (15px), and spread (optional) */
-    /* Using a light glow, e.g., white or a light blue */
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3)) 
-            drop-shadow(0 0 25px rgba(100, 150, 255, 0.2)); 
-    /* You can stack multiple drop-shadows for a more complex glow.
+      /* The main element will now have the solid background color */
+      background-color: #000000;
+      /* This will be visible behind the semi-transparent image */
+
+      padding: 80px 20px;
+      border-radius: 0;
+      margin-top: 50px;
+      color: #ffffff;
+      /* Text color for content inside */
+
+      position: relative;
+      /* Crucial for positioning the ::before pseudo-element */
+      z-index: 0;
+      /* Establish a stacking context, content will be above ::before */
+      overflow: hidden;
+      /* Good practice if ::before might slightly exceed bounds due to blur/glow */
+    }
+
+    /* The ::before pseudo-element will hold our background image */
+    #listen-music::before {
+      content: "";
+      /* Required for pseudo-elements */
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      /* Cover the entire parent */
+      bottom: 0;
+      /* Cover the entire parent */
+
+      background-image: url('home/assets/images/waveform11.jpg');
+      /* Your image path */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      opacity: 0.4;
+      /* --- REDUCED OPACITY for the image layer --- Adjust value (0.0 to 1.0) */
+
+      /* --- GLOW EFFECT for the image layer --- */
+      /* Adjust color (rgba), blur radius (15px), and spread (optional) */
+      /* Using a light glow, e.g., white or a light blue */
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 25px rgba(100, 150, 255, 0.2));
+      /* You can stack multiple drop-shadows for a more complex glow.
        Example: A soft white general glow, and a hint of blue.
        Alternatively, for a simpler glow:
        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)); 
     */
 
-    z-index: -1; /* Place the pseudo-element BEHIND the content of #listen-music */
-  }
-
-
-  /* ... rest of your existing styles ... */
-  #listen-music h2 {
-    font-weight: 700;
-    margin-bottom: 50px;
-    text-align: center;
-    color: #ffffff;
-    position: relative; /* Ensure text is above the ::before's layer */
-    z-index: 1;
-  }
-
-  .center-vertically {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    text-align: center;
-    position: relative; /* Ensure content is above the ::before's layer */
-    z-index: 1;
-  }
-
-  .spotify-embed iframe {
-    width: 80%;
-    min-height: 352px;
-    border-radius: 12px;
-    position: relative; /* Ensure embeds are above the ::before's layer */
-    z-index: 1;
-  }
-
-  @media (max-width: 768px) {
-    .spotify-embed iframe {
-      width: 100%;
+      z-index: -1;
+      /* Place the pseudo-element BEHIND the content of #listen-music */
     }
-  }
-</style>
 
-  
+
+    /* ... rest of your existing styles ... */
+    #listen-music h2 {
+      font-weight: 700;
+      margin-bottom: 50px;
+      text-align: center;
+      color: #ffffff;
+      position: relative;
+      /* Ensure text is above the ::before's layer */
+      z-index: 1;
+    }
+
+    .center-vertically {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      position: relative;
+      /* Ensure content is above the ::before's layer */
+      z-index: 1;
+    }
+
+    .spotify-embed iframe {
+      width: 80%;
+      min-height: 352px;
+      border-radius: 12px;
+      position: relative;
+      /* Ensure embeds are above the ::before's layer */
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .spotify-embed iframe {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <style>
+    /* Ensure Rajdhani and Font Awesome are linked in your HTML <head> */
+    /* @font-face for Chill Font should be defined */
+    @font-face {
+      font-family: 'Chill';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Chill'),
+        url('path/to/your/fonts/Chillvornia_Stamp_Slant.otf') format('opentype');
+    }
+
+    .moxley-music-card-container {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .moxley-music-card-container .moxybaul {
+      width: 100%;
+      min-height: 650px;
+
+      /* No direct background-image here anymore */
+      background-color: #1a1a1a;
+      /* Fallback background if images don't load */
+
+      border: none;
+      outline: 1px solid #222;
+
+      overflow: hidden;
+      /* Crucial for clipping pseudo-elements */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 1s ease-in-out;
+      /* Can transition fallback color if needed */
+    }
+
+    /* Pseudo-elements for the split background image effect */
+    .moxley-music-card-container .moxybaul::before,
+    .moxley-music-card-container .moxybaul::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      /* Optional: for parallax */
+      transition: opacity 0.8s ease-in-out;
+      /* Transition for fading */
+    }
+
+    /* ::before holds the B&W image, always visible underneath */
+    .moxley-music-card-container .moxybaul::before {
+      background-image: url('home/assets/images/music-bg1-colorless.jpg');
+      /* YOUR B&W IMAGE */
+      z-index: 0;
+      /* Furthest back */
+      opacity: 1;
+      /* Always fully visible */
+    }
+
+    /* ::after holds the COLORED image, for the right half and hover effect */
+    .moxley-music-card-container .moxybaul::after {
+      background-image: url('home/assets/images/music-bg1.jpg');
+      /* YOUR COLOR IMAGE */
+      z-index: 1;
+      /* Above B&W, below content */
+      /* Clip path to show only the right half initially */
+      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+      opacity: 1;
+      /* Visible initially */
+    }
+
+    /* On hover of .moxybaul, fade out the colored ::after layer */
+    .moxley-music-card-container .moxybaul:hover::after {
+      opacity: 0;
+    }
+
+    /* --- Styles for .nameboxm, .nmox1, .nmox2 remain largely the same --- */
+    .moxley-music-card-container .nameboxm {
+      display: flex;
+      color: rgba(204, 204, 204, 0.8);
+      text-transform: lowercase;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      /* Above backgrounds, below revealed cards */
+      pointer-events: none;
+    }
+
+    .moxley-music-card-container .nmox1,
+    .moxley-music-card-container .nmox2 {
+      font-family: 'Chill', cursive, sans-serif;
+      font-size: clamp(80px, 25vw, 280px);
+      position: relative;
+      transition: all ease-in-out 0.9s;
+      transition-delay: 0.8s;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .moxley-music-card-container .nmox1 {
+      left: -3vw;
+    }
+
+    .moxley-music-card-container .nmox2 {
+      right: -1.5vw;
+    }
+
+    .moxley-music-card-container .moxybaul:hover .nmox1 {
+      left: -70vw;
+    }
+
+    .moxley-music-card-container .moxybaul:hover .nmox2 {
+      right: -70vw;
+    }
+
+
+    /* CONTAINER FOR THE TWO SIDE-BY-SIDE CARDS - Adjusted for more margin */
+    .moxley-music-card-container .box-dmox {
+      width: 85%;
+      /* REDUCED: Was 90%. This pushes cards further "in" */
+      max-width: 1100px;
+      /* REDUCED: Was 1200px */
+      /* Alternatively, increase padding: */
+      /* padding: 40px; /* INCREASED: Was 20px. Also pushes cards further "in" */
+
+      height: auto;
+      min-height: 80%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: clamp(20px, 3vw, 40px);
+      /* Slightly increased max gap */
+      font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(10px, 1.3vw, 12px);
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      transition-delay: 0.6s;
+      z-index: 1;
+      /* Below .nameboxm initially */
+      box-sizing: border-box;
+    }
+
+    .moxley-music-card-container .moxybaul:hover .box-dmox {
+      opacity: 1;
+      z-index: 3;
+      /* Above .nameboxm on hover */
+    }
+
+    /* STYLING FOR THE TWO INNER CARDS: .datosmox and .musicmox */
+    .moxley-music-card-container .datosmox,
+    .moxley-music-card-container .musicmox {
+      flex: 1 1 calc(50% - (clamp(20px, 3vw, 40px) / 2));
+      /* Adjusted for dynamic gap */
+      min-width: 260px;
+      /* Slightly adjusted min-width */
+      max-width: 550px;
+      /* Slightly adjusted max-width */
+      height: auto;
+      min-height: 400px;
+      background: rgba(10, 10, 10, 0.88);
+      /* Slightly more opaque for better readability */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #e8e8e8;
+      padding: clamp(25px, 3.5vw, 45px);
+      /* Slightly increased padding */
+      border-radius: 10px;
+      /* Slightly more rounded */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    .moxley-music-card-container .musicmox {
+      justify-content: space-between;
+    }
+
+    /* --- Styles for .dmox, .moxquo, .moxgif, .mmox, .botonmox, .bottomlyrm --- */
+    /* --- These remain largely the same as the previous "complete style" --- */
+    /* --- with minor tweaks to font sizes or colors if needed for consistency --- */
+
+    .moxley-music-card-container .dmox {
+      width: 100%;
+      border-bottom: 1px solid #5c4763;
+      display: flex;
+      align-items: center;
+      margin-top: clamp(10px, 1.5vh, 15px);
+      padding-bottom: 3px;
+      justify-content: space-between;
+      font-size: clamp(10px, 1.3vw, 11px);
+    }
+
+    .moxley-music-card-container .datosmox m {
+      font-weight: 700;
+      color: #9c83a3;
+    }
+
+    .moxley-music-card-container .datosmox n {
+      text-align: right;
+      color: #c0c0c0;
+    }
+
+    .moxley-music-card-container .moxquo {
+      background: rgba(92, 71, 99, 0.5);
+      padding: clamp(10px, 1.5vw, 15px);
+      text-align: justify;
+      min-height: clamp(50px, 8vh, 70px);
+      line-height: 1.6;
+      font-size: clamp(10px, 1.3vw, 11px);
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: clamp(15px, 2vh, 20px);
+      border-radius: 4px;
+    }
+
+    .moxley-music-card-container .moxgif {
+      width: clamp(100px, 12vw, 100px);
+      height: clamp(100px, 12vw, 100px);
+      border-radius: 100%;
+      border: clamp(2px, 1vw, 3px) solid #333;
+      margin: 0 auto clamp(15px, 2vh, 25px) auto;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .moxley-music-card-container .mmox {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: clamp(4px, 0.8vw, 6px);
+      line-height: 1.3;
+      margin-bottom: clamp(5px, 1vh, 8px);
+      border-radius: 4px;
+    }
+
+    .moxley-music-card-container .mmox i {
+      font-size: clamp(15px, 2.2vw, 20px);
+      color: #9c83a3;
+      padding: clamp(8px, 1vw, 12px);
+      flex-shrink: 0;
+    }
+
+    .moxley-music-card-container .mmox a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff;
+    }
+
+    .moxley-music-card-container .mmox a {
+      flex-grow: 1;
+      font-size: clamp(10px, 1.4vw, 12px);
+      font-weight: 700;
+      color: #bca0c3;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 8px;
+    }
+
+    .moxley-music-card-container .mmox m {
+      font-size: clamp(9px, 1.2vw, 11px);
+      color: #a0a0a0;
+      margin-left: auto;
+      padding-left: 8px;
+      display: flex;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .moxley-music-card-container .mmox m:before {
+      content: '/';
+      font-weight: 700;
+      color: #5c4763;
+      margin-right: clamp(6px, 1vw, 10px);
+    }
+
+    .moxley-music-card-container .botonmox {
+      width: 100%;
+      margin: clamp(20px, 3vh, 25px) auto 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding-top: 15px;
+      border-top: 1px solid rgba(92, 71, 99, 0.6);
+    }
+
+    .moxley-music-card-container .botonmox a {
+      color: #7a6383;
+      font-size: clamp(18px, 3vw, 22px);
+      -webkit-text-stroke: 1px transparent;
+      transition: all ease-in-out 0.4s;
+    }
+
+    .moxley-music-card-container .botonmox a:hover {
+      -webkit-text-stroke: 1px #9c83a3;
+      color: #bca0c3;
+      transform: scale(1.15);
+    }
+
+    .moxley-music-card-container .bottomlyrm {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(9px, 1.3vw, 11px);
+      text-transform: uppercase;
+      letter-spacing: clamp(4px, 1vw, 6px);
+      color: rgba(204, 204, 204, 0.7);
+      position: absolute;
+      bottom: clamp(15px, 2.5vh, 20px);
+      left: 0;
+      width: 100%;
+      text-align: center;
+      line-height: 1.5;
+      transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out;
+      z-index: 0;
+      opacity: 1;
+      padding: 0 15px;
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+
+    .moxley-music-card-container .moxybaul:hover .bottomlyrm {
+      filter: blur(6px);
+      opacity: 0;
+    }
+
+    /* --- Media Queries from previous response remain the same --- */
+    @media (max-width: 992px) {
+      .moxley-music-card-container .box-dmox {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+        padding: 20px;
+        overflow-y: auto;
+        height: calc(100% - 40px);
+      }
+
+      .moxley-music-card-container .datosmox,
+      .moxley-music-card-container .musicmox {
+        flex: 0 0 auto;
+        width: 90%;
+        max-width: 500px;
+        min-height: auto;
+        margin-bottom: 20px;
+      }
+
+      .moxley-music-card-container .musicmox:last-child {
+        margin-bottom: 0;
+      }
+
+      .moxley-music-card-container .moxybaul {
+        min-height: 700px;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .moxley-music-card-container .nmox1,
+      .moxley-music-card-container .nmox2 {
+        font-size: clamp(40px, 18vw, 150px);
+      }
+
+      .moxley-music-card-container .moxybaul {
+        min-height: 800px;
+      }
+    }
+  </style>
 
   <section id="listen-music" class="content-section">
     <h2>Listen to Some Music</h2>
 
-    
+
+    <div class="moxley-music-card-container">
+      <div class="moxybaul">
+        <div class="nameboxm">
+          <div class="nmox1">CARPE</div> <!-- Changed from MOX -->
+          <div class="nmox2">DIEM</div> <!-- Changed from LEY -->
+        </div>
+        <div class="box-dmox">
+          <div class="datosmox">
+            <div class="moxgif" style="background-image: url('home/assets/images/pfp.jpg');"></div>
+            <!-- CHANGE THIS GIF -->
+            <div class="moxquo">Music is the universal language of mankind. Where words fail, music speaks.</div>
+            <!-- Changed quote -->
+            <!-- Changed data fields -->
+            <div class="dmox">
+              <m>Current Vibe</m>
+              <n>Chill & Focused</n>
+            </div>
+            <div class="dmox">
+              <m>Genre Focus</m>
+              <n>Electronic, Ambient</n>
+            </div>
+            <div class="dmox">
+              <m>Decade</m>
+              <n>Modern Mix</n>
+            </div>
+            <div class="dmox">
+              <m>Mood</m>
+              <n>Introspective</n>
+            </div>
+            <div class="dmox">
+              <m>Activity</m>
+              <n>Coding, Reading</n>
+            </div>
+            <div class="dmox">
+              <m>Discovery</m>
+              <n>New Artists Weekly</n>
+            </div>
+          </div>
+          <div class="musicmox">
+            <!-- Keep or update these music links -->
+            <div class="mmox"><i class="fas fa-music"></i><a href="https://youtu.be/R0V0jyg5bA4" target="_blank">lazy
+                bones</a>
+              <m>green day</m>
+            </div>
+            <div class="mmox"><i class="fas fa-music"></i><a href="https://youtu.be/omGon5N233A" target="_blank">light
+                years beyond</a>
+              <m>electric citizen</m>
+            </div>
+            <div class="mmox"><i class="fas fa-music"></i><a href="https://youtu.be/dkNfNR1WYMY" target="_blank">the day
+                that never comes</a>
+              <m>metallica</m>
+            </div>
+            <div class="mmox"><i class="fas fa-music"></i><a href="https://youtu.be/ctiKD8jtvV8" target="_blank">killing
+                in the name</a>
+              <m>ratm</m>
+            </div>
+            <div class="mmox"><i class="fas fa-music"></i><a href="https://youtu.be/5OzOTjr3eds"
+                target="_blank">hello</a>
+              <m>evanescence</m>
+            </div>
+            <div class="mmox"><i class="fas fa-music"></i><a href="https://youtu.be/RbmS3tQJ7Os" target="_blank">gimme
+                shelter</a>
+              <m>the rolling stones</m>
+            </div>
+            <div class="botonmox">
+              <!-- Changed icons to be more generic/music related -->
+              <a href="#" title="Playlists"><i class="fas fa-list-music"></i></a>
+              <a href="#" title="Favorites"><i class="fas fa-heart"></i></a>
+              <a href="#" title="Discover"><i class="fas fa-compact-disc"></i></a>
+              <a href="#" title="Share"><i class="fas fa-share-alt"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="bottomlyrm">Dive into the sound. <br>Let the rhythm guide you.</div> <!-- Changed bottom text -->
+      </div>
+    </div>
+
 
     <div class="row align-items-center" style="margin-top: 50px; min-height: 400px;">
       <!-- Left: Tune Jo Na Kaha -->
@@ -960,63 +1470,89 @@
   <style>
     #what-i-do {
       width: 100vw;
-      margin-left: calc(50% - 50vw); /* Full-bleed section */
+      margin-left: calc(50% - 50vw);
+      /* Full-bleed section */
       /* Ensure '/path/to/your/pattern-image.png' is a real, subtle pattern */
       /* A very subtle dark pattern on a dark background, or a transparent overlay pattern */
-      /* background: #000000 url('home/assets/images/flowers-4931217_1280.png') repeat; */ /* Added a fallback dark bg */
-      background: #000000; /* Added a fallback dark bg */
-      background-size: auto; /* Or '300px 300px' or 'cover' depending on pattern */
+      /* background: #000000 url('home/assets/images/flowers-4931217_1280.png') repeat; */
+      /* Added a fallback dark bg */
+      background: #000000;
+      /* Added a fallback dark bg */
+      background-size: auto;
+      /* Or '300px 300px' or 'cover' depending on pattern */
       padding: 80px 20px;
       border-radius: 0;
       margin-top: 50px;
-      color: #ffffff; /* Default text color for the section */
-      overflow-x: hidden; /* Prevent horizontal scroll from vw units if any calculation is off */
+      color: #ffffff;
+      /* Default text color for the section */
+      overflow-x: hidden;
+      /* Prevent horizontal scroll from vw units if any calculation is off */
     }
 
-    #what-i-do h2 { /* Section Title */
+    #what-i-do h2 {
+      /* Section Title */
       font-weight: 700;
-      margin-bottom: 60px; /* Increased margin */
+      margin-bottom: 60px;
+      /* Increased margin */
       color: #ffffff;
-      font-size: 2.8em; /* Make it stand out */
+      font-size: 2.8em;
+      /* Make it stand out */
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    #what-i-do h3 { /* Sub-section Titles */
+    #what-i-do h3 {
+      /* Sub-section Titles */
       font-weight: 600;
-      color: #00bfff; /* Deep Sky Blue - an accent color */
+      color: #00bfff;
+      /* Deep Sky Blue - an accent color */
       margin-bottom: 25px;
       font-size: 1.8em;
     }
 
     /* List styling with Font Awesome */
     #what-i-do ul {
-      list-style-type: none; /* Remove default bullets */
+      list-style-type: none;
+      /* Remove default bullets */
       padding-left: 0;
     }
 
     #what-i-do ul li {
-      margin-bottom: 15px; /* Slightly more space */
-      font-size: 17px;     /* Slightly adjusted */
-      color: #e0e0e0;     /* Slightly softer white for list text */
-      display: flex;         /* Align icon and text nicely */
-      align-items: flex-start; /* Align icon to the top of multi-line text */
+      margin-bottom: 15px;
+      /* Slightly more space */
+      font-size: 17px;
+      /* Slightly adjusted */
+      color: #e0e0e0;
+      /* Slightly softer white for list text */
+      display: flex;
+      /* Align icon and text nicely */
+      align-items: flex-start;
+      /* Align icon to the top of multi-line text */
     }
 
-    #what-i-do ul li i { /* Font Awesome Icons */
+    #what-i-do ul li i {
+      /* Font Awesome Icons */
       margin-right: 12px;
-      color: #00bfff; /* Accent color for icons */
-      font-size: 1.1em; /* Icon size relative to text */
-      width: 22px;      /* Ensure consistent spacing for icons */
+      color: #00bfff;
+      /* Accent color for icons */
+      font-size: 1.1em;
+      /* Icon size relative to text */
+      width: 22px;
+      /* Ensure consistent spacing for icons */
       text-align: center;
-      padding-top: 2px;  /* Fine-tune vertical alignment with text */
+      padding-top: 2px;
+      /* Fine-tune vertical alignment with text */
     }
+
     /* End of list styling */
 
     #what-i-do .divider {
-      border-top: 1px solid rgba(255, 255, 255, 0.2); /* Made divider a bit softer */
-      margin: 70px 0; /* Increased margin for dividers */
-      width: 85%;     /* Slightly less width */
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      /* Made divider a bit softer */
+      margin: 70px 0;
+      /* Increased margin for dividers */
+      width: 85%;
+      /* Slightly less width */
       margin-left: auto;
       margin-right: auto;
     }
@@ -1025,8 +1561,10 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100%; /* Be careful with this if content is very tall */
-      padding: 20px 0; /* Add some vertical padding */
+      height: 100%;
+      /* Be careful with this if content is very tall */
+      padding: 20px 0;
+      /* Add some vertical padding */
     }
 
     .center-image {
@@ -1034,16 +1572,22 @@
       justify-content: center;
       align-items: center;
       height: 100%;
-      padding: 20px; /* Add some padding around the image */
+      padding: 20px;
+      /* Add some padding around the image */
     }
 
     /* Tech stack icons (Python, PyTorch, etc.) */
-    #what-i-do .tech-icons p { /* Target the p tag holding the icons */
-        margin-bottom: 25px; /* Space after tech icons, before list */
+    #what-i-do .tech-icons p {
+      /* Target the p tag holding the icons */
+      margin-bottom: 25px;
+      /* Space after tech icons, before list */
     }
-    #what-i-do .tech-icons img { /* Individual tech icon */
+
+    #what-i-do .tech-icons img {
+      /* Individual tech icon */
       margin-right: 10px;
-      margin-bottom: 10px; /* For wrapping */
+      margin-bottom: 10px;
+      /* For wrapping */
       transition: transform 0.3s ease, opacity 0.3s ease;
       opacity: 0.9;
     }
@@ -1052,135 +1596,179 @@
       transform: scale(1.2);
       opacity: 1;
     }
+
     /* End of tech stack icons styling */
 
-    #what-i-do img.img-responsive { /* Main images for each block */
-      max-width: 70%; /* Slightly increased for better visibility */
+    #what-i-do img.img-responsive {
+      /* Main images for each block */
+      max-width: 70%;
+      /* Slightly increased for better visibility */
       height: auto;
-      max-height: 400px; /* Adjusted max height */
+      max-height: 400px;
+      /* Adjusted max height */
       border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Add a subtle shadow to images */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      /* Add a subtle shadow to images */
     }
 
     /* Ensure Bootstrap columns have some padding if g-1 is too small */
-    #what-i-do .row > div[class*="col-"] {
-        padding-left: 20px;
-        padding-right: 20px;
+    #what-i-do .row>div[class*="col-"] {
+      padding-left: 20px;
+      padding-right: 20px;
     }
+  </style>
 
-</style>
+  <section id="what-i-do" class="content-section">
+    <h2 class="text-center">What I Do</h2>
 
-<section id="what-i-do" class="content-section">
-  <h2 class="text-center">What I Do</h2>
-
-  <!-- Block 1: Research -->
-  <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
-    <div class="col-md-6 wow animate__animated animate__fadeInLeft center-image" data-wow-offset="100" data-wow-duration="1.5s">
-      <img src="home/assets/images/strange-art-of-the-phenomenon-v0-ctcu4jog6ztd1.webp" alt="Research" class="img-responsive">
-    </div>
-    <div class="col-md-6 wow animate__animated animate__fadeInRight center-vertically" data-wow-offset="100" data-wow-duration="1.5s">
-      <div>
-        <h3>Research & Particle Physics</h3>
-        <div class="tech-icons"> <!-- Wrapper for tech icons -->
-          <p>
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="40" title="Python" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" width="40" title="PyTorch" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R" width="40" title="R" />
-          </p>
+    <!-- Block 1: Research -->
+    <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
+      <div class="col-md-6 wow animate__animated animate__fadeInLeft center-image" data-wow-offset="100"
+        data-wow-duration="1.5s">
+        <img src="home/assets/images/strange-art-of-the-phenomenon-v0-ctcu4jog6ztd1.webp" alt="Research"
+          class="img-responsive">
+      </div>
+      <div class="col-md-6 wow animate__animated animate__fadeInRight center-vertically" data-wow-offset="100"
+        data-wow-duration="1.5s">
+        <div>
+          <h3>Research & Particle Physics</h3>
+          <div class="tech-icons"> <!-- Wrapper for tech icons -->
+            <p>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
+                width="40" title="Python" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"
+                width="40" title="PyTorch" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R" width="40"
+                title="R" />
+            </p>
+          </div>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-atom"></i>Applying Self-Supervised Learning (e.g., JEPA) for Foundation Models in High
+              Energy Physics.</li>
+            <li><i class="fas fa-microscope"></i>Expertise in data analysis, simulation, and statistical modeling for
+              particle jet phenomena at the LHC.</li>
+            <li><i class="fas fa-chart-line"></i>Proficient in developing and evaluating deep learning architectures for
+              physics research.</li>
+          </ul>
         </div>
-        <ul class="list-unstyled">
-          <li><i class="fas fa-atom"></i>Applying Self-Supervised Learning (e.g., JEPA) for Foundation Models in High Energy Physics.</li>
-          <li><i class="fas fa-microscope"></i>Expertise in data analysis, simulation, and statistical modeling for particle jet phenomena at the LHC.</li>
-          <li><i class="fas fa-chart-line"></i>Proficient in developing and evaluating deep learning architectures for physics research.</li>
-        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- Block 2: Web Development -->
-  <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
-    <div class="col-md-6 order-md-2 wow animate__animated animate__fadeInRight center-image" data-wow-offset="100" data-wow-duration="1.5s">
-      <img src="home/assets/images/full-stack-developer-cartoon-by-vincentdnl.avif" alt="Web Development" class="img-responsive">
-    </div>
-    <div class="col-md-6 order-md-1 wow animate__animated animate__fadeInLeft center-vertically" data-wow-offset="100" data-wow-duration="1.5s">
-      <div>
-        <h3>Web & Full Stack Development</h3>
-        <div class="tech-icons">
-          <p>
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="40" title="HTML5" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="40" title="CSS3" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" title="JavaScript" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="40" title="React" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="40" title="Node.js" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" width="40" title="Docker" />
-          </p>
+    <!-- Block 2: Web Development -->
+    <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
+      <div class="col-md-6 order-md-2 wow animate__animated animate__fadeInRight center-image" data-wow-offset="100"
+        data-wow-duration="1.5s">
+        <img src="home/assets/images/full-stack-developer-cartoon-by-vincentdnl.avif" alt="Web Development"
+          class="img-responsive">
+      </div>
+      <div class="col-md-6 order-md-1 wow animate__animated animate__fadeInLeft center-vertically" data-wow-offset="100"
+        data-wow-duration="1.5s">
+        <div>
+          <h3>Web & Full Stack Development</h3>
+          <div class="tech-icons">
+            <p>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
+                width="40" title="HTML5" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="40"
+                title="CSS3" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript" width="40" title="JavaScript" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"
+                width="40" title="React" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"
+                width="40" title="Node.js" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"
+                width="40" title="Docker" />
+            </p>
+          </div>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-laptop-code"></i>Skilled in building responsive UIs with React, HTML5, and CSS3 for
+              interactive applications.</li>
+            <li><i class="fas fa-server"></i>Experienced in Node.js for backend development, API design, and real-time
+              data handling (e.g., MQTT).</li>
+            <li><i class="fas fa-map-marked-alt"></i>Proficient with mapping libraries like OpenLayers for geospatial
+              data visualization and analysis.</li>
+            <li><i class="fas fa-database"></i>Familiar with database integration (SQL/NoSQL) and containerization using
+              Docker.</li>
+          </ul>
         </div>
-        <ul class="list-unstyled">
-          <li><i class="fas fa-laptop-code"></i>Skilled in building responsive UIs with React, HTML5, and CSS3 for interactive applications.</li>
-          <li><i class="fas fa-server"></i>Experienced in Node.js for backend development, API design, and real-time data handling (e.g., MQTT).</li>
-          <li><i class="fas fa-map-marked-alt"></i>Proficient with mapping libraries like OpenLayers for geospatial data visualization and analysis.</li>
-          <li><i class="fas fa-database"></i>Familiar with database integration (SQL/NoSQL) and containerization using Docker.</li>
-        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- Block 3: Systems & Backend Engineering -->
-  <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
-    <div class="col-md-6 wow animate__animated animate__fadeInLeft center-image" data-wow-offset="100" data-wow-duration="1.5s">
-      <img src="home/assets/images/ch08-map-ebook.png" alt="Systems Engineering" class="img-responsive">
-    </div>
-    <div class="col-md-6 wow animate__animated animate__fadeInRight center-vertically" data-wow-offset="100" data-wow-duration="1.5s">
-      <div>
-        <h3>Systems Programming & Distributed Systems</h3>
-        <div class="tech-icons">
-          <p>
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" width="40" title="C"/>
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" width="40" title="C++"/>
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" width="40" title="Linux"/>
-          </p>
+    <!-- Block 3: Systems & Backend Engineering -->
+    <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
+      <div class="col-md-6 wow animate__animated animate__fadeInLeft center-image" data-wow-offset="100"
+        data-wow-duration="1.5s">
+        <img src="home/assets/images/ch08-map-ebook.png" alt="Systems Engineering" class="img-responsive">
+      </div>
+      <div class="col-md-6 wow animate__animated animate__fadeInRight center-vertically" data-wow-offset="100"
+        data-wow-duration="1.5s">
+        <div>
+          <h3>Systems Programming & Distributed Systems</h3>
+          <div class="tech-icons">
+            <p>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" width="40"
+                title="C" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"
+                width="40" title="C++" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"
+                width="40" title="Linux" />
+            </p>
+          </div>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-terminal"></i>Proficient in C/C++ for low-level systems programming, including shell
+              development and OS concepts.</li>
+            <li><i class="fas fa-network-wired"></i>Strong understanding of networking protocols, concurrency control,
+              and building distributed file systems.</li>
+            <li><i class="fab fa-linux"></i>Comfortable working in Linux environments, with expertise in system calls
+              and process management.</li>
+          </ul>
         </div>
-        <ul class="list-unstyled">
-          <li><i class="fas fa-terminal"></i>Proficient in C/C++ for low-level systems programming, including shell development and OS concepts.</li>
-          <li><i class="fas fa-network-wired"></i>Strong understanding of networking protocols, concurrency control, and building distributed file systems.</li>
-          <li><i class="fab fa-linux"></i>Comfortable working in Linux environments, with expertise in system calls and process management.</li>
-        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- Block 4: Machine Learning Applications -->
-  <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
-    <div class="col-md-6 order-md-2 wow animate__animated animate__fadeInRight center-image" data-wow-offset="100" data-wow-duration="1.5s">
-      <img src="home/assets/images/data-science-art-blog.webp" alt="Machine Learning" class="img-responsive">
-    </div>
-    <div class="col-md-6 order-md-1 wow animate__animated animate__fadeInLeft center-vertically" data-wow-offset="100" data-wow-duration="1.5s">
-      <div>
-        <h3>AI/ML Engineering & NLP</h3>
-        <div class="tech-icons">
-          <p>
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="40" title="Python" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" width="40" title="PyTorch" />
-            <img src="https://miro.medium.com/v2/resize:fit:604/1*uSM9QqCl2DJtejQSnwkCnw.png" alt="PyTorch Lightning" width="40" title="PyTorch Lightning" style="background-color: white; border-radius: 4px; padding: 2px;"/>
-            <img src="https://cdn.brandfetch.io/idr9gzUWjr/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Weights & Biases" width="40" title="Weights & Biases (W&B)"/>
-          </p>
+    <!-- Block 4: Machine Learning Applications -->
+    <div class="row align-items-center g-1" style="margin-top: 50px; min-height: 300px;">
+      <div class="col-md-6 order-md-2 wow animate__animated animate__fadeInRight center-image" data-wow-offset="100"
+        data-wow-duration="1.5s">
+        <img src="home/assets/images/data-science-art-blog.webp" alt="Machine Learning" class="img-responsive">
+      </div>
+      <div class="col-md-6 order-md-1 wow animate__animated animate__fadeInLeft center-vertically" data-wow-offset="100"
+        data-wow-duration="1.5s">
+        <div>
+          <h3>AI/ML Engineering & NLP</h3>
+          <div class="tech-icons">
+            <p>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
+                width="40" title="Python" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"
+                width="40" title="PyTorch" />
+              <img src="https://miro.medium.com/v2/resize:fit:604/1*uSM9QqCl2DJtejQSnwkCnw.png" alt="PyTorch Lightning"
+                width="40" title="PyTorch Lightning"
+                style="background-color: white; border-radius: 4px; padding: 2px;" />
+              <img src="https://cdn.brandfetch.io/idr9gzUWjr/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B"
+                alt="Weights & Biases" width="40" title="Weights & Biases (W&B)" />
+            </p>
+          </div>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-brain"></i>Expertise in PyTorch, PyTorch Lightning, and experiment tracking with tools
+              like Weights & Biases (W&B).</li>
+            <li><i class="fas fa-cogs"></i>Skilled in model optimization, performance profiling, and deploying ML
+              models.</li>
+            <!-- <li><i class="fas fa-comments"></i>Strong background in Natural Language Processing: Transformer models (BERT, RoBERTa, Mistral), text summarization, and sentiment analysis.</li> -->
+            <li><i class="fas fa-robot"></i>Experience with Generative AI concepts, LLMs, and developing applications
+              leveraging advanced language models.</li>
+          </ul>
         </div>
-        <ul class="list-unstyled">
-          <li><i class="fas fa-brain"></i>Expertise in PyTorch, PyTorch Lightning, and experiment tracking with tools like Weights & Biases (W&B).</li>
-          <li><i class="fas fa-cogs"></i>Skilled in model optimization, performance profiling, and deploying ML models.</li>
-          <!-- <li><i class="fas fa-comments"></i>Strong background in Natural Language Processing: Transformer models (BERT, RoBERTa, Mistral), text summarization, and sentiment analysis.</li> -->
-          <li><i class="fas fa-robot"></i>Experience with Generative AI concepts, LLMs, and developing applications leveraging advanced language models.</li>
-        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
