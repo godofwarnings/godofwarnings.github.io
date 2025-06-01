@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'erb'
 gem 'csv'
+gem 'jekyll-remote-theme'
 gem 'jekyll-theme-simple-texture', tag: 'v0.5.3'
 # gem "minima", github: "jekyll/minima", ref: "1e8a445"
 gem "github-pages", group: :jekyll_plugins

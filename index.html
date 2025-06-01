@@ -165,15 +165,152 @@
                   /* Was 0.5em. Adjust as needed. */
                   letter-spacing: 0.1em;
                 }
+
+                 /* --- New Styles for Intro Text Shadow Effect --- */
+
+  /* Define shadow colors for the animation */
+  /* These can be in :root or scoped to a relevant parent container */
+  :root { /* Or .my-name-ac-style-container if you want them more scoped */
+    --intro-shadow-color-1: #f49b90; /* Original: --color-secondary */
+    --intro-shadow-color-2: #f28b7d; /* Original: --color-tertiary */
+    --intro-shadow-color-3: #f07a6a; /* Original: --color-quaternary */
+    --intro-shadow-color-4: #ee6352; /* Original: --color-quinary */
+  }
+
+  /* This class will apply the animation */
+  .intro-name-shadow-animate {
+    /* It does NOT define: color, font-family, font-size, text-transform etc. 
+       Those are inherited from the Assassin's Creed styles. */
+    animation: introNameShadowKeyframes 2s ease-in;
+    position: relative; /* Good for elements being transformed */
+  }
+
+  @keyframes introNameShadowKeyframes {
+    0% {
+      text-shadow: none;
+      transform: translate(0, 0);
+    }
+    10% {
+      transform: translate(-1px, -1px); /* Scaled down offset */
+      text-shadow: 1px 1px 0 var(--intro-shadow-color-1); /* Scaled down offset */
+    }
+    20% {
+      transform: translate(-2px, -2px);
+      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                   2px 2px 0 var(--intro-shadow-color-2);
+    }
+    30% {
+      transform: translate(-3px, -3px);
+      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                   2px 2px 0 var(--intro-shadow-color-2), 
+                   3px 3px 0 var(--intro-shadow-color-3);
+    }
+    40% {
+      transform: translate(-4px, -4px); /* Max offset for this scaled version */
+      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                   2px 2px 0 var(--intro-shadow-color-2), 
+                   3px 3px 0 var(--intro-shadow-color-3),
+                   4px 4px 0 var(--intro-shadow-color-4);
+    }
+    50% { /* Hold the full effect */
+      transform: translate(-4px, -4px);
+      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                   2px 2px 0 var(--intro-shadow-color-2), 
+                   3px 3px 0 var(--intro-shadow-color-3),
+                   4px 4px 0 var(--intro-shadow-color-4);
+    }
+    /* Start receding back to normal */
+    60% {
+      transform: translate(-3px, -3px);
+      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                   2px 2px 0 var(--intro-shadow-color-2), 
+                   3px 3px 0 var(--intro-shadow-color-3);
+    }
+    70% {
+      transform: translate(-2px, -2px);
+      text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                   2px 2px 0 var(--intro-shadow-color-2);
+    }
+    80% {
+      transform: translate(-1px, -1px);
+      text-shadow: 1px 1px 0 var(--intro-shadow-color-1);
+    }
+    90% {
+       /* Optional: could start fading text-shadow earlier if transform has a little delay */
+      transform: translate(0, 0); /* Quickly snap back or smoothly animate */
+      text-shadow: none;
+    }
+    100% {
+      text-shadow: none;
+      transform: translate(0, 0); /* Fully reset */
+    }
+  }
+  /* --- End of New Styles --- */
+
+                /* --- New Styles for "Lights" Effect --- */
+
+  .name-lights-effect {
+    /* This class applies the animation. 
+       It does NOT set font-family, font-size, etc.
+       It WILL attempt to animate the 'color' property based on the keyframes.
+    */
+    animation: lightsKeyframes 5s 750ms linear;
+    /* We can set a default text-shadow here if needed,
+       but the animation will override it. */
+  }
+
+  @keyframes lightsKeyframes { /* Renamed to avoid potential conflicts if "lights" is too generic */
+    0% {
+      text-shadow:
+        0 0 1em hsla(350, 96%, 50%, 0.292),
+        0 0 0.125em hsla(320, 100%, 60%, 0.3),
+        -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+        1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+    }
+    
+    30% { 
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 60%, 0.5),
+        -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+        0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+    }
+    
+    40% { 
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 90%, 0.5),
+        -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+        0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+    }
+    
+    70% {
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 60%, 0.5),
+        0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+        -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+    }
+    
+    100% {
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.2),
+        0 0 0.125em hsla(320, 100%, 60%, 0.3),
+        1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+        -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+    }
+  }
+  /* --- End of New Styles --- */
+
               </style>
               <!-- <h1 class="brand-heading">Radhikesh Agrawal</h1> -->
 
 
               <div class="my-name-ac-style-container brand-heading">
-                <div class="my-name-ac-line1">
+                <div class="my-name-ac-line1 name-lights-effect">
                   <span class="my-name-ac-char-large">R</span><span class="my-name-ac-char-small">adhikesh</span>
                 </div>
-                <div class="my-name-ac-line2">Agrawal</div>
+                <div class="my-name-ac-line2 name-lights-effect">Agrawal</div>
               </div>
 
 
@@ -453,7 +590,7 @@
   <!-- HTML remains the same -->
   <div class="aurora-welcome-section">
     <div class="content">
-      <h1 class="title">Hi! Welcome to XYZ
+      <h1 class="title">Hi there! Welcome to my website!
         <div class="aurora">
           <div class="aurora__item"></div>
           <div class="aurora__item"></div>
@@ -1288,7 +1425,6 @@
   <script src="/home/assets/javascripts/jquery.easing.min.js"></script>
 
   <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAARwolMqJZ7jU5z0AIY3IZ_qY_o-xjYN0"></script> -->
 
   <!-- <script>
         // Initialize the map once the page is loaded

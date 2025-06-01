@@ -345,6 +345,7 @@ DEPENDENCIES
   cucumber
   erb
   github-pages
+  jekyll-remote-theme
   jekyll-theme-simple-texture
   minitest
   rake
