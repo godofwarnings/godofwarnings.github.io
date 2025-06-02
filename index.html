@@ -107,6 +107,45 @@
     </div>
     <!-- /.container -->
   </nav>
+
+
+  <!-- <style>
+    body {
+      margin: 0;
+      /* Remove default body margin */
+      position: relative;
+      /* Optional: if other absolute elements need body as context */
+      /* Not strictly needed for the line itself if line is fixed */
+    }
+
+    .vertical-center-line {
+      position: fixed;
+      /* Fixed position relative to the viewport */
+      top: 0;
+      /* Start from the top of the viewport */
+      bottom: 0;
+      /* Extend to the bottom of the viewport */
+      left: 50%;
+      /* Position the left edge of the line at the horizontal center */
+      width: 2px;
+      /* Width of the line (adjust as needed) */
+      background-color: red;
+      /* Color of the line */
+
+      /* This is crucial: Shift the line back by half its width to truly center it */
+      transform: translateX(-50%);
+
+      z-index: 9999;
+      /* Ensure it's on top of most other content. Adjust if needed. */
+      pointer-events: none;
+      /* Allows clicks to pass through the line to elements underneath */
+    }
+  </style>
+
+
+
+  <div class="vertical-center-line"></div> -->
+
   <!-- Intro Header -->
   <header class="intro">
     <div class="intro-body">
@@ -362,7 +401,7 @@
       text-align: center;
       margin: 20px 0 40px 0;
     }
-  
+
     .profile-pic {
       width: 200px;
       height: 200px;
@@ -372,13 +411,13 @@
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-  
+
     .profile-pic:hover {
       transform: scale(1.05);
       box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
     }
   </style>
-  
+
   <div class="profile-pic-container">
     <img src="home/assets/images/pfp.jpg" alt="Profile Picture" class="profile-pic">
   </div> -->
@@ -392,13 +431,13 @@
       /* Section background color - Black */
 
       /* --- In Rainbows Inspired Colors --- */
-      --clr-1: #dd210c;
+      --clr-1: #00c2ff;
       /* Alizarin - reddish-orange */
-      --clr-2: #e7ba09;
+      --clr-2: #33ff8c;
       /* Sun Flower - bright yellow */
-      --clr-3: #0d046f;
+      --clr-3: #ffc640;
       /* Peter River - blue */
-      --clr-4: #064802;
+      --clr-4: #e54cff;
       /* Turquoise - greenish-blue */
       /* --- End of Color Change --- */
 
@@ -1997,6 +2036,698 @@
         .openPopup();
     });
   </script>
+  <!-- 
+  <style>
+    /* Scoped styles for the page-end gallery */
+
+    .page-end-gallery-container {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 80px 20px;
+      box-sizing: border-box;
+
+      /* Flexbox settings to center its children */
+      /* MODIFICATION: Use text-align for centering the inline-grid child */
+      text-align: center;
+
+      /* display: flex; /* Temporarily disable flex if using text-align for gallery centering */
+      /* flex-direction: column; */
+      /* align-items: center; */
+
+      border: 2px solid red;
+      /* DIAGNOSTIC */
+    }
+
+    .page-end-gallery-container .gallery-title {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin-bottom: 50px;
+      text-align: center;
+      width: 100%;
+      /* Ensure title can be text-aligned center */
+      border: 3px solid yellow;
+    }
+
+    .page-end-gallery-container .gallery {
+      --size: clamp(60px, 10vw, 120px);
+
+      display: inline-grid;
+      grid-template-columns: repeat(6, var(--size));
+      grid-auto-rows: var(--size);
+      gap: 5px;
+      margin-bottom: var(--size);
+
+      /* For items WITHIN their grid cells: */
+      place-items: start center;
+      /* 'start' vertically, 'center' horizontally */
+
+      /* For the grid TRACKS WITHIN the gallery container: */
+      justify-content: center;
+
+      /* For the GALLERY CONTAINER ITSELF within its parent: */
+      /* Make the gallery only as wide as its content and then center with margin: auto */
+
+      /* Center the gallery block */
+
+      border: 5cqh dashed limegreen;
+
+      &:has(:hover) a:not(:hover),
+      &:has(:focus) a:not(:focus) {
+        filter: brightness(0.4) contrast(0.6) saturate(0.5);
+      }
+    }
+
+    .page-end-gallery-container .gallery a {
+      /* Each link takes up 2x2 grid cells based on --size */
+      width: calc(var(--size) * 2);
+      height: calc(var(--size) * 2);
+      transition: clip-path 0.3s ease, filter 0.5s ease;
+      grid-column: auto / span 2;
+      position: relative;
+      display: block;
+      /* Important for <a> to take dimensions */
+      overflow: hidden;
+
+      border: 5px dotted blue;
+      /* Good with clip-path */
+
+      /* This rule creates the staggered layout */
+      &:nth-child(5n - 1) {
+        grid-column: 2 / span 2;
+        /* Shifts every 5th-1 item to start at column 2 */
+      }
+
+      &:hover,
+      &:focus {
+        /* On hover/focus, clip-path changes to a square, revealing more image */
+        clip-path: path("M0,0 C0,0 200,0 200,0 200,0 200,100 200,100 200,100 200,200 200,200 200,200 100,200 100,200 100,200 100,200 0,200 0,200 0,100 0,100 0,100 0,100 0,100Z");
+        z-index: 10;
+        /* Bring hovered item to the front */
+        transition: clip-path 0.25s ease, filter 0.2s ease;
+        /* Faster transition on hover */
+      }
+
+      &:focus {
+        /* Standard focus outline for accessibility */
+        outline: 2px solid #00bfff;
+        /* A visible focus color */
+        outline-offset: 2px;
+      }
+
+      & img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Ensures image covers the area, cropping if needed */
+        display: block;
+        /* Remove extra space below image */
+      }
+    }
+
+    .page-end-gallery-container .gallery a:nth-child(5n - 1) {
+      grid-column: 2 / span 2;
+    }
+
+    .page-end-gallery-container .gallery a:hover,
+    .page-end-gallery-container .gallery a:focus {
+      clip-path: path("M0,0 C0,0 200,0 200,0 200,0 200,100 200,100 200,100 200,200 200,200 200,200 100,200 100,200 100,200 100,200 0,200 0,200 0,100 0,100 0,100 0,100 0,100Z");
+      z-index: 10;
+      transition: clip-path 0.25s ease, filter 0.2s ease;
+    }
+
+    .page-end-gallery-container .gallery a:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 2px;
+    }
+
+    .page-end-gallery-container .gallery a img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+
+    /* Fallback for browsers that don't support :has() - optional */
+    /* This will simply make items slightly dimmer, and brighter on hover. */
+    /* Not as effective as :has() for dimming *other* items. */
+    @supports not selector(:has(a)) {
+      .page-end-gallery-container .gallery a {
+        filter: brightness(0.8);
+      }
+
+      .page-end-gallery-container .gallery a:hover,
+      .page-end-gallery-container .gallery a:focus {
+        filter: brightness(1);
+      }
+    }
+  </style> -->
+  <!-- 
+  <style>
+    /* Ensure Rajdhani and Font Awesome are linked in your HTML <head> */
+    /* @font-face for Chill Font should be defined */
+    @font-face {
+      font-family: 'Chill';
+      /* Ensure this font is loaded correctly if used elsewhere or as fallback */
+      font-style: normal;
+      font-weight: normal;
+      src: local('Chill'),
+        url('path/to/your/fonts/Chillvornia_Stamp_Slant.otf') format('opentype');
+    }
+
+    .page-end-gallery-container {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-top: 80px;
+      padding-bottom: 80px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* background-color: #111; /* Optional: Dark bg for the section */
+    }
+
+    .page-end-gallery-container .gallery-title {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin-bottom: 50px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .page-end-gallery-container .gallery {
+      --size: clamp(60px, 10vw, 120px);
+
+      display: grid;
+      grid-template-columns: repeat(6, var(--size));
+      grid-auto-rows: var(--size);
+      gap: 5px;
+      margin-bottom: var(--size);
+      place-items: start center;
+      justify-content: center;
+      /* Center the grid tracks */
+
+      /* border: 2px dashed limegreen; /* DIAGNOSTIC */
+
+      &:has(:hover) a:not(:hover),
+      &:has(:focus) a:not(:focus) {
+        filter: brightness(0.4) contrast(0.6) saturate(0.5);
+      }
+    }
+
+    .page-end-gallery-container .gallery a {
+      width: calc(var(--size) * 2);
+      height: calc(var(--size) * 2);
+
+      /* NEW SIMPLER CLIP-PATH using polygon() */
+      /* This creates a shape like a diamond or wide hexagon */
+      /* Adjust percentages to change the angles/points */
+      clip-path: polygon(50% 0%,
+          /* Top point */
+          100% 25%,
+          /* Top-right point */
+          100% 75%,
+          /* Bottom-right point */
+          50% 100%,
+          /* Bottom point */
+          0% 75%,
+          /* Bottom-left point */
+          0% 25%
+          /* Top-left point */
+        );
+
+      transition: clip-path 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        /* Added easing for bouncier feel */
+        filter 0.5s ease;
+      grid-column: auto / span 2;
+      position: relative;
+      display: block;
+      overflow: hidden;
+      /* Important with clip-path */
+
+      /* border: 1px dotted blue; /* DIAGNOSTIC */
+    }
+
+    /* Staggering rule */
+    .page-end-gallery-container .gallery a:nth-child(5n - 1) {
+      grid-column: 2 / span 2;
+    }
+
+    .page-end-gallery-container .gallery a:hover,
+    .page-end-gallery-container .gallery a:focus {
+      /* On hover/focus, clip-path changes to a simple square */
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 10;
+      transition: clip-path 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        filter 0.2s ease;
+    }
+
+    .page-end-gallery-container .gallery a:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 3px;
+      /* Slightly more offset */
+    }
+
+    .page-end-gallery-container .gallery a img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Fallback for :has() */
+    @supports not selector(:has(a)) {
+      .page-end-gallery-container .gallery a {
+        filter: brightness(0.8);
+      }
+
+      .page-end-gallery-container .gallery a:hover,
+      .page-end-gallery-container .gallery a:focus {
+        filter: brightness(1);
+      }
+    }
+  </style> -->
+  <!-- 
+  <style>
+    /* Ensure Rajdhani and Font Awesome are linked in your HTML <head> */
+    /* @font-face for Chill Font should be defined */
+    @font-face {
+      font-family: 'Chill';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Chill'),
+        url('path/to/your/fonts/Chillvornia_Stamp_Slant.otf') format('opentype');
+    }
+
+    .page-end-gallery-container {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-top: 80px;
+      padding-bottom: 80px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-end-gallery-container .gallery-title {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin-bottom: 50px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .page-end-gallery-container .gallery {
+      --size: clamp(60px, 10vw, 120px);
+      /* --item-actual-width: calc(var(--size) * 2); /* For clarity if needed elsewhere */
+
+      display: grid;
+      grid-template-columns: repeat(6, var(--size));
+      grid-auto-rows: var(--size);
+
+      /* INCREASED GAP to prevent diamond overlap */
+      /* This value will need careful tuning based on --size and diamond points.
+         A larger --size might require a larger gap. Start with something like this.
+         The diamond points extend half the item's width/height into the gap space.
+         So, the gap needs to be at least var(--size) if items are var(--size)*2 wide/tall
+         and you want points from adjacent diamonds to just touch.
+         To have visible space, make it larger.
+      */
+      /* gap: calc(var(--size) * 0.5); */
+      gap: 8px;
+      /* Example: Half of the base --size unit */
+      /* Try larger values like var(--size) or var(--size) * 1.2 if needed */
+
+      margin-bottom: var(--size);
+      place-items: start center;
+      justify-content: center;
+
+      &:has(:hover) a:not(:hover),
+      &:has(:focus) a:not(:focus) {
+        filter: brightness(0.4) contrast(0.6) saturate(0.5);
+      }
+    }
+
+    .page-end-gallery-container .gallery a {
+      width: calc(var(--size) * 2);
+      height: calc(var(--size) * 2);
+
+      /* 1. REGULAR DIAMOND SHAPE */
+      clip-path: polygon(50% 0%,
+          /* Top-center point */
+          100% 50%,
+          /* Right-middle point */
+          50% 100%,
+          /* Bottom-center point */
+          0% 50%
+          /* Left-middle point */
+        );
+
+      transition: clip-path 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        filter 0.5s ease;
+      grid-column: auto / span 2;
+      position: relative;
+      display: block;
+      overflow: hidden;
+    }
+
+    /* Staggering rule */
+    .page-end-gallery-container .gallery a:nth-child(5n - 1) {
+      grid-column: 2 / span 2;
+    }
+
+    .page-end-gallery-container .gallery a:hover,
+    .page-end-gallery-container .gallery a:focus {
+      /* On hover/focus, clip-path changes to a simple square */
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 10;
+      transition: clip-path 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        filter 0.2s ease;
+    }
+
+    .page-end-gallery-container .gallery a:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 3px;
+    }
+
+    .page-end-gallery-container .gallery a img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Fallback for :has() */
+    @supports not selector(:has(a)) {
+      .page-end-gallery-container .gallery a {
+        filter: brightness(0.8);
+      }
+
+      .page-end-gallery-container .gallery a:hover,
+      .page-end-gallery-container .gallery a:focus {
+        filter: brightness(1);
+      }
+    }
+  </style> -->
+
+  <!-- <style>
+    /* Ensure Rajdhani and Font Awesome are linked in your HTML <head> */
+    /* @font-face for Chill Font should be defined */
+    @font-face {
+      font-family: 'Chill';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Chill'),
+        url('path/to/your/fonts/Chillvornia_Stamp_Slant.otf') format('opentype');
+    }
+
+    .page-end-gallery-container {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-top: 80px;
+      padding-bottom: 80px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-end-gallery-container .gallery-title {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin-bottom: 50px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .page-end-gallery-container .gallery {
+      --size: clamp(60px, 10vw, 120px);
+
+      display: grid;
+      grid-template-columns: repeat(6, var(--size));
+      grid-auto-rows: var(--size);
+      /* gap: calc(var(--size) * 0.6); */
+      gap: 8px;
+      /* Slightly increased gap for rounded corners */
+
+      margin-bottom: var(--size);
+      place-items: start center;
+      justify-content: center;
+
+      &:has(:hover) a:not(:hover),
+      &:has(:focus) a:not(:focus) {
+        filter: brightness(0.4) contrast(0.6) saturate(0.5);
+      }
+    }
+
+    .page-end-gallery-container .gallery a {
+      width: calc(var(--size) * 2);
+      height: calc(var(--size) * 2);
+
+      /* 1. CURVED DIAMOND BORDER using SVG path() */
+      /* This path is for a 200x200 box. It will scale to the element's size. */
+      /* 'Q' creates quadratic bezier curves for rounded corners. */
+      /* Adjust the '20' and '180' values to change the radius of the curves. */
+      /* Smaller numbers for cVal (e.g., 10) = sharper curves. Larger (e.g., 30) = rounder. */
+      /* Let cVal = 20 for this example */
+      clip-path: path("M 80 20 Q 100 0 120 20 L 180 80 Q 200 100 180 120 L 120 180 Q 100 200 80 180 L 20 120 Q 0 100 20 80 Z");
+
+      /* 2. SLOWER AND SMOOTHER ANIMATION */
+      transition: clip-path 0.5s ease-in-out,
+        /* Increased duration, changed easing */
+        filter 0.75s ease;
+      /* Filter transition can be slightly longer */
+
+      grid-column: auto / span 2;
+      position: relative;
+      display: block;
+      overflow: hidden;
+    }
+
+    /* Staggering rule */
+    .page-end-gallery-container .gallery a:nth-child(5n - 1) {
+      grid-column: 2 / span 2;
+    }
+
+    .page-end-gallery-container .gallery a:hover,
+    .page-end-gallery-container .gallery a:focus {
+      /* On hover/focus, clip-path changes to a simple square (no curves needed for square) */
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 10;
+      /* Animation for hover state */
+      transition: clip-path 0.4s ease-in-out,
+        /* Slightly faster on hover engage */
+        filter 0.25s ease;
+    }
+
+    .page-end-gallery-container .gallery a:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 3px;
+    }
+
+    .page-end-gallery-container .gallery a img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Fallback for :has() */
+    @supports not selector(:has(a)) {
+      .page-end-gallery-container .gallery a {
+        filter: brightness(0.8);
+      }
+
+      .page-end-gallery-container .gallery a:hover,
+      .page-end-gallery-container .gallery a:focus {
+        filter: brightness(1);
+      }
+    }
+  </style> -->
+
+
+  <style>
+    /* Scoped styles for the page-end gallery */
+
+    .page-end-gallery-container {
+      width: 100vw;
+      transform: translateX(20px);
+      padding: 80px 20px;
+      /* Vertical and horizontal padding for the section */
+      /* background: #1a1a1a; /* Example dark background for this section */
+      /* color: #fff; /* Default text color if you have titles etc. */
+      box-sizing: border-box;
+      display: flex;
+      /* For centering the gallery title and article */
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-end-gallery-container .gallery-title {
+      /* Optional title */
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #e0e0e0;
+      /* Adjust color as needed */
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .page-end-gallery-container .gallery {
+      /* --size variable controls the grid item base size */
+      /* Making it responsive using vw for a full-width section */
+      --size: clamp(60px, 10vw, 120px);
+      /* Min 60px, preferred 10vw, max 120px */
+
+      display: grid;
+      grid-template-columns: repeat(6, var(--size));
+      /* 6 columns */
+      grid-auto-rows: var(--size);
+      margin-bottom: var(--size);
+      /* Space below the gallery */
+      place-items: start center;
+      /* Aligns items to the start of their cell vertically, center horizontally */
+      gap: 5px;
+      /* Gap between grid cells */
+
+      /* This modern CSS dims non-hovered/focused items */
+      /* Browser support for :has() is good in modern browsers, but not universal yet */
+      &:has(:hover) a:not(:hover),
+      &:has(:focus) a:not(:focus) {
+        filter: brightness(0.4) contrast(0.6) saturate(0.5);
+        /* Dim and desaturate slightly */
+      }
+    }
+
+    .page-end-gallery-container .gallery a {
+      /* Each link takes up 2x2 grid cells based on --size */
+      width: calc(var(--size) * 2);
+      height: calc(var(--size) * 2);
+
+      /* The custom clip-path for the hexagonal-like shape */
+      clip-path: path("M90,10 C100,0 100,0 110,10 190,90 190,90 190,90 200,100 200,100 190,110 190,110 110,190 110,190 100,200 100,200 90,190 90,190 10,110 10,110 0,100 0,100 10,90Z");
+
+      transition: clip-path 0.3s ease, filter 0.5s ease;
+      /* Smooth transitions */
+      grid-column: auto / span 2;
+      /* Each item spans 2 columns */
+      /* border-radius: 5px; /* Original had this, but clip-path defines shape */
+      position: relative;
+      /* For absolute positioning of the img inside */
+      display: block;
+      /* Ensure <a> takes up space */
+      overflow: hidden;
+      /* Good with clip-path */
+
+      /* This rule creates the staggered layout */
+      &:nth-child(5n - 1) {
+        grid-column: 2 / span 2;
+        /* Shifts every 5th-1 item to start at column 2 */
+      }
+
+      &:hover,
+      &:focus {
+        /* On hover/focus, clip-path changes to a square, revealing more image */
+        clip-path: path("M0,0 C0,0 200,0 200,0 200,0 200,100 200,100 200,100 200,200 200,200 200,200 100,200 100,200 100,200 100,200 0,200 0,200 0,100 0,100 0,100 0,100 0,100Z");
+        z-index: 10;
+        /* Bring hovered item to the front */
+        transition: clip-path 0.25s ease, filter 0.2s ease;
+        /* Faster transition on hover */
+      }
+
+      &:focus {
+        /* Standard focus outline for accessibility */
+        outline: 2px solid #00bfff;
+        /* A visible focus color */
+        outline-offset: 2px;
+      }
+
+      & img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Ensures image covers the area, cropping if needed */
+        display: block;
+        /* Remove extra space below image */
+      }
+    }
+
+    /* Fallback for browsers that don't support :has() - optional */
+    /* This will simply make items slightly dimmer, and brighter on hover. */
+    /* Not as effective as :has() for dimming *other* items. */
+    @supports not selector(:has(a)) {
+      .page-end-gallery-container .gallery a {
+        filter: brightness(0.8);
+      }
+
+      .page-end-gallery-container .gallery a:hover,
+      .page-end-gallery-container .gallery a:focus {
+        filter: brightness(1);
+      }
+    }
+  </style>
+
+
+
+  <div class="page-end-gallery-container"> <!-- New wrapper for scoping -->
+    <article class="gallery">
+      <a target="_self">
+        <!-- Link to a section on your page -->
+        <img src="home/assets/images/gallery/art/g-1.png" alt="Image representing my skills" />
+      </a>
+      <a target="_self"> <!-- Link to another section -->
+        <img src="home/assets/images/gallery/art/g-2.png" alt="Image representing my projects" />
+      </a>
+      <a target="_self">
+        <img src="home/assets/images/gallery/art/g-3.png" alt="Image for contacting me" />
+      </a>
+      <a target="_blank">
+        <img src="home/assets/images/gallery/art/g-4.png" alt="Inspirational image or relevant link" />
+      </a>
+      <a target="_self">
+        <img src="home/assets/images/gallery/art/g-5.png" alt="Another cool image" />
+      </a>
+      <a target="_blank">
+        <img src="home/assets/images/gallery/art/g-6.png" alt="Placeholder image 6" />
+      </a>
+      <a target="_self">
+        <img src="home/assets/images/gallery/art/g-7.png" alt="Placeholder image 7" />
+      </a>
+      <a target="_self">
+        <img src="home/assets/images/gallery/art/g-8.png" alt="Placeholder image 8" />
+      </a>
+
+    </article>
+  </div>
+
+
 
   <!-- <script>
       document.addEventListener("DOMContentLoaded", function() {
