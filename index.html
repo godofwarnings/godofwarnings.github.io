@@ -2569,7 +2569,7 @@
     }
   </style> -->
 
-
+  <!-- 
   <style>
     /* Scoped styles for the page-end gallery */
 
@@ -2684,41 +2684,47 @@
 
     /* Medium screens / Tablets - e.g., up to 992px */
     /* Here we might want 2 wide items across (total 4 base columns) */
-    @media (max-width: 992px) {
-      .page-end-gallery-container .gallery {
-        --size: clamp(65px, 12vw, 100px);
-        /* Adjust --size for tablets */
-        grid-template-columns: repeat(4, var(--size));
-        /* 4 base columns */
-        gap: calc(var(--size) * 0.25);
-        /* Adjust gap for tablets */
-      }
 
-      /* Adjust staggering for a 4-column base grid (2 wide items) */
-      /* This rule makes every 3rd item start on the "second" effective column (col 2 of the 4) */
-      /* effectively trying to make a 2-item, then 1-item, then 2-item pattern */
-      .page-end-gallery-container .gallery a:nth-child(3n - 1) {
-        grid-column: 2 / span 2;
-      }
-
-      /* We need to reset the desktop staggering rule */
-      .page-end-gallery-container .gallery a:nth-child(5n - 1) {
-        grid-column: auto / span 2;
-        /* Reset to default placement */
-      }
-    }
 
     /* Small screens / Mobile - e.g., up to 576px */
     /* Here we might want 1 wide item across (total 2 base columns) or still 2 items but smaller */
     /* Medium screens / Tablets - e.g., up to 992px */
     @media (max-width: 992px) {
+
+      /* ... (Your existing tablet styles - these might also benefit from a zig-zag if they look too linear) ... */
       .page-end-gallery-container .gallery {
         --size: clamp(65px, 12vw, 100px);
         grid-template-columns: repeat(4, var(--size));
+        /* 2 wide items */
         gap: calc(var(--size) * 0.25);
       }
 
+      /* Stagger for tablet view - attempt to shift every other item in a 2-wide setup */
+      /* This makes odd items start at grid column 1, even items attempt to start at grid column 2 (of the base columns) */
+      /* Given items span 2, this should create some offset. */
+      .page-end-gallery-container .gallery a:nth-child(odd) {
+        /* Default placement will be fine, or explicitly grid-column: 1 / span 2; */
+      }
+
+      .page-end-gallery-container .gallery a:nth-child(even) {
+        /* This assumes the grid is wide enough for this shift.
+           On a repeat(4,...) grid, an item starting at base column 2 and spanning 2
+           would occupy base columns 2 and 3. This leaves base col 1 and 4 potentially open
+           around it if the row above/below only used base cols 1-2 or 3-4.
+           This might be too complex to get a clean stagger. Let's simplify the tablet stagger too if needed.
+           A simpler tablet stagger might be:
+           Only shift items in the "second logical row", e.g. 3rd and 4th items.
+           .page-end-gallery-container .gallery a:nth-child(2n+1) {} // Odd items
+           .page-end-gallery-container .gallery a:nth-child(2n) { // Even items
+              margin-left: calc(var(--size) * 0.5); // Push even items right by half a base size
+           }
+        */
+        /* Resetting desktop stagger for tablet */
+        grid-column: auto / span 2;
+      }
+
       .page-end-gallery-container .gallery a:nth-child(3n - 1) {
+        /* Original tablet stagger, test this */
         grid-column: 2 / span 2;
       }
 
@@ -2731,31 +2737,72 @@
     @media (max-width: 576px) {
       .page-end-gallery-container .gallery-title {
         font-size: 1.8em;
-        /* Slightly smaller title too if desired */
       }
 
       .page-end-gallery-container .gallery {
-        /* MAKE IMAGES SMALLER ON MOBILE BY ADJUSTING --size */
-        /* Original: --size: clamp(70px, 18vw, 90px); */
-
-        /* New, smaller values for --size on mobile: */
         --size: clamp(45px, 15vw, 75px);
-        /* Explanation of new clamp values:
-         - Minimum size: 45px (was 70px). This is the smallest the base unit will be.
-         - Preferred size: 15vw (was 18vw). Scales with viewport width, but less aggressively.
-         - Maximum size: 75px (was 90px). Caps the largest size.
-         Adjust these three values to get the desired mobile diamond size.
-      */
-
         grid-template-columns: repeat(2, var(--size));
+        /* Effectively one wide item */
         gap: calc(var(--size) * 0.15);
-        /* Gap can also be made smaller if items are smaller */
+        /* To allow visual overlap for the zig-zag, we might need to remove fit-content
+           if items are transformed outside their original flow space.
+           Or ensure parent has overflow: visible if transforms go outside.
+           Let's keep fit-content for now as transform doesn't change layout space.
+        */
+        /* width: fit-content; */
+        /* Keep this to center the actual column of items */
+        /* margin-left: auto; */
+        /* margin-right: auto; */
       }
 
+      /* Reset any complex staggering from larger screens */
       .page-end-gallery-container .gallery a:nth-child(5n - 1),
       .page-end-gallery-container .gallery a:nth-child(3n - 1) {
-        grid-column: auto / span 2;
+        grid-column: 1 / span 2;
+        /* Ensure all items take the full width defined by the 2 columns */
       }
+
+      /* NEW: Add zig-zag effect for mobile */
+      .page-end-gallery-container .gallery a {
+        position: relative;
+        /* Ensure transform works as expected */
+      }
+
+      .page-end-gallery-container .gallery a:nth-child(even) {
+        /* Shift every even item to the right (or left) */
+        transform: translateX(calc(var(--size) * 0.4));
+        /* Shift by 40% of one base size unit */
+        /* Alternatively, use margin: */
+        /* margin-left: calc(var(--size) * 0.8); */
+        /* This would push it based on layout flow */
+      }
+
+      .page-end-gallery-container .gallery a:nth-child(odd) {
+        /* Optionally shift odd items in the opposite direction for more pronounced zig-zag */
+        transform: translateX(calc(var(--size) * -0.4));
+      }
+
+      /* Adjust hover transform to account for the base zig-zag transform */
+      .page-end-gallery-container .gallery a:hover,
+      .page-end-gallery-container .gallery a:focus {
+        /* Keep original hover clip-path and z-index */
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        z-index: 10;
+        transition: clip-path 0.4s ease-in-out, filter 0.25s ease, transform 0.3s ease-in-out;
+        /* On hover, remove or adjust the translateX if you want it to "pop" to center */
+        /* transform: translateX(0) scale(1.05); /* Example: center and slightly scale */
+        transform: scale(1.05);
+        /* If keeping base translateX, just scale */
+      }
+
+      /* If you shifted odd items too, reset their transform on hover as well */
+      .page-end-gallery-container .gallery a:nth-child(odd):hover,
+      .page-end-gallery-container .gallery a:nth-child(odd):focus {
+        /* transform: translateX(0) scale(1.05); */
+        transform: scale(1.05);
+      }
+
+
     }
 
     /* Fallback for browsers that don't support :has() - optional */
@@ -2771,8 +2818,230 @@
         filter: brightness(1);
       }
     }
-  </style>
+  </style> -->
 
+  <style>
+    /* ... (All your existing styles up to the media queries) ... */
+    @font-face {
+      font-family: 'Chill';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Chill'),
+        url('path/to/your/fonts/Chillvornia_Stamp_Slant.otf') format('opentype');
+    }
+
+    .page-end-gallery-container {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-top: 60px;
+      /* Reduced top padding for mobile later */
+      padding-bottom: 60px;
+      /* Reduced bottom padding for mobile later */
+      /* Horizontal padding will be controlled by media query */
+      padding-left: 20px;
+      /* Default horizontal padding */
+      padding-right: 20px;
+      /* Default horizontal padding */
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-end-gallery-container .gallery-title {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin-bottom: 40px;
+      /* Reduced margin */
+      text-align: center;
+      width: 100%;
+    }
+
+    .page-end-gallery-container .gallery {
+      --size: clamp(70px, 8vw, 110px);
+      display: grid;
+      grid-template-columns: repeat(6, var(--size));
+      grid-auto-rows: var(--size);
+      gap: calc(var(--size) * 0.3);
+      margin-bottom: var(--size);
+      place-items: start center;
+      justify-content: center;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+
+      &:has(:hover) a:not(:hover),
+      &:has(:focus) a:not(:focus) {
+        filter: brightness(0.4) contrast(0.6) saturate(0.5);
+      }
+    }
+
+    .page-end-gallery-container .gallery a {
+      width: calc(var(--size) * 2);
+      height: calc(var(--size) * 2);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      transition: clip-path 0.5s ease-in-out, filter 0.75s ease;
+      grid-column: auto / span 2;
+      position: relative;
+      display: block;
+      overflow: hidden;
+    }
+
+    .page-end-gallery-container .gallery a:nth-child(5n - 1) {
+      grid-column: 2 / span 2;
+    }
+
+    .page-end-gallery-container .gallery a:hover,
+    .page-end-gallery-container .gallery a:focus {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 10;
+      transition: clip-path 0.4s ease-in-out, filter 0.25s ease, transform 0.3s ease-in-out;
+    }
+
+    .page-end-gallery-container .gallery a:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 3px;
+    }
+
+    .page-end-gallery-container .gallery a img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+
+    /* --- MOBILE STYLES --- */
+
+    /* Medium screens / Tablets - e.g., up to 992px */
+    @media (max-width: 992px) {
+      .page-end-gallery-container {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        padding-left: 15px;
+        /* Slightly reduced horizontal padding */
+        padding-right: 15px;
+      }
+
+      .page-end-gallery-container .gallery-title {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+      }
+
+      .page-end-gallery-container .gallery {
+        --size: clamp(55px, 10vw, 90px);
+        /* Adjusted --size for tablets */
+        grid-template-columns: repeat(4, var(--size));
+        gap: calc(var(--size) * 0.2);
+        /* Reduced gap */
+      }
+
+      /* Tablet Staggering - this attempts a 2-1-2 like pattern if enough items */
+      .page-end-gallery-container .gallery a:nth-child(3n - 1) {
+        grid-column: 2 / span 2;
+      }
+
+      .page-end-gallery-container .gallery a:nth-child(5n - 1) {
+        grid-column: auto / span 2;
+      }
+    }
+
+    /* Small screens / Mobile - e.g., up to 576px */
+    @media (max-width: 576px) {
+      .page-end-gallery-container {
+        padding-top: 40px;
+        /* Further reduce vertical padding */
+        padding-bottom: 40px;
+        padding-left: 5px;
+        /* MINIMAL horizontal padding to get close to edges */
+        padding-right: 5px;
+      }
+
+      .page-end-gallery-container .gallery-title {
+        font-size: 1.6em;
+        margin-bottom: 25px;
+      }
+
+      .page-end-gallery-container .gallery {
+        /* SIGNIFICANTLY SMALLER --size for mobile */
+        --size: clamp(40px, 14vw, 65px);
+        /* Explanation:
+           - Min: 30px (base unit, so diamond is ~60px wide)
+           - Preferred: 12vw (scales, but less aggressively than before)
+           - Max: 50px (caps base unit, so diamond is max ~100px wide)
+           This will make items much smaller.
+        */
+
+        grid-template-columns: repeat(2, var(--size));
+        /* One "wide" item per row */
+
+        /* REDUCED GAP SIGNIFICANTLY */
+        /* e.g., if --size is 40px, gap is 4px */
+        /* You can even use a fixed small pixel value like 5px or 8px */
+        gap: 30px;
+
+        margin-bottom: var(--size);
+        /* Margin below gallery can also be smaller */
+      }
+
+      /* Reset complex staggering, ensure items take full grid width */
+      .page-end-gallery-container .gallery a:nth-child(5n - 1),
+      .page-end-gallery-container .gallery a:nth-child(3n - 1) {
+        grid-column: 1 / span 2;
+      }
+
+      /* Zig-zag effect with smaller translations */
+      .page-end-gallery-container .gallery a {
+        position: relative;
+        /* Smaller items might need slightly less aggressive hover scale */
+        /* transition for transform also added here */
+        transition: clip-path 0.5s ease-in-out, filter 0.75s ease, transform 0.3s ease-in-out;
+      }
+
+      .page-end-gallery-container .gallery a:nth-child(even) {
+        transform: translateX(calc(var(--size) * 0.5));
+        /* Reduced shift */
+      }
+
+      .page-end-gallery-container .gallery a:nth-child(odd) {
+        transform: translateX(calc(var(--size) * -0.5));
+        /* Reduced shift */
+      }
+
+      .page-end-gallery-container .gallery a:hover,
+      .page-end-gallery-container .gallery a:focus {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        z-index: 10;
+        /* Adjust hover transform if needed, e.g., less scale for smaller items */
+        /* transform: translateX(0) scale(1.03); /* Example: center and smaller scale */
+        transform: scale(1.03);
+        /* if keeping base translateX */
+      }
+
+      .page-end-gallery-container .gallery a:nth-child(odd):hover,
+      .page-end-gallery-container .gallery a:nth-child(odd):focus {
+        /* transform: translateX(0) scale(1.03); */
+        transform: scale(1.03);
+      }
+    }
+
+    /* Fallback for :has() */
+    @supports not selector(:has(a)) {
+      .page-end-gallery-container .gallery a {
+        filter: brightness(0.8);
+      }
+
+      .page-end-gallery-container .gallery a:hover,
+      .page-end-gallery-container .gallery a:focus {
+        filter: brightness(1);
+      }
+    }
+  </style>
 
 
   <div class="page-end-gallery-container"> <!-- New wrapper for scoping -->
