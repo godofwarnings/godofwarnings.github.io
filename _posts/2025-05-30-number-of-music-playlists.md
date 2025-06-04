@@ -2,8 +2,8 @@
 layout: post
 title: "920. Number of Music Playlists"
 description: "A detailed breakdown of the dynamic programming approach for the Leetcode problem 920. Number of Music Playlists, including recurrence, base cases, and C++ implementation."
-categories: [dsa, dynamic programming]
-tags: [CPP, DSA, LEETCODE, DYNAMIC PROGRAMMING]
+categories: [DSA, CPP]
+tags: [CPP, DSA, LeetCode, Dynamic-Programming]
 redirect_from:
   - /2025/05/30/
 ---

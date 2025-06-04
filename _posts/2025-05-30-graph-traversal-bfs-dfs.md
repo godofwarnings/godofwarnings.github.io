@@ -2,8 +2,8 @@
 layout: post
 title: "Graph Traversal - BFS and DFS"
 description: "Analyzing time complexity of Breadth-First Search (BFS) and Depth-First Search (DFS) using adjacency list and vertex-edge analysis."
-categories: [dsa, graphs]
-tags: [cpp, dsa, graphs, bfs, dfs, code snippet]
+categories: [Data-Structure-and-Algorithms]
+tags: [CPP, DSA, Graphs]
 redirect_from:
   - /2025/05/30/
 ---
