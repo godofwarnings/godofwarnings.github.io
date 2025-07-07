@@ -228,7 +228,7 @@ a:focus {
 }
 
 @-webkit-keyframes pulse {
-  0 {
+  0% {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
@@ -245,7 +245,7 @@ a:focus {
 }
 
 @-moz-keyframes pulse {
-  0 {
+  0% {
     -moz-transform: scale(1);
     transform: scale(1);
   }
@@ -269,7 +269,8 @@ a:focus {
   width: 100%;
   padding: 50px 0;
   color: #FFFFFF;
-  background: url(/home/assets/images/bg-flower-jap.jpg) no-repeat -450px center scroll;
+  background: url(/home/assets/images/bg-flower-jap.jpg) no-repeat center top scroll;
+  background-position-y: 76%; /* move image up by 40px */
   background-color: #000000;
   -webkit-background-size: cover;
   -moz-background-size: cover;

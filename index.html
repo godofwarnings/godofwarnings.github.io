@@ -57,6 +57,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
   <!-- Font Awesome (Pro version was used, you might need to adjust icons if using Free) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
 
 
@@ -160,29 +161,23 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <div class="heading-text">
-              <style>
+              <!-- <style>
                 /* 
                   IMPORTANT: Ensure Cinzel font is imported correctly in your <head> or at the top of CSS:
                   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
                 */
 
-                /* If .brand-heading is used elsewhere and you need to keep its 40px for other elements,
-                   you can override it specifically for the AC style like this: */
                 .my-name-ac-style-container.brand-heading {
                   font-size: 20px;
-                  /* NEW: Reduced base font size. Was 40px. Adjust this for overall size. */
                   padding-top: 20px;
-                  /* Kept from original .brand-heading */
                 }
 
                 .my-name-ac-style-container {
                   text-align: center;
                   text-transform: uppercase;
                   font-family: 'Cinzel', serif;
-                  /* Ensure this is being applied */
                   font-weight: 350;
-                  /* padding-top: 20px; -- Now handled by .my-name-ac-style-container.brand-heading */
-                  /* font-size: ... -- Now handled by .my-name-ac-style-container.brand-heading */
+                  color: #e1dede;
                 }
 
                 .my-name-ac-style-container .my-name-ac-line1 {
@@ -191,7 +186,6 @@
                   justify-content: center;
                   align-items: baseline;
                   line-height: 1;
-                  /* NEW: Adjusted margin-bottom to increase space. Was -0.3em. Closer to 0 means more space. */
                   margin-bottom: -0em;
                   /* Or try 0em, or even a small positive like 0.1em */
                 }
@@ -211,7 +205,7 @@
 
                 .my-name-ac-style-container .my-name-ac-line2 {
                   /* color: #FF2020; */
-                  color: #e8e6e6;
+                  color: #e1dede;
                   font-size: 1em;
                   /* e.g., 28px * 1.5 = 42px for 'Name' */
                   /* NEW: Adjusted line-height as well. Could also increase this for more space. */
@@ -381,15 +375,72 @@
                 }
 
                 /* --- End of New Styles --- */
-              </style>
+              </style> -->
               <!-- <h1 class="brand-heading">Radhikesh Agrawal</h1> -->
+              <style>
+                .my-name-ac-style-container.brand-heading {
+                  font-size: 20px;
+                  padding-top: 20px;
+                }
+
+                .my-name-ac-style-container {
+                  text-align: center;
+                  text-transform: uppercase;
+                  font-family: 'Cinzel', serif;
+                  font-weight: 350;
+                  color: #ffffff;
+                }
+
+                .my-name-ac-style-container .my-name-ac-line1 {
+                  color: #ffffff;
+                  display: flex;
+                  justify-content: center;
+                  align-items: baseline;
+                  line-height: 1;
+                  margin-bottom: 0;
+                }
+
+                .my-name-ac-style-container .my-name-ac-char-large {
+                  font-size: 1.5em;
+                  font-weight: 700;
+                  margin-right: -0.05em;
+                }
+
+                .my-name-ac-style-container .my-name-ac-char-small {
+                  font-size: 1.2em;
+                }
+
+                .my-name-ac-style-container .my-name-ac-line2 {
+                  color: #ffffff;
+                  font-size: 1em;
+                  line-height: 0.7em;
+                  letter-spacing: 0.1em;
+                }
+              </style>
+              <style>
+                .clean-white-heading {
+                  font-family: 'Cinzel', serif;
+                  /* Elegant serif font */
+                  font-weight: 700;
+                  /* Bold */
+                  color: white;
+                  /* Solid white text */
+                  font-size: 2em;
+                  /* Adjust as needed */
+                  text-align: center;
+                  text-transform: uppercase;
+                  margin: 1em 0;
+                }
+              </style>
 
 
-              <div class="my-name-ac-style-container brand-heading">
-                <div class="my-name-ac-line1 name-lights-effect">
+              <div class="my-name-ac-style-container brand-heading" style="padding: 16px 0;">
+                <!-- <div class="my-name-ac-line1 name-lights-effect"> -->
+                <div class="my-name-ac-line1">
                   <span class="my-name-ac-char-large">R</span><span class="my-name-ac-char-small">adhikesh</span>
                 </div>
-                <div class="my-name-ac-line2 name-lights-effect">Agrawal</div>
+                <!-- <div class="my-name-ac-line2 name-lights-effect">Agrawal</div> -->
+                <div class="my-name-ac-line2">Agrawal</div>
               </div>
 
 
