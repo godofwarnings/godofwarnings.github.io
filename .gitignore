@@ -3,6 +3,9 @@
 .bundle
 .sass-cache
 _site
+_rake
+_tests
+assets
 
 Thumbs.db
 .DS_Store
@@ -12,6 +15,8 @@ Thumbs.db
 /node_modules
 /yarn-error.log
 yarn.lock
+
+docs
 
 # Ignore Yard Doc
 /doc
