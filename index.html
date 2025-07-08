@@ -58,7 +58,9 @@
   <!-- Font Awesome (Pro version was used, you might need to adjust icons if using Free) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400&display=swap" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -268,7 +270,7 @@
                   40% {
                     transform: translate(-4px, -4px);
                     /* Max offset for this scaled version */
-                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1),
+                    text-shadow: 1px 1px 0 var(--intro-shadow-color-1),Libre Baskerville
                       2px 2px 0 var(--intro-shadow-color-2),
                       3px 3px 0 var(--intro-shadow-color-3),
                       4px 4px 0 var(--intro-shadow-color-4);
@@ -378,6 +380,20 @@
               </style> -->
               <!-- <h1 class="brand-heading">Radhikesh Agrawal</h1> -->
               <style>
+                @font-face {
+                  font-family: 'Larosa';
+                  src: url('fonts/Larosa/TTF/LarosaMedium.ttf') format('truetype');
+                  font-weight: normal;
+                  font-style: normal;
+                }
+
+                @font-face {
+                  font-family: 'Patrizia';
+                  src: url('fonts/patriziattf/Patrizia-Regular.ttf') format(' truetype');
+                  font-weight: normal;
+                  font-style: normal;
+                }
+
                 .my-name-ac-style-container.brand-heading {
                   font-size: 20px;
                   padding-top: 20px;
@@ -386,8 +402,12 @@
                 .my-name-ac-style-container {
                   text-align: center;
                   text-transform: uppercase;
-                  font-family: 'Cinzel', serif;
-                  font-weight: 350;
+                  /* font-family: 'Cinzel', serif; */
+                  /* font-family: 'Libre Baskerville', serif; */
+                  /* font-family: 'Merriweather', serif; */
+                  font-family: 'Patrizia', serif;
+
+                  font-weight: 150;
                   color: #ffffff;
                 }
 
@@ -402,12 +422,12 @@
 
                 .my-name-ac-style-container .my-name-ac-char-large {
                   font-size: 1.5em;
-                  font-weight: 700;
+                  font-weight: 150;
                   margin-right: -0.05em;
                 }
 
                 .my-name-ac-style-container .my-name-ac-char-small {
-                  font-size: 1.2em;
+                  font-size: 1.1em;
                 }
 
                 .my-name-ac-style-container .my-name-ac-line2 {
