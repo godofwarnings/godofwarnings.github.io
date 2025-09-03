@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Retrogade Amnesia"
+title: "Retrograde Amnesia"
 description: "Ever "
 categories: [DevOps, Software-Engineering]
 tags: [Best-Practices, Software-Development]
