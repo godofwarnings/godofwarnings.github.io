@@ -32,7 +32,6 @@ while(graphTraversal.isEmpty == false)
 
 $$ \therefore $$ the time complexity will be:
 
-
 $$
 \begin{align*}
 \mathcal{O}(V * (\mathcal{O}(1) + O(E_{adj}) + \mathcal{O}(1))) &= \mathcal{O}(V + V * E_{adj} + V)\\
@@ -41,8 +40,6 @@ $$
 \end{align*}
 $$
 
-
-
 # References
 
-- [Stack Overflow - BFS Time Complexity](https://stackoverflow.com/questions/26549140/breadth-first-search-time-complexity-analysis)
+* [Stack Overflow - BFS Time Complexity](https://stackoverflow.com/questions/26549140/breadth-first-search-time-complexity-analysis)

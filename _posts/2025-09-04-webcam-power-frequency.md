@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Logitech Brio 100 – Auto-Configure Power Line Frequency on Linux"
+title: "Webcam Power Frequency – Auto-Configure Power Line Frequency on Linux"
 description: "Step-by-step guide to configure Logitech Brio 100 webcam’s power-line frequency automatically on Manjaro Linux (Arch-based) using udev rules and v4l2-ctl."
 categories: [Linux, Hardware, Configuration]
-tags: [Linux, Arch, Manjaro, Webcam,]
+tags: [Linux, Arch, Manjaro]
 redirect_from:
   - /2025/09/04/
 ---
