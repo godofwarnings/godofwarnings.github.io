@@ -1,11 +1,10 @@
-.jekyll-metadata
-*.gem
+# .jekyll-metadata
 .bundle
 .sass-cache
 _site
 _rake
 _tests
-assets
+# assets
 
 Thumbs.db
 .DS_Store
@@ -16,10 +15,10 @@ Thumbs.db
 /yarn-error.log
 yarn.lock
 
-docs
+# docs
 
 # Ignore Yard Doc
-/doc
+# /doc
 .yardoc/
 
 # Ignore bundler and gems
