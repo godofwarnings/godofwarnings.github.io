@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CI/CD: What the Heck is it? | Radhikesh&#39;s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="CI/CD: What the Heck is it?" />
+<meta name="author" content="Radhikesh Agrawal" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="A beginner&#39;s guide to understanding CI/CD, its importance in software development, and how it can streamline your workflow." />
+<meta property="og:description" content="A beginner&#39;s guide to understanding CI/CD, its importance in software development, and how it can streamline your workflow." />
+<link rel="canonical" href="http://localhost:4000/2025/06/04/ci-cd/" />
+<meta property="og:url" content="http://localhost:4000/2025/06/04/ci-cd/" />
+<meta property="og:site_name" content="Radhikesh&#39;s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-04T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CI/CD: What the Heck is it?" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Radhikesh Agrawal"},"dateModified":"2025-06-04T00:00:00+05:30","datePublished":"2025-06-04T00:00:00+05:30","description":"A beginner&#39;s guide to understanding CI/CD, its importance in software development, and how it can streamline your workflow.","headline":"CI/CD: What the Heck is it?","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/06/04/ci-cd/"},"url":"http://localhost:4000/2025/06/04/ci-cd/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="keywords" content="Best-Practices,Software-Development" />
+
+
+
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Radhikesh&apos;s Blog" />
+    <link href='/assets/stylesheets/blog.css' rel="stylesheet" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script>window.Modernizr || document.write('<script src="/assets/javascripts/modernizr-2.8.3.min.js"><\/script>')</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/javascripts/jquery-3.3.1.min.js"><\/script>')
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+<script>
+    window.Pace || document.write('<script src="/assets/javascripts/pace.min.js"><\/script>')
+</script>
+
+    
+</head>
+
+<body>
+    
+
+    <!--[if IE]>
+    <p class="site-notice">You are using an outdated browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true" target="_blank">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+<noscript>
+    <p class="site-notice">This site requires JavaScript. Here are the instructions <a href="http://www.enable-javascript.com/" target="_blank">how to enable JavaScript in your web browser</a>.</p>
+</noscript>
+
+    <div class="nav-wrapper overlay-wrapper">
+    <div class="nav-form overlay-form">
+        <span class="overlay-header menu">Menu</span>
+        <a class="btn-close">Close</a>
+        <div class="results">
+            <ul>
+                <li><a href="/blog/categories/">Categories</a></li>
+                <li><a href="/blog/tags/">Tags</a></li>
+                <li><a href="/">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="search-wrapper overlay-wrapper">
+    <div class="search-form overlay-form">
+        <input type="text" class="overlay-header search-field" placeholder="Search...">
+        <a class="btn-close">Close</a>
+        <ul class="results"></ul>
+    </div>
+</div>
+
+
+    <div id="page" class="hentry">
+        <header class="the-header">
+  <div class="unit-head">
+    <div class="unit-inner unit-head-inner">
+      <nav class="nav-global">
+        <ul>
+          <li class="logo nav-link">
+            <button
+              class="btn-menu"
+              title="Menu"
+            ></button>
+            <a href="/blog/">Radhikesh's Blog</a>
+            <!--[if !IE]> -->
+            <button
+              class="btn-search"
+              title="Search"
+            ></button>
+            <!-- <![endif]-->
+          </li>
+          <li class="nav-link">
+            <a
+              title="Categories"
+              href="/blog/categories/"
+              >Categories</a
+            >
+          </li>
+          <li class="nav-link">
+            <a
+              title="Tags"
+              href="/blog/tags/"
+              >Tags</a
+            >
+          </li>
+          <!--[if !IE]> -->
+          <li class="nav-link">
+            <a
+              title="Search"
+              class="btn-search"
+              href="#"
+              >Search</a
+            >
+          </li>
+          <!-- <![endif]-->
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <script
+    type="text/javascript"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <script
+    type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  ></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+    rel="stylesheet"
+  />
+</header>
+
+
+        <div class="body animated fadeInDown" role="main">
+            <div class="unit-body">
+                <div class="unit-inner unit-body-inner">
+                    <div class="entry-content">
+                        <article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div itemscope itemtype="http://schema.org/Article" class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="entry-title" itemprop="name">CI/CD: What the Heck is it?</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="bd article-content">
+                <div class="entry-content">
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published:
+                            <time itemprop="datePublished" class="date-pub updated"
+                                title="2025-06-04T00:00:00+05:30" datetime="2025-06-04T00:00:00+05:30">June 04, 2025 </time>
+                            by
+                            <a class="author" href="/" rel="author" title="Show Author">
+                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                    <span itemprop="name">Radhikesh Agrawal</span>
+                                </span>
+                            </a>
+                            
+                                <a class="license-icon" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" title="Show License">
+                                    <img alt="Creative Commons Licence" style="border-width:0" src="/assets/images/theme/cc-by-sa.png"  height="16" width="80"/>
+                                </a>
+                            
+                            
+                        </p>
+                        <ul class="list-category list-linear">
+                            <li class="list-head">Categories: </li>
+                             
+     
+        <li>
+            <a href="/blog/categories/#DevOps" title="DevOps">
+            DevOps <span>1</span></a>
+        </li>
+     
+        <li>
+            <a href="/blog/categories/#Software-Engineering" title="Software-Engineering">
+            Software-Engineering <span>1</span></a>
+        </li>
+    
+
+
+
+                        </ul>
+                        <ul class="list-tag list-linear">
+                            <li class="list-head">Tags: </li>
+                             
+    
+        
+        <li>
+            <a href="/blog/tags/#Best-Practices" title="Best-Practices">Best-Practices <span>1</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#Software-Development" title="Software-Development">Software-Development <span>1</span></a>
+        </li>
+    
+
+
+
+
+                        </ul>
+                    </div>
+                    <div itemprop="articleBody">
+                        <ul class="toc" id="markdown-toc">
+  <li><a href="#heading-cicd-what-the-heck-is-it" id="markdown-toc-heading-cicd-what-the-heck-is-it">CI/CD: What the Heck is it?</a>    <ul>
+      <li><a href="#heading-ci---continuous-integration" id="markdown-toc-heading-ci---continuous-integration">CI - Continuous Integration</a></li>
+      <li><a href="#heading-cd---continuous-deliverydeployment" id="markdown-toc-heading-cd---continuous-deliverydeployment">CD - Continuous Delivery/Deployment</a></li>
+      <li><a href="#heading-references" id="markdown-toc-heading-references">References</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="heading-cicd-what-the-heck-is-it">CI/CD: What the Heck is it?</h1>
+
+<p>There are two foundational principals in software development. Software development is primarily and fundamentally always an exercise in <strong>learning</strong> and <strong>discovery</strong>. To achieve that and to allows us to scale that product process up, we need to focus on managing complexity of the things we build. We don't get great at learning and discovery by doing the same thing over and over again. We get great at it by learning from our mistakes, iterating on our ideas, and improving our processes. And that's where CI/CD comes in. You can call it a good practice, a methodology, a philosophy or even a trick. But at its core, CI/CD is about making software development more efficient and effective.</p>
+
+<h2 id="heading-ci---continuous-integration">CI - Continuous Integration</h2>
+
+<p>Continuous Integration (CI) is the practice of frequently integrating code changes into a shared repository. The goal is to detect errors quickly and improve software quality. This may sound something which you already do but some time back, it was common for individuals or teams to keep their code changes in isolation for long periods, leading to integration challenges and bugs. CI addresses this by encouraging developers to commit code changes regularly, ideally multiple times a day. Each commit triggers an automated build and test process, ensuring that new code integrates smoothly with the existing codebase.</p>
+
+<p>Every time a developer pushes code to the repository, an automated system runs tests to verify that the new code doesn't break existing functionality. This helps catch bugs early, making it easier to fix them before they become larger issues. There are primarily three kinds of tests that are run in CI:</p>
+
+<ol>
+  <li><strong>Unit Tests</strong>: These tests check individual components or functions of the code to ensure they work as expected.</li>
+  <li><strong>Integration Tests</strong>: These tests verify that different components of the application work together correctly.</li>
+  <li><strong>End-to-End Tests</strong>: These tests simulate real user scenarios to ensure the entire application functions as intended.</li>
+</ol>
+
+<h2 id="heading-cd---continuous-deliverydeployment">CD - Continuous Delivery/Deployment</h2>
+
+<p>Continuous Delivery is the practice of ensuring that code changes are automatically prepared for a release to production. It builds on CI by automating the deployment process, allowing teams to release software more frequently and reliably.</p>
+
+<p>CI/CD together is the practice of merging changes frequently as developers work on a project, and having those changes automatically pass through a series of automated tests. Upon completion, these changes are bundled into a release that can be deployed to production at any time. Teams practicing <em>CI/CD</em> will typically produce multiple releases per day, allowing them to respond quickly to user feedback and market changes. To put it simply, without CI/CD, our code would have names ending with <code class="language-plaintext highlighter-rouge">_final_finalfinal_no_really_final_v3</code> or something like that.</p>
+
+<h2 id="heading-references">References</h2>
+
+<ul>
+  <li>
+    <p><a href="https://www.youtube.com/watch?v=qiDIif7JVMo&amp;ab_channel=ModernSoftwareEngineering">Continous Delvery Simply Explained</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment">Continuous integration vs. delivery vs. deployment</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.youtube.com/watch?v=42UP1fxi2SY&amp;ab_channel=ByteByteGo">CI/CD in 5 minutes</a></p>
+  </li>
+  <li>
+    <p><a href="https://continuousdelivery.com/foundations/continuous-integration/">CI/CD Explained</a></p>
+  </li>
+</ul>
+
+                    </div>
+                </div>
+            </div>
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <div class="post-buttons">
+                        <a class="internal gotop" href="#page" title="Back to Top">Back to Top</a>
+                        
+                    </div>
+                    <nav class="pagination">
+                        
+                            <a class="internal" rel="prev" href="/2025/05/30/number-of-music-playlists/" title=" '920. Number of Music Playlists'"> ← 920. Number of Music Playlists</a>
+                        
+                        
+                            <a class="internal" rel="next" href="/2025/06/05/retrograde-amnesia/" title="Next Post 'Retrograde Amnesia'">Retrograde Amnesia → </a>
+                        
+                    </nav>
+                </div>
+            </footer>
+            <div class="misc-content">
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="the-footer">
+    <div class="unit-foot">
+        <div class="unit-inner unit-foot-inner">
+            <div class="misc vcard">
+                <div class="about">
+                    <h4><a href="/">About</a></h4>
+                    
+                    <p><small>Theme <a href="https://github.com/yizeng/jekyll-theme-simple-texture" target="_blank">Simple Texture</a> developed by <a href="http://yizeng.me" target="_blank">Yi Zeng</a>, powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>.</small></p>
+                </div>
+                <div class="social-links">
+                    
+                        <a class="ico-gmail" href="mailto:rhagrawal1.0.7@gmail.com" rel="me" target="_blank" title="email"></a>
+                    
+                    <a class="ico-rss" href="/feed.xml" rel="me" target="_blank" title="feed"></a>
+                    
+                        
+                    
+                        
+                            <a class="ico-github" href="https://github.com/godofwarnings/" rel="me" target="_blank" title="github"></a>
+                        
+                    
+                        
+                            <a class="ico-instagram" href="https://www.instagram.com/leonardodipitt" rel="me" target="_blank" title="instagram"></a>
+                        
+                    
+                        
+                            <a class="ico-linkedin" href="https://www.linkedin.com/in/radhikeshagrawal/" rel="me" target="_blank" title="linkedin"></a>
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="internal back-to-top">Back to Top</a>
+</footer>
+
+    </div>
+
+    <script>
+$(document).ready(function () {
+    var offset = 50,
+        duration = 500,
+        width = 960;
+    $(window).scroll(function () {
+        if ($(window).width() > width) {
+            if ($(this).scrollTop() > offset) {
+                $('footer').css('top', '20px');
+                $('footer .back-to-top').fadeIn(duration);
+            } else {
+                $('footer').css('top', 'auto');
+                $('footer .back-to-top').fadeOut(duration);
+            }
+        }
+    });
+    $(window).resize(function () {
+        if ($(window).width() < width) {
+            $('footer').css('top', 'auto');
+            $('footer .back-to-top').fadeOut(duration);
+        }
+        if ($(window).width() >= width && $(this).scrollTop() > offset) {
+            $('footer').css('top', '20px');
+            $('footer .back-to-top').fadeIn(duration);
+        }
+    });
+
+    $('footer .back-to-top, .gotop').on('click', function (event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, duration);
+        return false;
+    });
+
+    $('.show-hidden').on('click', function () {
+        $(this).parent().next().toggleClass("hidden");
+        $(this).toggleClass("hidden");
+    });
+});
+</script>
+
+<!-- Show menu overlay + Jekyll Simple Search option -->
+<script src="/assets/javascripts/jekyll-search.jquery.js"></script>
+<script>
+$(document).ready(function () {
+    $('.search-field').simpleJekyllSearch({
+      jsonFile: '/search.json',
+      template: '<li><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></li>',
+      searchResults: '.search-wrapper .results',
+      searchResultsTitle: '<h4>Search results</h4>',
+      noResults: '<p>Oh shucks<br/><small>Nothing found :(</small></p>'
+    });
+});
+
+(function ($, window, undefined) {
+    var closeOverlay = function () {
+        $('.nav-wrapper, .search-wrapper').removeAttr('style');
+        $(".nav-form, .search-form").removeClass('active');
+        $("body").removeClass('nav-overlay search-overlay');
+    };
+
+    $('.nav-global .btn-search').on('click', function () {
+        $('.search-wrapper').css({display: "block"});
+        $(".search-form").addClass('active');
+        $(".search-form").find('input').focus();
+        $("body").addClass('search-overlay');
+    });
+
+    $('.nav-global .btn-menu').on('click', function () {
+        $('.nav-wrapper').css({display: "block"});
+        $(".nav-form").addClass('active');
+        $(".nav-form .search-field").prop('disabled', true);
+        $("body").addClass('nav-overlay');
+    });
+
+    $('.nav-wrapper .btn-close, .search-wrapper .btn-close').on('click', function () {
+        closeOverlay();
+    });
+
+    $(document).on('keyup', function (e) {
+        if (e.keyCode === 27) {
+            closeOverlay();
+        }
+    });
+})(jQuery, window);
+</script>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-buttons.min.js'></script>
+<script src="/assets/javascripts/unveil/jquery.unveil.min.js"></script>
+
+<script>
+    window.jQuery.fancybox || document.write('<script src="/assets/javascripts/fancybox/jquery.fancybox.pack.js?v=2.1.4"><\/script>')
+    window.jQuery.fancybox.helpers.buttons || document.write('<script src="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"><\/script>')
+</script>
+
+<script>
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/jquery.fancybox.css?v=2.1.4" type="text/css" />');
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" />');
+    $(".post-image").fancybox({
+        prevEffect: 'none',
+        nextEffect: 'none',
+        closeBtn: true,
+        helpers: {
+            title: {
+                type: 'float'
+            }
+        }
+    });
+    $(document).ready(function () {
+        $(".post-image > img").unveil(450);
+    });
+</script>
+
+</body>
+
+</html>

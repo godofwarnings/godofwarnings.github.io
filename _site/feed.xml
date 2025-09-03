@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-09-04T03:08:42+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Radhikesh&apos;s Blog</title><subtitle>Personal blog for Radhikesh, a computer-science undergraduate at IIIT Hyderabad, India</subtitle><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><entry><title type="html">Anterograde Amnesia</title><link href="http://localhost:4000/2025/09/04/anterograde-amnesia/" rel="alternate" type="text/html" title="Anterograde Amnesia" /><published>2025-09-04T00:00:00+05:30</published><updated>2025-09-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/09/04/anterograde-amnesia</id><content type="html" xml:base="http://localhost:4000/2025/09/04/anterograde-amnesia/"></content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Psychology" /><category term="Neuroscience" /><category term="Memory" /><category term="Brain" /><category term="Amnesia" /></entry><entry><title type="html">Configure Power Line Frequency on Linux</title><link href="http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/" rel="alternate" type="text/html" title="Configure Power Line Frequency on Linux" /><published>2025-09-04T00:00:00+05:30</published><updated>2025-09-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux</id><content type="html" xml:base="http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/">&lt;blockquote&gt;
+  &lt;p&gt;Originally written on &lt;strong&gt;04 September 2025, 01:15&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-intuition&quot; id=&quot;markdown-toc-heading-intuition&quot;&gt;Intuition&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-1-identify-device-ids&quot; id=&quot;markdown-toc-heading-1-identify-device-ids&quot;&gt;1. Identify Device IDs&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-2-install-required-tools&quot; id=&quot;markdown-toc-heading-2-install-required-tools&quot;&gt;2. Install Required Tools&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-3-create-the-udev-rule&quot; id=&quot;markdown-toc-heading-3-create-the-udev-rule&quot;&gt;3. Create the Udev Rule&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-4-apply-the-rule&quot; id=&quot;markdown-toc-heading-4-apply-the-rule&quot;&gt;4. Apply the Rule&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-5-verify&quot; id=&quot;markdown-toc-heading-5-verify&quot;&gt;5. Verify&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-6-debugging&quot; id=&quot;markdown-toc-heading-6-debugging&quot;&gt;6. Debugging&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;heading-intuition&quot;&gt;Intuition&lt;/h1&gt;
+
+&lt;p&gt;By default, webcams like the &lt;strong&gt;Logitech Brio 100&lt;/strong&gt; may not automatically adjust to the correct &lt;strong&gt;power-line frequency&lt;/strong&gt; (50 Hz in most regions, 60 Hz in some).&lt;br /&gt;
+This mismatch often causes &lt;strong&gt;flickering under artificial lighting&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The goal is to configure the Brio 100 to &lt;strong&gt;always set the correct power-line frequency&lt;/strong&gt; automatically when plugged in, using:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;udev&lt;/code&gt; rules (to trigger configuration when device is detected)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v4l2-ctl&lt;/code&gt; (from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v4l-utils&lt;/code&gt;) to control video device parameters&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-1-identify-device-ids&quot;&gt;1. Identify Device IDs&lt;/h2&gt;
+
+&lt;p&gt;First, plug in the webcam and check its &lt;strong&gt;vendor&lt;/strong&gt; and &lt;strong&gt;product IDs&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;lsusb
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Example output:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;Bus 003 Device 009: ID 046d:094c Logitech, Inc. Brio 100
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Vendor ID (VID):&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;046d&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Product ID (PID):&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;094c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-2-install-required-tools&quot;&gt;2. Install Required Tools&lt;/h2&gt;
+
+&lt;p&gt;The tool &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v4l2-ctl&lt;/code&gt; is part of &lt;strong&gt;v4l-utils&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; v4l-utils
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Check installation:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;v4l2-ctl &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-3-create-the-udev-rule&quot;&gt;3. Create the Udev Rule&lt;/h2&gt;
+
+&lt;p&gt;Create a new rules file:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/udev/rules.d/99-logitech-brio.rules
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add the following rule:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-udev&quot;&gt;SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;046d&quot;, ATTRS{idProduct}==&quot;094c&quot;, RUN+=&quot;/usr/bin/v4l2-ctl -d /dev/video%n --set-ctrl=power_line_frequency=1&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;power_line_frequency=1&lt;/code&gt; = &lt;strong&gt;50 Hz&lt;/strong&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;power_line_frequency=2&lt;/code&gt; = &lt;strong&gt;60 Hz&lt;/strong&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-4-apply-the-rule&quot;&gt;4. Apply the Rule&lt;/h2&gt;
+
+&lt;p&gt;Reload the udev rules:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;udevadm control &lt;span class=&quot;nt&quot;&gt;--reload-rules&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;udevadm trigger
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Replug the webcam (or reboot the system).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-5-verify&quot;&gt;5. Verify&lt;/h2&gt;
+
+&lt;p&gt;List all video devices:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;v4l2-ctl &lt;span class=&quot;nt&quot;&gt;--list-devices&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Check if the control is applied:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;v4l2-ctl &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; /dev/video0 &lt;span class=&quot;nt&quot;&gt;--get-ctrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;power_line_frequency
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Expected output:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;power_line_frequency: 1
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-6-debugging&quot;&gt;6. Debugging&lt;/h2&gt;
+
+&lt;p&gt;If the rule doesn’t trigger, try:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Test manually:&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;udevadm &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; /sys/class/video4linux/video0
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;Look for your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v4l2-ctl&lt;/code&gt; command in the logs.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Check system logs:&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;journalctl &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; systemd-udevd &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Linux" /><category term="Hardware" /><category term="Configuration" /><category term="Linux" /><category term="Arch" /><category term="Manjaro" /><summary type="html">Originally written on 04 September 2025, 01:15</summary></entry><entry><title type="html">Retrograde Amnesia</title><link href="http://localhost:4000/2025/06/05/retrograde-amnesia/" rel="alternate" type="text/html" title="Retrograde Amnesia" /><published>2025-06-05T00:00:00+05:30</published><updated>2025-06-05T00:00:00+05:30</updated><id>http://localhost:4000/2025/06/05/retrograde-amnesia</id><content type="html" xml:base="http://localhost:4000/2025/06/05/retrograde-amnesia/"></content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Psychology" /><category term="Neuroscience" /><category term="Memory" /><category term="Brain" /><category term="Amnesia" /></entry><entry><title type="html">CI/CD: What the Heck is it?</title><link href="http://localhost:4000/2025/06/04/ci-cd/" rel="alternate" type="text/html" title="CI/CD: What the Heck is it?" /><published>2025-06-04T00:00:00+05:30</published><updated>2025-06-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/06/04/ci-cd</id><content type="html" xml:base="http://localhost:4000/2025/06/04/ci-cd/">&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-cicd-what-the-heck-is-it&quot; id=&quot;markdown-toc-heading-cicd-what-the-heck-is-it&quot;&gt;CI/CD: What the Heck is it?&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-ci---continuous-integration&quot; id=&quot;markdown-toc-heading-ci---continuous-integration&quot;&gt;CI - Continuous Integration&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-cd---continuous-deliverydeployment&quot; id=&quot;markdown-toc-heading-cd---continuous-deliverydeployment&quot;&gt;CD - Continuous Delivery/Deployment&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-references&quot; id=&quot;markdown-toc-heading-references&quot;&gt;References&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;heading-cicd-what-the-heck-is-it&quot;&gt;CI/CD: What the Heck is it?&lt;/h1&gt;
+
+&lt;p&gt;There are two foundational principals in software development. Software development is primarily and fundamentally always an exercise in &lt;strong&gt;learning&lt;/strong&gt; and &lt;strong&gt;discovery&lt;/strong&gt;. To achieve that and to allows us to scale that product process up, we need to focus on managing complexity of the things we build. We don&apos;t get great at learning and discovery by doing the same thing over and over again. We get great at it by learning from our mistakes, iterating on our ideas, and improving our processes. And that&apos;s where CI/CD comes in. You can call it a good practice, a methodology, a philosophy or even a trick. But at its core, CI/CD is about making software development more efficient and effective.&lt;/p&gt;
+
+&lt;h2 id=&quot;heading-ci---continuous-integration&quot;&gt;CI - Continuous Integration&lt;/h2&gt;
+
+&lt;p&gt;Continuous Integration (CI) is the practice of frequently integrating code changes into a shared repository. The goal is to detect errors quickly and improve software quality. This may sound something which you already do but some time back, it was common for individuals or teams to keep their code changes in isolation for long periods, leading to integration challenges and bugs. CI addresses this by encouraging developers to commit code changes regularly, ideally multiple times a day. Each commit triggers an automated build and test process, ensuring that new code integrates smoothly with the existing codebase.&lt;/p&gt;
+
+&lt;p&gt;Every time a developer pushes code to the repository, an automated system runs tests to verify that the new code doesn&apos;t break existing functionality. This helps catch bugs early, making it easier to fix them before they become larger issues. There are primarily three kinds of tests that are run in CI:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Unit Tests&lt;/strong&gt;: These tests check individual components or functions of the code to ensure they work as expected.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Integration Tests&lt;/strong&gt;: These tests verify that different components of the application work together correctly.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;End-to-End Tests&lt;/strong&gt;: These tests simulate real user scenarios to ensure the entire application functions as intended.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;heading-cd---continuous-deliverydeployment&quot;&gt;CD - Continuous Delivery/Deployment&lt;/h2&gt;
+
+&lt;p&gt;Continuous Delivery is the practice of ensuring that code changes are automatically prepared for a release to production. It builds on CI by automating the deployment process, allowing teams to release software more frequently and reliably.&lt;/p&gt;
+
+&lt;p&gt;CI/CD together is the practice of merging changes frequently as developers work on a project, and having those changes automatically pass through a series of automated tests. Upon completion, these changes are bundled into a release that can be deployed to production at any time. Teams practicing &lt;em&gt;CI/CD&lt;/em&gt; will typically produce multiple releases per day, allowing them to respond quickly to user feedback and market changes. To put it simply, without CI/CD, our code would have names ending with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_final_finalfinal_no_really_final_v3&lt;/code&gt; or something like that.&lt;/p&gt;
+
+&lt;h2 id=&quot;heading-references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=qiDIif7JVMo&amp;amp;ab_channel=ModernSoftwareEngineering&quot;&gt;Continous Delvery Simply Explained&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment&quot;&gt;Continuous integration vs. delivery vs. deployment&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=42UP1fxi2SY&amp;amp;ab_channel=ByteByteGo&quot;&gt;CI/CD in 5 minutes&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://continuousdelivery.com/foundations/continuous-integration/&quot;&gt;CI/CD Explained&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="DevOps" /><category term="Software-Engineering" /><category term="Best-Practices" /><category term="Software-Development" /><summary type="html"></summary></entry><entry><title type="html">Graph Traversal - BFS and DFS</title><link href="http://localhost:4000/2025/05/30/graph-traversal-bfs-dfs/" rel="alternate" type="text/html" title="Graph Traversal - BFS and DFS" /><published>2025-05-30T00:00:00+05:30</published><updated>2025-05-30T00:00:00+05:30</updated><id>http://localhost:4000/2025/05/30/graph-traversal-bfs-dfs</id><content type="html" xml:base="http://localhost:4000/2025/05/30/graph-traversal-bfs-dfs/">&lt;blockquote&gt;
+  &lt;p&gt;Originally written on &lt;strong&gt;01 August 2024, 21:00&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-why-is-time-complexity-of-bfs--dfs-mathcalov--e&quot; id=&quot;markdown-toc-heading-why-is-time-complexity-of-bfs--dfs-mathcalov--e&quot;&gt;Why is time complexity of BFS &amp;amp; DFS \(\mathcal{O}(|V| + |E|)\)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-references&quot; id=&quot;markdown-toc-heading-references&quot;&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;heading-why-is-time-complexity-of-bfs--dfs-mathcalov--e&quot;&gt;Why is time complexity of BFS &amp;amp; DFS \(\mathcal{O}(|V| + |E|)\)&lt;/h1&gt;
+
+&lt;p&gt;It seems that since we are only visiting all the edges, the time complexity should be $\mathcal{O}(\lvert E \rvert)$. But the thing is, we are ignoring the constant operations that are being performed $\lvert V \rvert$ number of times.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# This while loop will run V times, where V is total number of vertices in graph.
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graphTraversal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;currentVertex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graphTraversal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getVertex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# This while loop will run E_adj times, where E_adj is number of adjacent edges to current vertex.
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currentVertex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasAdjacentVertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;graphTraversal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adjacentVertex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;graphTraversal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currentVertex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;\(\therefore\) the time complexity will be:&lt;/p&gt;
+
+\[\begin{align*}
+\mathcal{O}(V * (\mathcal{O}(1) + O(E_{adj}) + \mathcal{O}(1))) &amp;amp;= \mathcal{O}(V + V * E_{adj} + V)\\
+&amp;amp;= \mathcal{O}(2V + E(\textit{total number of edges in graph})) \\
+&amp;amp;= \mathcal{O}(V + E) \\
+\end{align*}\]
+
+&lt;h1 id=&quot;heading-references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/26549140/breadth-first-search-time-complexity-analysis&quot;&gt;Stack Overflow - BFS Time Complexity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Data-Structure-and-Algorithms" /><category term="CPP" /><category term="DSA" /><category term="Graphs" /><summary type="html">Originally written on 01 August 2024, 21:00</summary></entry><entry><title type="html">920. Number of Music Playlists</title><link href="http://localhost:4000/2025/05/30/number-of-music-playlists/" rel="alternate" type="text/html" title="920. Number of Music Playlists" /><published>2025-05-30T00:00:00+05:30</published><updated>2025-05-30T00:00:00+05:30</updated><id>http://localhost:4000/2025/05/30/number-of-music-playlists</id><content type="html" xml:base="http://localhost:4000/2025/05/30/number-of-music-playlists/">&lt;blockquote&gt;
+  &lt;p&gt;Originally written on &lt;strong&gt;03 August 2024, 13:36&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-intuition&quot; id=&quot;markdown-toc-heading-intuition&quot;&gt;Intuition&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-base-case&quot; id=&quot;markdown-toc-heading-base-case&quot;&gt;Base Case&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-code&quot; id=&quot;markdown-toc-heading-code&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;heading-intuition&quot;&gt;Intuition&lt;/h1&gt;
+
+&lt;p&gt;The subproblem is the following: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dp[i][j]&lt;/code&gt; denotes the number of playlists we can make using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i&lt;/code&gt; out of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unique_songs&lt;/code&gt; and a playlist length of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;j&lt;/code&gt; out of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_songs&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can have the following two cases:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;We add another song using an already existing song:&lt;/strong&gt;&lt;/p&gt;
+
+\[dp[i][j] = dp[i][j-1] \cdot \text{(number of ways to choose a song out of those i songs)}\]
+
+    &lt;p&gt;Note that we cannot choose any of the last &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k&lt;/code&gt; songs since we need at least that many songs between repetitions. So, out of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i&lt;/code&gt; songs, we cannot choose the last &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k&lt;/code&gt; songs.&lt;/p&gt;
+
+    &lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;/assets/images/posts/number-of-music-playlists/img-1.png&quot; style=&quot;max-width: 50%; height: auto;&quot; alt=&quot;Description&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;Hence we&apos;ll have:&lt;/p&gt;
+
+\[dp[i][j] = dp[i][j-1] \cdot \max(0, i - k)\]
+
+    &lt;p&gt;All these &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k&lt;/code&gt; songs will be different, as in a valid playlist, if a song repeats, it must have at least &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;k&lt;/code&gt; songs between repeats. If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i-k&lt;/code&gt; becomes negative, we take &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt; instead.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;We add another song using a new song:&lt;/strong&gt;&lt;/p&gt;
+
+\[dp[i][j] += dp[i-1][j-1] \cdot (\text{n_unique_songs} - (i-1))\]
+
+    &lt;p&gt;We have remaining &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n_unique_songs - (i - 1)&lt;/code&gt; choices.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Thus, the complete recurrence relation becomes:&lt;/p&gt;
+
+\[dp[i][j] = dp[i][j-1] \cdot \max(0, i - k) + dp[i-1][j-1] \cdot (\text{n_unique_songs} - (i - 1))\]
+
+&lt;h1 id=&quot;heading-base-case&quot;&gt;Base Case&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Why &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dp[0][0] = 1&lt;/code&gt;?&lt;/strong&gt;&lt;br /&gt;
+It&apos;s possible to fill an empty list with 0 songs.&lt;br /&gt;
+All &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;j &amp;gt; i&lt;/code&gt; are invalid cases (you can&apos;t put more songs into an empty list), so for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;j &amp;gt; 0&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dp[0][j] = 0&lt;/code&gt;.&lt;br /&gt;
+Similarly, for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i &amp;gt; 0&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dp[i][0] = 0&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;br /&gt;
+Take &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dp[1][1]&lt;/code&gt;. To fit a size-1 list with 1 new song, we have:&lt;/p&gt;
+
+\[dp[0][1 - 1] \cdot (N - (1 - 1)) = 1 \cdot N\]
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;heading-code&quot;&gt;Code&lt;/h1&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modulo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1e9&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;numMusicPlaylists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unique_songs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total_songs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique_songs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_songs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unique_songs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total_songs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modulo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique_songs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modulo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique_songs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_songs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="DSA" /><category term="CPP" /><category term="CPP" /><category term="DSA" /><category term="LeetCode" /><category term="Dynamic-Programming" /><summary type="html">Originally written on 03 August 2024, 13:36</summary></entry><entry><title type="html">HEP-JEPA: Building Foundation Models for Collider Physics</title><link href="http://localhost:4000/2025/05/29/hepjepa/" rel="alternate" type="text/html" title="HEP-JEPA: Building Foundation Models for Collider Physics" /><published>2025-05-29T00:00:00+05:30</published><updated>2025-05-29T00:00:00+05:30</updated><id>http://localhost:4000/2025/05/29/hepjepa</id><content type="html" xml:base="http://localhost:4000/2025/05/29/hepjepa/">&lt;blockquote&gt;
+  &lt;p&gt;Recently Presented - ICLR 2025 Workshop on HEP-JEPA&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-what-is-hep-jepa&quot; id=&quot;markdown-toc-heading-what-is-hep-jepa&quot;&gt;What is HEP-JEPA?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-why-foundation-models-in-hep&quot; id=&quot;markdown-toc-heading-why-foundation-models-in-hep&quot;&gt;Why Foundation Models in HEP!?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-what-makes-hep-jepa-different&quot; id=&quot;markdown-toc-heading-what-makes-hep-jepa-different&quot;&gt;What Makes HEP-JEPA Different?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-architecture-overview&quot; id=&quot;markdown-toc-heading-architecture-overview&quot;&gt;Architecture Overview&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-how-well-does-it-work&quot; id=&quot;markdown-toc-heading-how-well-does-it-work&quot;&gt;How Well Does It Work?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-whats-next&quot; id=&quot;markdown-toc-heading-whats-next&quot;&gt;What’s Next?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;heading-what-is-hep-jepa&quot;&gt;What is HEP-JEPA?&lt;/h1&gt;
+
+&lt;p&gt;HEP-JEPA is a self-supervised foundation model designed to work with data from high-energy particle collisions — like those at the Large Hadron Collider (LHC). Built using the Joint Embedding Predictive Architecture (JEPA), it learns general-purpose representations of particle jets from raw, unlabeled data.&lt;/p&gt;
+
+&lt;p&gt;The idea is similar to how large language models learn &quot;semantics&quot; of text — except here, we’re learning the &quot;semantics&quot; of particle physics.&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-why-foundation-models-in-hep&quot;&gt;Why Foundation Models in HEP!?&lt;/h1&gt;
+
+&lt;p&gt;Traditional models in high-energy physics are trained task-by-task, often relying on hand-labeled simulation data. This isn&apos;t scalable, especially as LHC data grows into the hundreds of petabytes. HEP-JEPA aims to change that by:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Pretraining once on large jet datasets (we use JetClass with 100M samples)&lt;/li&gt;
+  &lt;li&gt;Fine-tuning quickly for specific tasks&lt;/li&gt;
+  &lt;li&gt;Reducing compute costs and increasing reusability&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;heading-what-makes-hep-jepa-different&quot;&gt;What Makes HEP-JEPA Different?&lt;/h1&gt;
+
+&lt;p&gt;Most existing self-supervised methods in HEP follow either contrastive learning or generative (masked) approaches. But both have limitations:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Contrastive learning depends heavily on the quality of negative samples&lt;br /&gt;
+Masked modeling often focuses too much on local reconstruction&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;HEP-JEPA avoids both by predicting embeddings directly in latent space — no decoder needed. This makes training efficient and the representations more abstract and transferable.&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-architecture-overview&quot;&gt;Architecture Overview&lt;/h1&gt;
+
+&lt;p&gt;The model consists of:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A &lt;strong&gt;context encoder&lt;/strong&gt; that processes masked &quot;visible&quot; tokens (particles in a jet)&lt;/li&gt;
+  &lt;li&gt;A &lt;strong&gt;target encoder&lt;/strong&gt; (an EMA version of the context encoder)&lt;/li&gt;
+  &lt;li&gt;A &lt;strong&gt;predictor&lt;/strong&gt; that learns to predict target embeddings from the context&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We tokenize particle jets using both kinematic and geometric features, apply spatial sampling strategies, and construct context/target blocks using custom sequencers.&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-how-well-does-it-work&quot;&gt;How Well Does It Work?&lt;/h1&gt;
+
+&lt;p&gt;We benchmarked HEP-JEPA on:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Jet classification&lt;/strong&gt; using JetClass&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Top quark tagging&lt;/strong&gt; using the TQTR dataset&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Regression tasks&lt;/strong&gt; for predicting jet observables like EFPs and jet shapes&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The results? HEP-JEPA performs on par or better than state-of-the-art models like OmniJet-α and MPM — especially in few-shot learning settings.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;On top tagging with 10% labels:&lt;br /&gt;
+&lt;strong&gt;HEP-JEPA&lt;/strong&gt; achieves 86.9% accuracy and 0.94 AUROC — outperforming baselines with fewer parameters.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;heading-whats-next&quot;&gt;What’s Next?&lt;/h1&gt;
+
+&lt;p&gt;This is just the beginning. We&apos;re looking at:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Adapting HEP-JEPA to anomaly detection and detector unfolding&lt;/li&gt;
+  &lt;li&gt;Scaling to generative tasks&lt;/li&gt;
+  &lt;li&gt;Improving physics-based priors in architecture&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can learn more at the &lt;a href=&quot;https://hep-jepa.github.io/&quot;&gt;ICLR 2025 HEP-JEPA Workshop&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Thanks for reading! Questions or ideas? Feel free to &lt;a href=&quot;mailto:rhagrawal1.0.7@gmail.com&quot;&gt;reach out&lt;/a&gt; or check out the &lt;a href=&quot;https://arxiv.org/abs/2502.03933&quot;&gt;paper on arXiv&lt;/a&gt;.&lt;/p&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Machine-Learning" /><category term="High-Energy-Physics" /><category term="HEP" /><category term="Foundation-Models" /><category term="JEPA" /><category term="Self-Supervised-Learning" /><summary type="html">Recently Presented - ICLR 2025 Workshop on HEP-JEPA</summary></entry><entry><title type="html">Tower of Hanoi: A Recursion Classic</title><link href="http://localhost:4000/2025/05/29/tower-of-hanoi/" rel="alternate" type="text/html" title="Tower of Hanoi: A Recursion Classic" /><published>2025-05-29T00:00:00+05:30</published><updated>2025-05-29T00:00:00+05:30</updated><id>http://localhost:4000/2025/05/29/tower-of-hanoi</id><content type="html" xml:base="http://localhost:4000/2025/05/29/tower-of-hanoi/">&lt;blockquote&gt;
+  &lt;p&gt;Originally written on &lt;strong&gt;30 July 2024, 16:53&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-introduction&quot; id=&quot;markdown-toc-heading-introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-step-by-step-logic&quot; id=&quot;markdown-toc-heading-step-by-step-logic&quot;&gt;Step-by-step logic&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-some-sample-cases&quot; id=&quot;markdown-toc-heading-some-sample-cases&quot;&gt;Some Sample Cases&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-general-case&quot; id=&quot;markdown-toc-heading-general-case&quot;&gt;General Case&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-time-complexity&quot; id=&quot;markdown-toc-heading-time-complexity&quot;&gt;Time Complexity&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-references&quot; id=&quot;markdown-toc-heading-references&quot;&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;heading-introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;The Tower of Hanoi is a classic recursive puzzle where the goal is to move \(n\) discs from a source tower to a target tower, using a spare tower — all while never placing a larger disc on a smaller one.&lt;/p&gt;
+
+&lt;p&gt;The problem is a great illustration of how recursion breaks a large problem into smaller sub-problems.&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-step-by-step-logic&quot;&gt;Step-by-step logic&lt;/h1&gt;
+
+&lt;p&gt;Let’s consider the following Python code to solve the problem:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# source
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# spare
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# target
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hanoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hanoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Move disc &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; from &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; to &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hanoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;hanoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;A&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;C&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;B&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;heading-some-sample-cases&quot;&gt;Some Sample Cases&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt; is 0, we do nothing (base case).&lt;/li&gt;
+  &lt;li&gt;if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt; is 1, we can directly move the disc from the source to the target.&lt;/li&gt;
+  &lt;li&gt;if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt; is 2, we can move the first disc to the spare tower, then the second disc to the target tower, and finally the first disc from the spare tower to the target tower.&lt;/li&gt;
+  &lt;li&gt;if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt; is 3, imagine that there are only two discs on the source tower and our spare tower is actually the target tower. We can follow the procedure for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n = 2&lt;/code&gt; to move the first two discs to the spare tower (imagining it as the target tower), then move the third disc directly to the target tower. Now the source tower is the spare tower and we just need to move the two discs from the spare tower to the target tower, which is again a case of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n = 2&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt; is 4, we can follow the same logic as above, treating the first three discs as a subproblem and moving them to the spare tower, then moving the fourth disc to the target tower, and finally moving the three discs from the spare tower to the target tower.&lt;/li&gt;
+  &lt;li&gt;This pattern continues for any number of discs &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;heading-general-case&quot;&gt;General Case&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;At line 12, we make the initial call to move all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt; discs from tower &lt;strong&gt;A&lt;/strong&gt; to tower &lt;strong&gt;C&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;First, we move the top &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n-1&lt;/code&gt; discs to the &lt;strong&gt;spare&lt;/strong&gt; tower (line 8).&lt;/li&gt;
+  &lt;li&gt;Then, we move the largest disc to the &lt;strong&gt;target&lt;/strong&gt; tower (line 9).&lt;/li&gt;
+  &lt;li&gt;Finally, we move the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n-1&lt;/code&gt; discs from the &lt;strong&gt;spare&lt;/strong&gt; tower to the &lt;strong&gt;target&lt;/strong&gt; tower (line 10).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This recursive approach continues until &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n = 0&lt;/code&gt;, which becomes our base case.&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-time-complexity&quot;&gt;Time Complexity&lt;/h1&gt;
+
+&lt;p&gt;The number of moves required to solve the Tower of Hanoi puzzle for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n&lt;/code&gt; discs follows the recurrence:&lt;/p&gt;
+
+\[T(n) = 2 \cdot T(n-1) + 1\]
+
+&lt;p&gt;This simplifies to:&lt;/p&gt;
+
+\[T(n) = 2^n - 1\]
+
+&lt;p&gt;So for 10 discs, it takes \(2^{10} - 1 = 1023\) moves!&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://youtu.be/2SUvWfNJSsM?si=DPtOK-lMpcQjF45w&quot;&gt;3Blue1Brown - Tower of Hanoi and the Sierpinski Triangle&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Data-Structure-and-Algorithms" /><category term="Puzzles" /><category term="Recursion" /><category term="DSA" /><summary type="html">Originally written on 30 July 2024, 16:53</summary></entry></feed>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>HEP-JEPA: Building Foundation Models for Collider Physics | Radhikesh&#39;s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="HEP-JEPA: Building Foundation Models for Collider Physics" />
+<meta name="author" content="Radhikesh Agrawal" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="A quick dive into HEP-JEPA — our approach to learning abstract jet representations using self-supervised JEPA training." />
+<meta property="og:description" content="A quick dive into HEP-JEPA — our approach to learning abstract jet representations using self-supervised JEPA training." />
+<link rel="canonical" href="http://localhost:4000/2025/05/29/hepjepa/" />
+<meta property="og:url" content="http://localhost:4000/2025/05/29/hepjepa/" />
+<meta property="og:site_name" content="Radhikesh&#39;s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-05-29T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="HEP-JEPA: Building Foundation Models for Collider Physics" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Radhikesh Agrawal"},"dateModified":"2025-05-29T00:00:00+05:30","datePublished":"2025-05-29T00:00:00+05:30","description":"A quick dive into HEP-JEPA — our approach to learning abstract jet representations using self-supervised JEPA training.","headline":"HEP-JEPA: Building Foundation Models for Collider Physics","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/05/29/hepjepa/"},"url":"http://localhost:4000/2025/05/29/hepjepa/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="keywords" content="HEP,Foundation-Models,JEPA,Self-Supervised-Learning" />
+
+
+
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Radhikesh&apos;s Blog" />
+    <link href='/assets/stylesheets/blog.css' rel="stylesheet" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script>window.Modernizr || document.write('<script src="/assets/javascripts/modernizr-2.8.3.min.js"><\/script>')</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/javascripts/jquery-3.3.1.min.js"><\/script>')
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+<script>
+    window.Pace || document.write('<script src="/assets/javascripts/pace.min.js"><\/script>')
+</script>
+
+    
+</head>
+
+<body>
+    
+
+    <!--[if IE]>
+    <p class="site-notice">You are using an outdated browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true" target="_blank">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+<noscript>
+    <p class="site-notice">This site requires JavaScript. Here are the instructions <a href="http://www.enable-javascript.com/" target="_blank">how to enable JavaScript in your web browser</a>.</p>
+</noscript>
+
+    <div class="nav-wrapper overlay-wrapper">
+    <div class="nav-form overlay-form">
+        <span class="overlay-header menu">Menu</span>
+        <a class="btn-close">Close</a>
+        <div class="results">
+            <ul>
+                <li><a href="/blog/categories/">Categories</a></li>
+                <li><a href="/blog/tags/">Tags</a></li>
+                <li><a href="/">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="search-wrapper overlay-wrapper">
+    <div class="search-form overlay-form">
+        <input type="text" class="overlay-header search-field" placeholder="Search...">
+        <a class="btn-close">Close</a>
+        <ul class="results"></ul>
+    </div>
+</div>
+
+
+    <div id="page" class="hentry">
+        <header class="the-header">
+  <div class="unit-head">
+    <div class="unit-inner unit-head-inner">
+      <nav class="nav-global">
+        <ul>
+          <li class="logo nav-link">
+            <button
+              class="btn-menu"
+              title="Menu"
+            ></button>
+            <a href="/blog/">Radhikesh's Blog</a>
+            <!--[if !IE]> -->
+            <button
+              class="btn-search"
+              title="Search"
+            ></button>
+            <!-- <![endif]-->
+          </li>
+          <li class="nav-link">
+            <a
+              title="Categories"
+              href="/blog/categories/"
+              >Categories</a
+            >
+          </li>
+          <li class="nav-link">
+            <a
+              title="Tags"
+              href="/blog/tags/"
+              >Tags</a
+            >
+          </li>
+          <!--[if !IE]> -->
+          <li class="nav-link">
+            <a
+              title="Search"
+              class="btn-search"
+              href="#"
+              >Search</a
+            >
+          </li>
+          <!-- <![endif]-->
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <script
+    type="text/javascript"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <script
+    type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  ></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+    rel="stylesheet"
+  />
+</header>
+
+
+        <div class="body animated fadeInDown" role="main">
+            <div class="unit-body">
+                <div class="unit-inner unit-body-inner">
+                    <div class="entry-content">
+                        <article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div itemscope itemtype="http://schema.org/Article" class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="entry-title" itemprop="name">HEP-JEPA: Building Foundation Models for Collider Physics</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="bd article-content">
+                <div class="entry-content">
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published:
+                            <time itemprop="datePublished" class="date-pub updated"
+                                title="2025-05-29T00:00:00+05:30" datetime="2025-05-29T00:00:00+05:30">May 29, 2025 </time>
+                            by
+                            <a class="author" href="/" rel="author" title="Show Author">
+                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                    <span itemprop="name">Radhikesh Agrawal</span>
+                                </span>
+                            </a>
+                            
+                                <a class="license-icon" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" title="Show License">
+                                    <img alt="Creative Commons Licence" style="border-width:0" src="/assets/images/theme/cc-by-sa.png"  height="16" width="80"/>
+                                </a>
+                            
+                            
+                        </p>
+                        <ul class="list-category list-linear">
+                            <li class="list-head">Categories: </li>
+                             
+     
+        <li>
+            <a href="/blog/categories/#High-Energy-Physics" title="High-Energy-Physics">
+            High-Energy-Physics <span>1</span></a>
+        </li>
+     
+        <li>
+            <a href="/blog/categories/#Machine-Learning" title="Machine-Learning">
+            Machine-Learning <span>1</span></a>
+        </li>
+    
+
+
+
+                        </ul>
+                        <ul class="list-tag list-linear">
+                            <li class="list-head">Tags: </li>
+                             
+    
+        
+        <li>
+            <a href="/blog/tags/#Foundation-Models" title="Foundation-Models">Foundation-Models <span>1</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#HEP" title="HEP">HEP <span>1</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#JEPA" title="JEPA">JEPA <span>1</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#Self-Supervised-Learning" title="Self-Supervised-Learning">Self-Supervised-Learning <span>1</span></a>
+        </li>
+    
+
+
+
+
+                        </ul>
+                    </div>
+                    <div itemprop="articleBody">
+                        <blockquote>
+  <p>Recently Presented - ICLR 2025 Workshop on HEP-JEPA</p>
+</blockquote>
+
+<ul class="toc" id="markdown-toc">
+  <li><a href="#heading-what-is-hep-jepa" id="markdown-toc-heading-what-is-hep-jepa">What is HEP-JEPA?</a></li>
+  <li><a href="#heading-why-foundation-models-in-hep" id="markdown-toc-heading-why-foundation-models-in-hep">Why Foundation Models in HEP!?</a></li>
+  <li><a href="#heading-what-makes-hep-jepa-different" id="markdown-toc-heading-what-makes-hep-jepa-different">What Makes HEP-JEPA Different?</a></li>
+  <li><a href="#heading-architecture-overview" id="markdown-toc-heading-architecture-overview">Architecture Overview</a></li>
+  <li><a href="#heading-how-well-does-it-work" id="markdown-toc-heading-how-well-does-it-work">How Well Does It Work?</a></li>
+  <li><a href="#heading-whats-next" id="markdown-toc-heading-whats-next">What’s Next?</a></li>
+</ul>
+
+<h1 id="heading-what-is-hep-jepa">What is HEP-JEPA?</h1>
+
+<p>HEP-JEPA is a self-supervised foundation model designed to work with data from high-energy particle collisions — like those at the Large Hadron Collider (LHC). Built using the Joint Embedding Predictive Architecture (JEPA), it learns general-purpose representations of particle jets from raw, unlabeled data.</p>
+
+<p>The idea is similar to how large language models learn "semantics" of text — except here, we’re learning the "semantics" of particle physics.</p>
+
+<h1 id="heading-why-foundation-models-in-hep">Why Foundation Models in HEP!?</h1>
+
+<p>Traditional models in high-energy physics are trained task-by-task, often relying on hand-labeled simulation data. This isn't scalable, especially as LHC data grows into the hundreds of petabytes. HEP-JEPA aims to change that by:</p>
+
+<ul>
+  <li>Pretraining once on large jet datasets (we use JetClass with 100M samples)</li>
+  <li>Fine-tuning quickly for specific tasks</li>
+  <li>Reducing compute costs and increasing reusability</li>
+</ul>
+
+<h1 id="heading-what-makes-hep-jepa-different">What Makes HEP-JEPA Different?</h1>
+
+<p>Most existing self-supervised methods in HEP follow either contrastive learning or generative (masked) approaches. But both have limitations:</p>
+
+<blockquote>
+  <p>Contrastive learning depends heavily on the quality of negative samples<br />
+Masked modeling often focuses too much on local reconstruction</p>
+</blockquote>
+
+<p>HEP-JEPA avoids both by predicting embeddings directly in latent space — no decoder needed. This makes training efficient and the representations more abstract and transferable.</p>
+
+<h1 id="heading-architecture-overview">Architecture Overview</h1>
+
+<p>The model consists of:</p>
+
+<ul>
+  <li>A <strong>context encoder</strong> that processes masked "visible" tokens (particles in a jet)</li>
+  <li>A <strong>target encoder</strong> (an EMA version of the context encoder)</li>
+  <li>A <strong>predictor</strong> that learns to predict target embeddings from the context</li>
+</ul>
+
+<p>We tokenize particle jets using both kinematic and geometric features, apply spatial sampling strategies, and construct context/target blocks using custom sequencers.</p>
+
+<h1 id="heading-how-well-does-it-work">How Well Does It Work?</h1>
+
+<p>We benchmarked HEP-JEPA on:</p>
+
+<ol>
+  <li><strong>Jet classification</strong> using JetClass</li>
+  <li><strong>Top quark tagging</strong> using the TQTR dataset</li>
+  <li><strong>Regression tasks</strong> for predicting jet observables like EFPs and jet shapes</li>
+</ol>
+
+<p>The results? HEP-JEPA performs on par or better than state-of-the-art models like OmniJet-α and MPM — especially in few-shot learning settings.</p>
+
+<p>Example:</p>
+<blockquote>
+  <p>On top tagging with 10% labels:<br />
+<strong>HEP-JEPA</strong> achieves 86.9% accuracy and 0.94 AUROC — outperforming baselines with fewer parameters.</p>
+</blockquote>
+
+<h1 id="heading-whats-next">What’s Next?</h1>
+
+<p>This is just the beginning. We're looking at:</p>
+
+<ul>
+  <li>Adapting HEP-JEPA to anomaly detection and detector unfolding</li>
+  <li>Scaling to generative tasks</li>
+  <li>Improving physics-based priors in architecture</li>
+</ul>
+
+<p>You can learn more at the <a href="https://hep-jepa.github.io/">ICLR 2025 HEP-JEPA Workshop</a>.</p>
+
+<hr />
+
+<p>Thanks for reading! Questions or ideas? Feel free to <a href="mailto:rhagrawal1.0.7@gmail.com">reach out</a> or check out the <a href="https://arxiv.org/abs/2502.03933">paper on arXiv</a>.</p>
+
+                    </div>
+                </div>
+            </div>
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <div class="post-buttons">
+                        <a class="internal gotop" href="#page" title="Back to Top">Back to Top</a>
+                        
+                    </div>
+                    <nav class="pagination">
+                        
+                        
+                            <a class="internal" rel="next" href="/2025/05/29/tower-of-hanoi/" title="Next Post 'Tower of Hanoi: A Recursion Classic'">Tower of Hanoi: A Recursion Classic → </a>
+                        
+                    </nav>
+                </div>
+            </footer>
+            <div class="misc-content">
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="the-footer">
+    <div class="unit-foot">
+        <div class="unit-inner unit-foot-inner">
+            <div class="misc vcard">
+                <div class="about">
+                    <h4><a href="/">About</a></h4>
+                    
+                    <p><small>Theme <a href="https://github.com/yizeng/jekyll-theme-simple-texture" target="_blank">Simple Texture</a> developed by <a href="http://yizeng.me" target="_blank">Yi Zeng</a>, powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>.</small></p>
+                </div>
+                <div class="social-links">
+                    
+                        <a class="ico-gmail" href="mailto:rhagrawal1.0.7@gmail.com" rel="me" target="_blank" title="email"></a>
+                    
+                    <a class="ico-rss" href="/feed.xml" rel="me" target="_blank" title="feed"></a>
+                    
+                        
+                    
+                        
+                            <a class="ico-github" href="https://github.com/godofwarnings/" rel="me" target="_blank" title="github"></a>
+                        
+                    
+                        
+                            <a class="ico-instagram" href="https://www.instagram.com/leonardodipitt" rel="me" target="_blank" title="instagram"></a>
+                        
+                    
+                        
+                            <a class="ico-linkedin" href="https://www.linkedin.com/in/radhikeshagrawal/" rel="me" target="_blank" title="linkedin"></a>
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="internal back-to-top">Back to Top</a>
+</footer>
+
+    </div>
+
+    <script>
+$(document).ready(function () {
+    var offset = 50,
+        duration = 500,
+        width = 960;
+    $(window).scroll(function () {
+        if ($(window).width() > width) {
+            if ($(this).scrollTop() > offset) {
+                $('footer').css('top', '20px');
+                $('footer .back-to-top').fadeIn(duration);
+            } else {
+                $('footer').css('top', 'auto');
+                $('footer .back-to-top').fadeOut(duration);
+            }
+        }
+    });
+    $(window).resize(function () {
+        if ($(window).width() < width) {
+            $('footer').css('top', 'auto');
+            $('footer .back-to-top').fadeOut(duration);
+        }
+        if ($(window).width() >= width && $(this).scrollTop() > offset) {
+            $('footer').css('top', '20px');
+            $('footer .back-to-top').fadeIn(duration);
+        }
+    });
+
+    $('footer .back-to-top, .gotop').on('click', function (event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, duration);
+        return false;
+    });
+
+    $('.show-hidden').on('click', function () {
+        $(this).parent().next().toggleClass("hidden");
+        $(this).toggleClass("hidden");
+    });
+});
+</script>
+
+<!-- Show menu overlay + Jekyll Simple Search option -->
+<script src="/assets/javascripts/jekyll-search.jquery.js"></script>
+<script>
+$(document).ready(function () {
+    $('.search-field').simpleJekyllSearch({
+      jsonFile: '/search.json',
+      template: '<li><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></li>',
+      searchResults: '.search-wrapper .results',
+      searchResultsTitle: '<h4>Search results</h4>',
+      noResults: '<p>Oh shucks<br/><small>Nothing found :(</small></p>'
+    });
+});
+
+(function ($, window, undefined) {
+    var closeOverlay = function () {
+        $('.nav-wrapper, .search-wrapper').removeAttr('style');
+        $(".nav-form, .search-form").removeClass('active');
+        $("body").removeClass('nav-overlay search-overlay');
+    };
+
+    $('.nav-global .btn-search').on('click', function () {
+        $('.search-wrapper').css({display: "block"});
+        $(".search-form").addClass('active');
+        $(".search-form").find('input').focus();
+        $("body").addClass('search-overlay');
+    });
+
+    $('.nav-global .btn-menu').on('click', function () {
+        $('.nav-wrapper').css({display: "block"});
+        $(".nav-form").addClass('active');
+        $(".nav-form .search-field").prop('disabled', true);
+        $("body").addClass('nav-overlay');
+    });
+
+    $('.nav-wrapper .btn-close, .search-wrapper .btn-close').on('click', function () {
+        closeOverlay();
+    });
+
+    $(document).on('keyup', function (e) {
+        if (e.keyCode === 27) {
+            closeOverlay();
+        }
+    });
+})(jQuery, window);
+</script>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-buttons.min.js'></script>
+<script src="/assets/javascripts/unveil/jquery.unveil.min.js"></script>
+
+<script>
+    window.jQuery.fancybox || document.write('<script src="/assets/javascripts/fancybox/jquery.fancybox.pack.js?v=2.1.4"><\/script>')
+    window.jQuery.fancybox.helpers.buttons || document.write('<script src="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"><\/script>')
+</script>
+
+<script>
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/jquery.fancybox.css?v=2.1.4" type="text/css" />');
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" />');
+    $(".post-image").fancybox({
+        prevEffect: 'none',
+        nextEffect: 'none',
+        closeBtn: true,
+        helpers: {
+            title: {
+                type: 'float'
+            }
+        }
+    });
+    $(document).ready(function () {
+        $(".post-image > img").unveil(450);
+    });
+</script>
+
+</body>
+
+</html>

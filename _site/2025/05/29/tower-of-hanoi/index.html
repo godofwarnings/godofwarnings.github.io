@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tower of Hanoi: A Recursion Classic | Radhikesh&#39;s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Tower of Hanoi: A Recursion Classic" />
+<meta name="author" content="Radhikesh Agrawal" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Exploring the Tower of Hanoi problem using recursion and Python, along with insights into its time complexity and connection to puzzles." />
+<meta property="og:description" content="Exploring the Tower of Hanoi problem using recursion and Python, along with insights into its time complexity and connection to puzzles." />
+<link rel="canonical" href="http://localhost:4000/2025/05/29/tower-of-hanoi/" />
+<meta property="og:url" content="http://localhost:4000/2025/05/29/tower-of-hanoi/" />
+<meta property="og:site_name" content="Radhikesh&#39;s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-05-29T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tower of Hanoi: A Recursion Classic" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Radhikesh Agrawal"},"dateModified":"2025-05-29T00:00:00+05:30","datePublished":"2025-05-29T00:00:00+05:30","description":"Exploring the Tower of Hanoi problem using recursion and Python, along with insights into its time complexity and connection to puzzles.","headline":"Tower of Hanoi: A Recursion Classic","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/05/29/tower-of-hanoi/"},"url":"http://localhost:4000/2025/05/29/tower-of-hanoi/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="keywords" content="Recursion,DSA" />
+
+
+
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Radhikesh&apos;s Blog" />
+    <link href='/assets/stylesheets/blog.css' rel="stylesheet" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script>window.Modernizr || document.write('<script src="/assets/javascripts/modernizr-2.8.3.min.js"><\/script>')</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/javascripts/jquery-3.3.1.min.js"><\/script>')
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+<script>
+    window.Pace || document.write('<script src="/assets/javascripts/pace.min.js"><\/script>')
+</script>
+
+    
+</head>
+
+<body>
+    
+
+    <!--[if IE]>
+    <p class="site-notice">You are using an outdated browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true" target="_blank">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+<noscript>
+    <p class="site-notice">This site requires JavaScript. Here are the instructions <a href="http://www.enable-javascript.com/" target="_blank">how to enable JavaScript in your web browser</a>.</p>
+</noscript>
+
+    <div class="nav-wrapper overlay-wrapper">
+    <div class="nav-form overlay-form">
+        <span class="overlay-header menu">Menu</span>
+        <a class="btn-close">Close</a>
+        <div class="results">
+            <ul>
+                <li><a href="/blog/categories/">Categories</a></li>
+                <li><a href="/blog/tags/">Tags</a></li>
+                <li><a href="/">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="search-wrapper overlay-wrapper">
+    <div class="search-form overlay-form">
+        <input type="text" class="overlay-header search-field" placeholder="Search...">
+        <a class="btn-close">Close</a>
+        <ul class="results"></ul>
+    </div>
+</div>
+
+
+    <div id="page" class="hentry">
+        <header class="the-header">
+  <div class="unit-head">
+    <div class="unit-inner unit-head-inner">
+      <nav class="nav-global">
+        <ul>
+          <li class="logo nav-link">
+            <button
+              class="btn-menu"
+              title="Menu"
+            ></button>
+            <a href="/blog/">Radhikesh's Blog</a>
+            <!--[if !IE]> -->
+            <button
+              class="btn-search"
+              title="Search"
+            ></button>
+            <!-- <![endif]-->
+          </li>
+          <li class="nav-link">
+            <a
+              title="Categories"
+              href="/blog/categories/"
+              >Categories</a
+            >
+          </li>
+          <li class="nav-link">
+            <a
+              title="Tags"
+              href="/blog/tags/"
+              >Tags</a
+            >
+          </li>
+          <!--[if !IE]> -->
+          <li class="nav-link">
+            <a
+              title="Search"
+              class="btn-search"
+              href="#"
+              >Search</a
+            >
+          </li>
+          <!-- <![endif]-->
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <script
+    type="text/javascript"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <script
+    type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  ></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+    rel="stylesheet"
+  />
+</header>
+
+
+        <div class="body animated fadeInDown" role="main">
+            <div class="unit-body">
+                <div class="unit-inner unit-body-inner">
+                    <div class="entry-content">
+                        <article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div itemscope itemtype="http://schema.org/Article" class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="entry-title" itemprop="name">Tower of Hanoi: A Recursion Classic</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="bd article-content">
+                <div class="entry-content">
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published:
+                            <time itemprop="datePublished" class="date-pub updated"
+                                title="2025-05-29T00:00:00+05:30" datetime="2025-05-29T00:00:00+05:30">May 29, 2025 </time>
+                            by
+                            <a class="author" href="/" rel="author" title="Show Author">
+                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                    <span itemprop="name">Radhikesh Agrawal</span>
+                                </span>
+                            </a>
+                            
+                                <a class="license-icon" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" title="Show License">
+                                    <img alt="Creative Commons Licence" style="border-width:0" src="/assets/images/theme/cc-by-sa.png"  height="16" width="80"/>
+                                </a>
+                            
+                            
+                        </p>
+                        <ul class="list-category list-linear">
+                            <li class="list-head">Categories: </li>
+                             
+     
+        <li>
+            <a href="/blog/categories/#Data-Structure-and-Algorithms" title="Data-Structure-and-Algorithms">
+            Data-Structure-and-Algorithms <span>2</span></a>
+        </li>
+     
+        <li>
+            <a href="/blog/categories/#Puzzles" title="Puzzles">
+            Puzzles <span>1</span></a>
+        </li>
+    
+
+
+
+                        </ul>
+                        <ul class="list-tag list-linear">
+                            <li class="list-head">Tags: </li>
+                             
+    
+        
+        <li>
+            <a href="/blog/tags/#DSA" title="DSA">DSA <span>3</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#Recursion" title="Recursion">Recursion <span>1</span></a>
+        </li>
+    
+
+
+
+
+                        </ul>
+                    </div>
+                    <div itemprop="articleBody">
+                        <blockquote>
+  <p>Originally written on <strong>30 July 2024, 16:53</strong></p>
+</blockquote>
+
+<ul class="toc" id="markdown-toc">
+  <li><a href="#heading-introduction" id="markdown-toc-heading-introduction">Introduction</a></li>
+  <li><a href="#heading-step-by-step-logic" id="markdown-toc-heading-step-by-step-logic">Step-by-step logic</a>    <ul>
+      <li><a href="#heading-some-sample-cases" id="markdown-toc-heading-some-sample-cases">Some Sample Cases</a></li>
+      <li><a href="#heading-general-case" id="markdown-toc-heading-general-case">General Case</a></li>
+    </ul>
+  </li>
+  <li><a href="#heading-time-complexity" id="markdown-toc-heading-time-complexity">Time Complexity</a></li>
+  <li><a href="#heading-references" id="markdown-toc-heading-references">References</a></li>
+</ul>
+
+<h1 id="heading-introduction">Introduction</h1>
+
+<p>The Tower of Hanoi is a classic recursive puzzle where the goal is to move \(n\) discs from a source tower to a target tower, using a spare tower — all while never placing a larger disc on a smaller one.</p>
+
+<p>The problem is a great illustration of how recursion breaks a large problem into smaller sub-problems.</p>
+
+<h1 id="heading-step-by-step-logic">Step-by-step logic</h1>
+
+<p>Let’s consider the following Python code to solve the problem:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>  
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>  <span class="c1"># source
+</span><span class="n">B</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># spare
+</span><span class="n">C</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># target
+</span>
+<span class="k">def</span> <span class="nf">hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">spare</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">spare</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Move disc </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s"> to </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s">."</span><span class="p">)</span>
+        <span class="n">hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">spare</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">source</span><span class="p">)</span>
+
+<span class="n">hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="heading-some-sample-cases">Some Sample Cases</h2>
+
+<ul>
+  <li>If <code class="language-plaintext highlighter-rouge">n</code> is 0, we do nothing (base case).</li>
+  <li>if <code class="language-plaintext highlighter-rouge">n</code> is 1, we can directly move the disc from the source to the target.</li>
+  <li>if <code class="language-plaintext highlighter-rouge">n</code> is 2, we can move the first disc to the spare tower, then the second disc to the target tower, and finally the first disc from the spare tower to the target tower.</li>
+  <li>if <code class="language-plaintext highlighter-rouge">n</code> is 3, imagine that there are only two discs on the source tower and our spare tower is actually the target tower. We can follow the procedure for <code class="language-plaintext highlighter-rouge">n = 2</code> to move the first two discs to the spare tower (imagining it as the target tower), then move the third disc directly to the target tower. Now the source tower is the spare tower and we just need to move the two discs from the spare tower to the target tower, which is again a case of <code class="language-plaintext highlighter-rouge">n = 2</code>.</li>
+  <li>if <code class="language-plaintext highlighter-rouge">n</code> is 4, we can follow the same logic as above, treating the first three discs as a subproblem and moving them to the spare tower, then moving the fourth disc to the target tower, and finally moving the three discs from the spare tower to the target tower.</li>
+  <li>This pattern continues for any number of discs <code class="language-plaintext highlighter-rouge">n</code>.</li>
+</ul>
+
+<h2 id="heading-general-case">General Case</h2>
+
+<ul>
+  <li>At line 12, we make the initial call to move all <code class="language-plaintext highlighter-rouge">n</code> discs from tower <strong>A</strong> to tower <strong>C</strong>.</li>
+  <li>First, we move the top <code class="language-plaintext highlighter-rouge">n-1</code> discs to the <strong>spare</strong> tower (line 8).</li>
+  <li>Then, we move the largest disc to the <strong>target</strong> tower (line 9).</li>
+  <li>Finally, we move the <code class="language-plaintext highlighter-rouge">n-1</code> discs from the <strong>spare</strong> tower to the <strong>target</strong> tower (line 10).</li>
+</ul>
+
+<p>This recursive approach continues until <code class="language-plaintext highlighter-rouge">n = 0</code>, which becomes our base case.</p>
+
+<h1 id="heading-time-complexity">Time Complexity</h1>
+
+<p>The number of moves required to solve the Tower of Hanoi puzzle for <code class="language-plaintext highlighter-rouge">n</code> discs follows the recurrence:</p>
+
+\[T(n) = 2 \cdot T(n-1) + 1\]
+
+<p>This simplifies to:</p>
+
+\[T(n) = 2^n - 1\]
+
+<p>So for 10 discs, it takes \(2^{10} - 1 = 1023\) moves!</p>
+
+<h1 id="heading-references">References</h1>
+
+<ul>
+  <li><a href="https://youtu.be/2SUvWfNJSsM?si=DPtOK-lMpcQjF45w">3Blue1Brown - Tower of Hanoi and the Sierpinski Triangle</a></li>
+</ul>
+
+                    </div>
+                </div>
+            </div>
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <div class="post-buttons">
+                        <a class="internal gotop" href="#page" title="Back to Top">Back to Top</a>
+                        
+                    </div>
+                    <nav class="pagination">
+                        
+                            <a class="internal" rel="prev" href="/2025/05/29/hepjepa/" title=" 'HEP-JEPA: Building Foundation Models for Collider Physics'"> ← HEP-JEPA: Building Foundation Models for Collider Physics</a>
+                        
+                        
+                            <a class="internal" rel="next" href="/2025/05/30/graph-traversal-bfs-dfs/" title="Next Post 'Graph Traversal - BFS and DFS'">Graph Traversal - BFS and DFS → </a>
+                        
+                    </nav>
+                </div>
+            </footer>
+            <div class="misc-content">
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="the-footer">
+    <div class="unit-foot">
+        <div class="unit-inner unit-foot-inner">
+            <div class="misc vcard">
+                <div class="about">
+                    <h4><a href="/">About</a></h4>
+                    
+                    <p><small>Theme <a href="https://github.com/yizeng/jekyll-theme-simple-texture" target="_blank">Simple Texture</a> developed by <a href="http://yizeng.me" target="_blank">Yi Zeng</a>, powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>.</small></p>
+                </div>
+                <div class="social-links">
+                    
+                        <a class="ico-gmail" href="mailto:rhagrawal1.0.7@gmail.com" rel="me" target="_blank" title="email"></a>
+                    
+                    <a class="ico-rss" href="/feed.xml" rel="me" target="_blank" title="feed"></a>
+                    
+                        
+                    
+                        
+                            <a class="ico-github" href="https://github.com/godofwarnings/" rel="me" target="_blank" title="github"></a>
+                        
+                    
+                        
+                            <a class="ico-instagram" href="https://www.instagram.com/leonardodipitt" rel="me" target="_blank" title="instagram"></a>
+                        
+                    
+                        
+                            <a class="ico-linkedin" href="https://www.linkedin.com/in/radhikeshagrawal/" rel="me" target="_blank" title="linkedin"></a>
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="internal back-to-top">Back to Top</a>
+</footer>
+
+    </div>
+
+    <script>
+$(document).ready(function () {
+    var offset = 50,
+        duration = 500,
+        width = 960;
+    $(window).scroll(function () {
+        if ($(window).width() > width) {
+            if ($(this).scrollTop() > offset) {
+                $('footer').css('top', '20px');
+                $('footer .back-to-top').fadeIn(duration);
+            } else {
+                $('footer').css('top', 'auto');
+                $('footer .back-to-top').fadeOut(duration);
+            }
+        }
+    });
+    $(window).resize(function () {
+        if ($(window).width() < width) {
+            $('footer').css('top', 'auto');
+            $('footer .back-to-top').fadeOut(duration);
+        }
+        if ($(window).width() >= width && $(this).scrollTop() > offset) {
+            $('footer').css('top', '20px');
+            $('footer .back-to-top').fadeIn(duration);
+        }
+    });
+
+    $('footer .back-to-top, .gotop').on('click', function (event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, duration);
+        return false;
+    });
+
+    $('.show-hidden').on('click', function () {
+        $(this).parent().next().toggleClass("hidden");
+        $(this).toggleClass("hidden");
+    });
+});
+</script>
+
+<!-- Show menu overlay + Jekyll Simple Search option -->
+<script src="/assets/javascripts/jekyll-search.jquery.js"></script>
+<script>
+$(document).ready(function () {
+    $('.search-field').simpleJekyllSearch({
+      jsonFile: '/search.json',
+      template: '<li><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></li>',
+      searchResults: '.search-wrapper .results',
+      searchResultsTitle: '<h4>Search results</h4>',
+      noResults: '<p>Oh shucks<br/><small>Nothing found :(</small></p>'
+    });
+});
+
+(function ($, window, undefined) {
+    var closeOverlay = function () {
+        $('.nav-wrapper, .search-wrapper').removeAttr('style');
+        $(".nav-form, .search-form").removeClass('active');
+        $("body").removeClass('nav-overlay search-overlay');
+    };
+
+    $('.nav-global .btn-search').on('click', function () {
+        $('.search-wrapper').css({display: "block"});
+        $(".search-form").addClass('active');
+        $(".search-form").find('input').focus();
+        $("body").addClass('search-overlay');
+    });
+
+    $('.nav-global .btn-menu').on('click', function () {
+        $('.nav-wrapper').css({display: "block"});
+        $(".nav-form").addClass('active');
+        $(".nav-form .search-field").prop('disabled', true);
+        $("body").addClass('nav-overlay');
+    });
+
+    $('.nav-wrapper .btn-close, .search-wrapper .btn-close').on('click', function () {
+        closeOverlay();
+    });
+
+    $(document).on('keyup', function (e) {
+        if (e.keyCode === 27) {
+            closeOverlay();
+        }
+    });
+})(jQuery, window);
+</script>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-buttons.min.js'></script>
+<script src="/assets/javascripts/unveil/jquery.unveil.min.js"></script>
+
+<script>
+    window.jQuery.fancybox || document.write('<script src="/assets/javascripts/fancybox/jquery.fancybox.pack.js?v=2.1.4"><\/script>')
+    window.jQuery.fancybox.helpers.buttons || document.write('<script src="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"><\/script>')
+</script>
+
+<script>
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/jquery.fancybox.css?v=2.1.4" type="text/css" />');
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" />');
+    $(".post-image").fancybox({
+        prevEffect: 'none',
+        nextEffect: 'none',
+        closeBtn: true,
+        helpers: {
+            title: {
+                type: 'float'
+            }
+        }
+    });
+    $(document).ready(function () {
+        $(".post-image > img").unveil(450);
+    });
+</script>
+
+</body>
+
+</html>

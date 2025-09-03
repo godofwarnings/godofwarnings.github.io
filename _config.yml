@@ -19,6 +19,8 @@ permalink: /:year/:month/:day/:title/
 remote_theme: yizeng/jekyll-theme-simple-texture
 # remote_theme: "jekyll/minima@1e8a445"
 
+future: true
+
 whitelist: [jekyll-feed, jekyll-redirect-from, jekyll-seo-tag, jekyll-sitemap]
 plugins:
   - jekyll-feed

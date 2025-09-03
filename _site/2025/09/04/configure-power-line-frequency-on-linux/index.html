@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Configure Power Line Frequency on Linux | Radhikesh&#39;s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Configure Power Line Frequency on Linux" />
+<meta name="author" content="Radhikesh Agrawal" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Step-by-step guide to configure Logitech Brio 100 webcam’s power-line frequency automatically on Manjaro Linux (Arch-based) using udev rules and v4l2-ctl." />
+<meta property="og:description" content="Step-by-step guide to configure Logitech Brio 100 webcam’s power-line frequency automatically on Manjaro Linux (Arch-based) using udev rules and v4l2-ctl." />
+<link rel="canonical" href="http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/" />
+<meta property="og:url" content="http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/" />
+<meta property="og:site_name" content="Radhikesh&#39;s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-09-04T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configure Power Line Frequency on Linux" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Radhikesh Agrawal"},"dateModified":"2025-09-04T00:00:00+05:30","datePublished":"2025-09-04T00:00:00+05:30","description":"Step-by-step guide to configure Logitech Brio 100 webcam’s power-line frequency automatically on Manjaro Linux (Arch-based) using udev rules and v4l2-ctl.","headline":"Configure Power Line Frequency on Linux","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/"},"url":"http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="keywords" content="Linux,Arch,Manjaro" />
+
+
+
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Radhikesh&apos;s Blog" />
+    <link href='/assets/stylesheets/blog.css' rel="stylesheet" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script>window.Modernizr || document.write('<script src="/assets/javascripts/modernizr-2.8.3.min.js"><\/script>')</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/javascripts/jquery-3.3.1.min.js"><\/script>')
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+<script>
+    window.Pace || document.write('<script src="/assets/javascripts/pace.min.js"><\/script>')
+</script>
+
+    
+</head>
+
+<body>
+    
+
+    <!--[if IE]>
+    <p class="site-notice">You are using an outdated browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true" target="_blank">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+<noscript>
+    <p class="site-notice">This site requires JavaScript. Here are the instructions <a href="http://www.enable-javascript.com/" target="_blank">how to enable JavaScript in your web browser</a>.</p>
+</noscript>
+
+    <div class="nav-wrapper overlay-wrapper">
+    <div class="nav-form overlay-form">
+        <span class="overlay-header menu">Menu</span>
+        <a class="btn-close">Close</a>
+        <div class="results">
+            <ul>
+                <li><a href="/blog/categories/">Categories</a></li>
+                <li><a href="/blog/tags/">Tags</a></li>
+                <li><a href="/">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="search-wrapper overlay-wrapper">
+    <div class="search-form overlay-form">
+        <input type="text" class="overlay-header search-field" placeholder="Search...">
+        <a class="btn-close">Close</a>
+        <ul class="results"></ul>
+    </div>
+</div>
+
+
+    <div id="page" class="hentry">
+        <header class="the-header">
+  <div class="unit-head">
+    <div class="unit-inner unit-head-inner">
+      <nav class="nav-global">
+        <ul>
+          <li class="logo nav-link">
+            <button
+              class="btn-menu"
+              title="Menu"
+            ></button>
+            <a href="/blog/">Radhikesh's Blog</a>
+            <!--[if !IE]> -->
+            <button
+              class="btn-search"
+              title="Search"
+            ></button>
+            <!-- <![endif]-->
+          </li>
+          <li class="nav-link">
+            <a
+              title="Categories"
+              href="/blog/categories/"
+              >Categories</a
+            >
+          </li>
+          <li class="nav-link">
+            <a
+              title="Tags"
+              href="/blog/tags/"
+              >Tags</a
+            >
+          </li>
+          <!--[if !IE]> -->
+          <li class="nav-link">
+            <a
+              title="Search"
+              class="btn-search"
+              href="#"
+              >Search</a
+            >
+          </li>
+          <!-- <![endif]-->
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <script
+    type="text/javascript"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <script
+    type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  ></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+    rel="stylesheet"
+  />
+</header>
+
+
+        <div class="body animated fadeInDown" role="main">
+            <div class="unit-body">
+                <div class="unit-inner unit-body-inner">
+                    <div class="entry-content">
+                        <article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div itemscope itemtype="http://schema.org/Article" class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="entry-title" itemprop="name">Configure Power Line Frequency on Linux</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="bd article-content">
+                <div class="entry-content">
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published:
+                            <time itemprop="datePublished" class="date-pub updated"
+                                title="2025-09-04T00:00:00+05:30" datetime="2025-09-04T00:00:00+05:30">September 04, 2025 </time>
+                            by
+                            <a class="author" href="/" rel="author" title="Show Author">
+                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                    <span itemprop="name">Radhikesh Agrawal</span>
+                                </span>
+                            </a>
+                            
+                                <a class="license-icon" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" title="Show License">
+                                    <img alt="Creative Commons Licence" style="border-width:0" src="/assets/images/theme/cc-by-sa.png"  height="16" width="80"/>
+                                </a>
+                            
+                            
+                        </p>
+                        <ul class="list-category list-linear">
+                            <li class="list-head">Categories: </li>
+                             
+     
+        <li>
+            <a href="/blog/categories/#Configuration" title="Configuration">
+            Configuration <span>1</span></a>
+        </li>
+     
+        <li>
+            <a href="/blog/categories/#Hardware" title="Hardware">
+            Hardware <span>1</span></a>
+        </li>
+     
+        <li>
+            <a href="/blog/categories/#Linux" title="Linux">
+            Linux <span>1</span></a>
+        </li>
+    
+
+
+
+                        </ul>
+                        <ul class="list-tag list-linear">
+                            <li class="list-head">Tags: </li>
+                             
+    
+        
+        <li>
+            <a href="/blog/tags/#Arch" title="Arch">Arch <span>1</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#Linux" title="Linux">Linux <span>1</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#Manjaro" title="Manjaro">Manjaro <span>1</span></a>
+        </li>
+    
+
+
+
+
+                        </ul>
+                    </div>
+                    <div itemprop="articleBody">
+                        <blockquote>
+  <p>Originally written on <strong>04 September 2025, 01:15</strong></p>
+</blockquote>
+
+<ul class="toc" id="markdown-toc">
+  <li><a href="#heading-intuition" id="markdown-toc-heading-intuition">Intuition</a>    <ul>
+      <li><a href="#heading-1-identify-device-ids" id="markdown-toc-heading-1-identify-device-ids">1. Identify Device IDs</a></li>
+      <li><a href="#heading-2-install-required-tools" id="markdown-toc-heading-2-install-required-tools">2. Install Required Tools</a></li>
+      <li><a href="#heading-3-create-the-udev-rule" id="markdown-toc-heading-3-create-the-udev-rule">3. Create the Udev Rule</a></li>
+      <li><a href="#heading-4-apply-the-rule" id="markdown-toc-heading-4-apply-the-rule">4. Apply the Rule</a></li>
+      <li><a href="#heading-5-verify" id="markdown-toc-heading-5-verify">5. Verify</a></li>
+      <li><a href="#heading-6-debugging" id="markdown-toc-heading-6-debugging">6. Debugging</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="heading-intuition">Intuition</h1>
+
+<p>By default, webcams like the <strong>Logitech Brio 100</strong> may not automatically adjust to the correct <strong>power-line frequency</strong> (50 Hz in most regions, 60 Hz in some).<br />
+This mismatch often causes <strong>flickering under artificial lighting</strong>.</p>
+
+<p>The goal is to configure the Brio 100 to <strong>always set the correct power-line frequency</strong> automatically when plugged in, using:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">udev</code> rules (to trigger configuration when device is detected)</li>
+  <li><code class="language-plaintext highlighter-rouge">v4l2-ctl</code> (from <code class="language-plaintext highlighter-rouge">v4l-utils</code>) to control video device parameters</li>
+</ul>
+
+<hr />
+
+<h2 id="heading-1-identify-device-ids">1. Identify Device IDs</h2>
+
+<p>First, plug in the webcam and check its <strong>vendor</strong> and <strong>product IDs</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>lsusb
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Example output:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>Bus 003 Device 009: ID 046d:094c Logitech, Inc. Brio 100
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li><strong>Vendor ID (VID):</strong> <code class="language-plaintext highlighter-rouge">046d</code></li>
+  <li><strong>Product ID (PID):</strong> <code class="language-plaintext highlighter-rouge">094c</code></li>
+</ul>
+
+<hr />
+
+<h2 id="heading-2-install-required-tools">2. Install Required Tools</h2>
+
+<p>The tool <code class="language-plaintext highlighter-rouge">v4l2-ctl</code> is part of <strong>v4l-utils</strong>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>pacman <span class="nt">-S</span> v4l-utils
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Check installation:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>v4l2-ctl <span class="nt">--version</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<hr />
+
+<h2 id="heading-3-create-the-udev-rule">3. Create the Udev Rule</h2>
+
+<p>Create a new rules file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>nano /etc/udev/rules.d/99-logitech-brio.rules
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Add the following rule:</p>
+
+<pre><code class="language-udev">SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="094c", RUN+="/usr/bin/v4l2-ctl -d /dev/video%n --set-ctrl=power_line_frequency=1"
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong></p>
+
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">power_line_frequency=1</code> = <strong>50 Hz</strong></li>
+    <li><code class="language-plaintext highlighter-rouge">power_line_frequency=2</code> = <strong>60 Hz</strong></li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h2 id="heading-4-apply-the-rule">4. Apply the Rule</h2>
+
+<p>Reload the udev rules:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>udevadm control <span class="nt">--reload-rules</span>
+<span class="nb">sudo </span>udevadm trigger
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Replug the webcam (or reboot the system).</p>
+
+<hr />
+
+<h2 id="heading-5-verify">5. Verify</h2>
+
+<p>List all video devices:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>v4l2-ctl <span class="nt">--list-devices</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Check if the control is applied:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>v4l2-ctl <span class="nt">-d</span> /dev/video0 <span class="nt">--get-ctrl</span><span class="o">=</span>power_line_frequency
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Expected output:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>power_line_frequency: 1
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<hr />
+
+<h2 id="heading-6-debugging">6. Debugging</h2>
+
+<p>If the rule doesn’t trigger, try:</p>
+
+<ol>
+  <li>
+    <p><strong>Test manually:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>udevadm <span class="nb">test</span> /sys/class/video4linux/video0
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+
+    <p>Look for your <code class="language-plaintext highlighter-rouge">v4l2-ctl</code> command in the logs.</p>
+  </li>
+  <li>
+    <p><strong>Check system logs:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>journalctl <span class="nt">-u</span> systemd-udevd <span class="nt">-f</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+                    </div>
+                </div>
+            </div>
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <div class="post-buttons">
+                        <a class="internal gotop" href="#page" title="Back to Top">Back to Top</a>
+                        
+                    </div>
+                    <nav class="pagination">
+                        
+                            <a class="internal" rel="prev" href="/2025/09/04/anterograde-amnesia/" title=" 'Anterograde Amnesia'"> ← Anterograde Amnesia</a>
+                        
+                        
+                    </nav>
+                </div>
+            </footer>
+            <div class="misc-content">
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="the-footer">
+    <div class="unit-foot">
+        <div class="unit-inner unit-foot-inner">
+            <div class="misc vcard">
+                <div class="about">
+                    <h4><a href="/">About</a></h4>
+                    
+                    <p><small>Theme <a href="https://github.com/yizeng/jekyll-theme-simple-texture" target="_blank">Simple Texture</a> developed by <a href="http://yizeng.me" target="_blank">Yi Zeng</a>, powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>.</small></p>
+                </div>
+                <div class="social-links">
+                    
+                        <a class="ico-gmail" href="mailto:rhagrawal1.0.7@gmail.com" rel="me" target="_blank" title="email"></a>
+                    
+                    <a class="ico-rss" href="/feed.xml" rel="me" target="_blank" title="feed"></a>
+                    
+                        
+                    
+                        
+                            <a class="ico-github" href="https://github.com/godofwarnings/" rel="me" target="_blank" title="github"></a>
+                        
+                    
+                        
+                            <a class="ico-instagram" href="https://www.instagram.com/leonardodipitt" rel="me" target="_blank" title="instagram"></a>
+                        
+                    
+                        
+                            <a class="ico-linkedin" href="https://www.linkedin.com/in/radhikeshagrawal/" rel="me" target="_blank" title="linkedin"></a>
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="internal back-to-top">Back to Top</a>
+</footer>
+
+    </div>
+
+    <script>
+$(document).ready(function () {
+    var offset = 50,
+        duration = 500,
+        width = 960;
+    $(window).scroll(function () {
+        if ($(window).width() > width) {
+            if ($(this).scrollTop() > offset) {
+                $('footer').css('top', '20px');
+                $('footer .back-to-top').fadeIn(duration);
+            } else {
+                $('footer').css('top', 'auto');
+                $('footer .back-to-top').fadeOut(duration);
+            }
+        }
+    });
+    $(window).resize(function () {
+        if ($(window).width() < width) {
+            $('footer').css('top', 'auto');
+            $('footer .back-to-top').fadeOut(duration);
+        }
+        if ($(window).width() >= width && $(this).scrollTop() > offset) {
+            $('footer').css('top', '20px');
+            $('footer .back-to-top').fadeIn(duration);
+        }
+    });
+
+    $('footer .back-to-top, .gotop').on('click', function (event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, duration);
+        return false;
+    });
+
+    $('.show-hidden').on('click', function () {
+        $(this).parent().next().toggleClass("hidden");
+        $(this).toggleClass("hidden");
+    });
+});
+</script>
+
+<!-- Show menu overlay + Jekyll Simple Search option -->
+<script src="/assets/javascripts/jekyll-search.jquery.js"></script>
+<script>
+$(document).ready(function () {
+    $('.search-field').simpleJekyllSearch({
+      jsonFile: '/search.json',
+      template: '<li><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></li>',
+      searchResults: '.search-wrapper .results',
+      searchResultsTitle: '<h4>Search results</h4>',
+      noResults: '<p>Oh shucks<br/><small>Nothing found :(</small></p>'
+    });
+});
+
+(function ($, window, undefined) {
+    var closeOverlay = function () {
+        $('.nav-wrapper, .search-wrapper').removeAttr('style');
+        $(".nav-form, .search-form").removeClass('active');
+        $("body").removeClass('nav-overlay search-overlay');
+    };
+
+    $('.nav-global .btn-search').on('click', function () {
+        $('.search-wrapper').css({display: "block"});
+        $(".search-form").addClass('active');
+        $(".search-form").find('input').focus();
+        $("body").addClass('search-overlay');
+    });
+
+    $('.nav-global .btn-menu').on('click', function () {
+        $('.nav-wrapper').css({display: "block"});
+        $(".nav-form").addClass('active');
+        $(".nav-form .search-field").prop('disabled', true);
+        $("body").addClass('nav-overlay');
+    });
+
+    $('.nav-wrapper .btn-close, .search-wrapper .btn-close').on('click', function () {
+        closeOverlay();
+    });
+
+    $(document).on('keyup', function (e) {
+        if (e.keyCode === 27) {
+            closeOverlay();
+        }
+    });
+})(jQuery, window);
+</script>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-buttons.min.js'></script>
+<script src="/assets/javascripts/unveil/jquery.unveil.min.js"></script>
+
+<script>
+    window.jQuery.fancybox || document.write('<script src="/assets/javascripts/fancybox/jquery.fancybox.pack.js?v=2.1.4"><\/script>')
+    window.jQuery.fancybox.helpers.buttons || document.write('<script src="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"><\/script>')
+</script>
+
+<script>
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/jquery.fancybox.css?v=2.1.4" type="text/css" />');
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" />');
+    $(".post-image").fancybox({
+        prevEffect: 'none',
+        nextEffect: 'none',
+        closeBtn: true,
+        helpers: {
+            title: {
+                type: 'float'
+            }
+        }
+    });
+    $(document).ready(function () {
+        $(".post-image > img").unveil(450);
+    });
+</script>
+
+</body>
+
+</html>
