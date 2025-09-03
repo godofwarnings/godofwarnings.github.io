@@ -5,7 +5,7 @@ description: "Exploring the Tower of Hanoi problem using recursion and Python, a
 categories: [Data-Structure-and-Algorithms, Puzzles]
 tags: [Recursion, DSA]
 redirect_from:
-  - /2024/07/30/
+  - /2025/05/29/
 ---
 
 > Originally written on **30 July 2024, 16:53**
