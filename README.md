@@ -17,6 +17,8 @@ bundle install
 ```
 
 Run the website with
-```
-rake jekyll
+
+```bash
+bundle exec jekyll clean # clean the build cache
+bundle exec jekyll serve --incremental --livereload
 ```
