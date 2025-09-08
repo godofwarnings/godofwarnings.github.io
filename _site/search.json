@@ -1,6 +1,20 @@
 [
   
     {
+      "title"      : "The Egg Dropping Puzzle: An Intuitive Solution to a Classic Problem",
+      "url"        : "/2025/09/08/two-egg-puzzle/",
+      "date"       : "2025-09-08 00:00:00 +0530",
+      "shortdate"  : "September 08, 2025"
+    } ,
+  
+    {
+      "title"      : "The Fox and Duck Puzzle: A Masterclass in Optimal Strategy",
+      "url"        : "/2025/09/04/duck-and-fish/",
+      "date"       : "2025-09-04 00:00:00 +0530",
+      "shortdate"  : "September 04, 2025"
+    } ,
+  
+    {
       "title"      : "Configure Power Line Frequency on Linux",
       "url"        : "/2025/09/04/configure-power-line-frequency-on-linux/",
       "date"       : "2025-09-04 00:00:00 +0530",

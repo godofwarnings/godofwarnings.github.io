@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>The Egg Dropping Puzzle: An Intuitive Solution to a Classic Problem | Radhikesh&#39;s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="The Egg Dropping Puzzle: An Intuitive Solution to a Classic Problem" />
+<meta name="author" content="Radhikesh Agrawal" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="A deep dive into the classic 2-egg, 100-story building puzzle. We explore why common approaches fail and derive the elegant, optimal solution by reframing the question." />
+<meta property="og:description" content="A deep dive into the classic 2-egg, 100-story building puzzle. We explore why common approaches fail and derive the elegant, optimal solution by reframing the question." />
+<link rel="canonical" href="http://localhost:4000/2025/09/08/two-egg-puzzle/" />
+<meta property="og:url" content="http://localhost:4000/2025/09/08/two-egg-puzzle/" />
+<meta property="og:site_name" content="Radhikesh&#39;s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-09-08T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The Egg Dropping Puzzle: An Intuitive Solution to a Classic Problem" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Radhikesh Agrawal"},"dateModified":"2025-09-08T00:00:00+05:30","datePublished":"2025-09-08T00:00:00+05:30","description":"A deep dive into the classic 2-egg, 100-story building puzzle. We explore why common approaches fail and derive the elegant, optimal solution by reframing the question.","headline":"The Egg Dropping Puzzle: An Intuitive Solution to a Classic Problem","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/09/08/two-egg-puzzle/"},"url":"http://localhost:4000/2025/09/08/two-egg-puzzle/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="keywords" content="Brain-Teaser,Dynamic-Programming,Recursion,Strategy" />
+
+
+
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Radhikesh&apos;s Blog" />
+    <link href='/assets/stylesheets/blog.css' rel="stylesheet" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script>window.Modernizr || document.write('<script src="/assets/javascripts/modernizr-2.8.3.min.js"><\/script>')</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/javascripts/jquery-3.3.1.min.js"><\/script>')
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+<script>
+    window.Pace || document.write('<script src="/assets/javascripts/pace.min.js"><\/script>')
+</script>
+
+    
+</head>
+
+<body>
+    
+
+    <!--[if IE]>
+    <p class="site-notice">You are using an outdated browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true" target="_blank">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+<noscript>
+    <p class="site-notice">This site requires JavaScript. Here are the instructions <a href="http://www.enable-javascript.com/" target="_blank">how to enable JavaScript in your web browser</a>.</p>
+</noscript>
+
+    <div class="nav-wrapper overlay-wrapper">
+    <div class="nav-form overlay-form">
+        <span class="overlay-header menu">Menu</span>
+        <a class="btn-close">Close</a>
+        <div class="results">
+            <ul>
+                <li><a href="/blog/categories/">Categories</a></li>
+                <li><a href="/blog/tags/">Tags</a></li>
+                <li><a href="/">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="search-wrapper overlay-wrapper">
+    <div class="search-form overlay-form">
+        <input type="text" class="overlay-header search-field" placeholder="Search...">
+        <a class="btn-close">Close</a>
+        <ul class="results"></ul>
+    </div>
+</div>
+
+
+    <div id="page" class="hentry">
+        <header class="the-header">
+  <div class="unit-head">
+    <div class="unit-inner unit-head-inner">
+      <nav class="nav-global">
+        <ul>
+          <li class="logo nav-link">
+            <button
+              class="btn-menu"
+              title="Menu"
+            ></button>
+            <a href="/blog/">Radhikesh's Blog</a>
+            <!--[if !IE]> -->
+            <button
+              class="btn-search"
+              title="Search"
+            ></button>
+            <!-- <![endif]-->
+          </li>
+          <li class="nav-link">
+            <a
+              title="Categories"
+              href="/blog/categories/"
+              >Categories</a
+            >
+          </li>
+          <li class="nav-link">
+            <a
+              title="Tags"
+              href="/blog/tags/"
+              >Tags</a
+            >
+          </li>
+          <!--[if !IE]> -->
+          <li class="nav-link">
+            <a
+              title="Search"
+              class="btn-search"
+              href="#"
+              >Search</a
+            >
+          </li>
+          <!-- <![endif]-->
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <script
+    type="text/javascript"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <script
+    type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  ></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+    rel="stylesheet"
+  />
+</header>
+
+
+        <div class="body animated fadeInDown" role="main">
+            <div class="unit-body">
+                <div class="unit-inner unit-body-inner">
+                    <div class="entry-content">
+                        <article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div itemscope itemtype="http://schema.org/Article" class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="entry-title" itemprop="name">The Egg Dropping Puzzle: An Intuitive Solution to a Classic Problem</h1>
+                    </div>
+                </div>
+            </header>
+            <div class="bd article-content">
+                <div class="entry-content">
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published:
+                            <time itemprop="datePublished" class="date-pub updated"
+                                title="2025-09-08T00:00:00+05:30" datetime="2025-09-08T00:00:00+05:30">September 08, 2025 </time>
+                            by
+                            <a class="author" href="/" rel="author" title="Show Author">
+                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                    <span itemprop="name">Radhikesh Agrawal</span>
+                                </span>
+                            </a>
+                            
+                                <a class="license-icon" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" title="Show License">
+                                    <img alt="Creative Commons Licence" style="border-width:0" src="/assets/images/theme/cc-by-sa.png"  height="16" width="80"/>
+                                </a>
+                            
+                            
+                        </p>
+                        <ul class="list-category list-linear">
+                            <li class="list-head">Categories: </li>
+                             
+     
+        <li>
+            <a href="/blog/categories/#Mathematics" title="Mathematics">
+            Mathematics <span>2</span></a>
+        </li>
+     
+        <li>
+            <a href="/blog/categories/#Optimization" title="Optimization">
+            Optimization <span>1</span></a>
+        </li>
+     
+        <li>
+            <a href="/blog/categories/#Puzzles" title="Puzzles">
+            Puzzles <span>3</span></a>
+        </li>
+     
+        <li>
+            <a href="/blog/categories/#Quant" title="Quant">
+            Quant <span>2</span></a>
+        </li>
+    
+
+
+
+                        </ul>
+                        <ul class="list-tag list-linear">
+                            <li class="list-head">Tags: </li>
+                             
+    
+        
+        <li>
+            <a href="/blog/tags/#Brain-Teaser" title="Brain-Teaser">Brain-Teaser <span>2</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#Dynamic-Programming" title="Dynamic-Programming">Dynamic-Programming <span>2</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#Recursion" title="Recursion">Recursion <span>2</span></a>
+        </li>
+    
+        
+        <li>
+            <a href="/blog/tags/#Strategy" title="Strategy">Strategy <span>2</span></a>
+        </li>
+    
+
+
+
+
+                        </ul>
+                    </div>
+                    <div itemprop="articleBody">
+                        <blockquote>
+  <p>Originally written on <strong>8 September 2025, 18:22</strong></p>
+</blockquote>
+
+<ul class="toc" id="markdown-toc">
+  <li><a href="#heading-introduction" id="markdown-toc-heading-introduction">Introduction</a>    <ul>
+      <li><a href="#heading-problem-statement" id="markdown-toc-heading-problem-statement">Problem Statement</a></li>
+    </ul>
+  </li>
+  <li><a href="#heading-flawed-strategies-building-intuition" id="markdown-toc-heading-flawed-strategies-building-intuition">Flawed Strategies: Building Intuition</a>    <ul>
+      <li><a href="#heading-strategy-1-the-one-egg-method-linear-scan" id="markdown-toc-heading-strategy-1-the-one-egg-method-linear-scan">Strategy 1: The "One Egg" Method (Linear Scan)</a></li>
+      <li><a href="#heading-strategy-2-the-binary-search-method" id="markdown-toc-heading-strategy-2-the-binary-search-method">Strategy 2: The "Binary Search" Method</a></li>
+    </ul>
+  </li>
+  <li><a href="#heading-the-optimal-strategy-flipping-the-question" id="markdown-toc-heading-the-optimal-strategy-flipping-the-question">The Optimal Strategy: Flipping the Question</a>    <ul>
+      <li><a href="#heading-an-example-2-eggs-and-4-drops" id="markdown-toc-heading-an-example-2-eggs-and-4-drops">An Example: 2 Eggs and 4 Drops</a></li>
+      <li><a href="#heading-the-logic-of-the-first-drop" id="markdown-toc-heading-the-logic-of-the-first-drop">The Logic of the First Drop</a></li>
+      <li><a href="#heading-solving-the-puzzle" id="markdown-toc-heading-solving-the-puzzle">Solving the Puzzle</a></li>
+    </ul>
+  </li>
+  <li><a href="#heading-the-general-solution-mathematical-proof" id="markdown-toc-heading-the-general-solution-mathematical-proof">The General Solution: Mathematical Proof</a></li>
+  <li><a href="#heading-references" id="markdown-toc-heading-references">References</a></li>
+</ul>
+
+<h2 id="heading-introduction">Introduction</h2>
+
+<p>The egg dropping puzzle is a famous brain teaser that challenges our assumptions about optimization. It's a fantastic problem because its elegant solution is both counter-intuitive and deeply satisfying once understood. It forces us to balance risk and information, a core concept in computer science and strategic planning.</p>
+
+<h3 id="heading-problem-statement">Problem Statement</h3>
+
+<p>You are in a 100-story building and are given two identical eggs. You want to determine the <strong>threshold floor</strong>, which is the lowest floor from which an egg will break when dropped. An egg that survives a fall can be reused, but a broken egg is lost.</p>
+
+<p>The question is: What is the <strong>minimum number of drops</strong> you need to guarantee you can find the threshold floor in the worst-case scenario?</p>
+
+<hr />
+
+<h2 id="heading-flawed-strategies-building-intuition">Flawed Strategies: Building Intuition</h2>
+
+<p>Before jumping to the optimal solution, it's helpful to understand why more straightforward approaches don't work well.</p>
+
+<h3 id="heading-strategy-1-the-one-egg-method-linear-scan">Strategy 1: The "One Egg" Method (Linear Scan)</h3>
+
+<p>If you only had one precious egg, your strategy is severely limited. You cannot risk breaking it on a high floor, as you would lose all ability to test the floors below. Your only choice is to start at floor 1 and work your way up, one by one.</p>
+
+<ul>
+  <li>Drop from floor 1. If it breaks, the threshold is 1.</li>
+  <li>If not, drop from floor 2. If it breaks, the threshold is 2.</li>
+  <li>…and so on.</li>
+</ul>
+
+<p>In the worst-case scenario (the threshold floor is 99, 100, or the eggs don't break at all), you would need up to 99 or 100 drops. With two eggs, we can certainly do better.</p>
+
+<h3 id="heading-strategy-2-the-binary-search-method">Strategy 2: The "Binary Search" Method</h3>
+
+<p>A binary search seems promising. Let's try dropping the first egg from the middle, floor 50.</p>
+
+<ul>
+  <li><strong>Case A: The egg breaks.</strong> You've used one drop. Now you have one egg left, and you know the threshold is somewhere between floor 1 and 49. With only one egg, you must revert to the linear scan method, checking floors 1, 2, 3… up to 49.
+    <ul>
+      <li><strong>Worst-Case:</strong> 1 (from floor 50) + 49 (linear scan) = <strong>50 drops</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Case B: The egg survives.</strong> You've used one drop. You still have two eggs and now must find the threshold between floors 51 and 100. You could repeat the process and drop from floor 75.</li>
+</ul>
+
+<p>The issue is the asymmetry in the worst-case outcomes. A single break forces us into a slow, linear scan. While better than 100 drops, 50 is far from optimal. The problem is that our first drop doesn't balance the work required in the "break" vs. "survive" scenarios.</p>
+
+<hr />
+
+<h2 id="heading-the-optimal-strategy-flipping-the-question">The Optimal Strategy: Flipping the Question</h2>
+
+<p>The key insight, is to change the question. Instead of asking:</p>
+
+<blockquote>
+  <p>"Given 100 floors, what is the minimum number of drops ($n$)?"</p>
+</blockquote>
+
+<p>We ask the inverse:</p>
+
+<blockquote>
+  <p>"Given a fixed number of drops ($n$), what is the <strong>maximum number of floors</strong> ($H$) I can test?"</p>
+</blockquote>
+
+<p>This reframing makes the problem much more manageable. Let's say we allow ourselves a maximum of $n$ drops.</p>
+
+<h3 id="heading-an-example-2-eggs-and-4-drops">An Example: 2 Eggs and 4 Drops</h3>
+
+<p>Let's work through a concrete example. Suppose you have <strong>2 eggs</strong> and are allowed a maximum of <strong>4 drops</strong>. What is the tallest building you can solve the puzzle for?</p>
+
+<p>Let's say your first drop is from floor $x$.</p>
+
+<ul>
+  <li><strong>Case 1: The egg breaks.</strong>
+    <ul>
+      <li>You have used <strong>1 drop</strong> and are left with <strong>1 egg</strong> and <strong>3 drops</strong>.</li>
+      <li>With only one egg, you must check the floors below $x$ one by one.</li>
+      <li>Since you have 3 drops left, you can check a maximum of <strong>3 floors</strong> this way.</li>
+      <li>To maximize the total height, you should plan for this worst case. So, the number of floors below your first drop ($x-1$) must be 3.</li>
+      <li>This means your first drop <strong>must be from floor $x = 4$</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Case 2: The egg survives.</strong>
+    <ul>
+      <li>You dropped from floor 4 and the egg is fine. You have used <strong>1 drop</strong> and are left with <strong>2 eggs</strong> and <strong>3 drops</strong>.</li>
+      <li>Now, you need to figure out how many floors <em>above</em> floor 4 you can test with your remaining 2 eggs and 3 drops. This is a smaller version of the same problem.</li>
+      <li>Let's find the max height you can test with 2 eggs and 3 drops. Let's call it $H(3)$. Using the same logic, your next drop should be from 3 floors above your current position (floor 4), so from floor $4+3=7$. If it breaks, you use your last 2 drops to check floors 5 and 6. If it survives, you continue up. The total height you can check with 3 drops turns out to be 6 floors.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Putting it all together for 4 drops:</strong>
+Your first drop is from floor 4.</p>
+
+<ul>
+  <li>If it breaks, you check floors 1, 2, and 3. Total drops used: 1 (floor 4) + up to 3 (linear scan) = 4 drops max.</li>
+  <li>If it survives, you move up. You know floors 1-4 are safe. You can then test an additional <strong>6 floors</strong> above with your remaining 3 drops.</li>
+</ul>
+
+<p>So, the maximum total number of floors you can test is:
+\(\text{Total Floors} = \underbrace{(4 - 1)}_{\text{Floors below}} + \underbrace{1}_{\text{Floor of drop}} + \underbrace{6}_{\text{Floors above}} = 10 \text{ floors}\)
+With 4 drops, we can guarantee finding the threshold in a 10-story building.</p>
+
+<h3 id="heading-the-logic-of-the-first-drop">The Logic of the First Drop</h3>
+
+<p>Now, let's generalize. Suppose we allow ourselves a maximum of $n$ drops.</p>
+
+<p>Your first drop is from floor $x$. Two things can happen:</p>
+
+<ol>
+  <li>
+    <p><strong>The egg breaks.</strong> You have used <strong>1 drop</strong> and have lost an egg. You are now left with <strong>1 egg</strong> and <strong>$n-1$ drops</strong>. With only one egg, you must use the remaining $n-1$ drops to check the floors <em>below</em> $x$ (i.e., floors 1 to $x-1$) one by one. To guarantee success in the worst case, the number of floors you have to check, $x-1$, must be no more than the drops you have left, $n-1$. Therefore:
+ \(x - 1 \le n - 1 \implies x \le n\)
+ To maximize the total height, we should choose the highest possible floor for our first drop, so we choose <strong>$x = n$</strong>.</p>
+  </li>
+  <li>
+    <p><strong>The egg survives.</strong> You have used <strong>1 drop</strong> but still have <strong>2 eggs</strong>. You have <strong>$n-1$ drops</strong> remaining. You can now move up from floor $x$ and solve the problem for a taller building with your remaining $n-1$ drops.</p>
+  </li>
+</ol>
+
+<p>Combining these, the maximum number of floors we can test with $n$ drops, let's call it $H(n)$, is:</p>
+
+<ul>
+  <li>The $n-1$ floors below our first drop (checked linearly if it breaks).</li>
+  <li>The 1 floor <em>at</em> our first drop.</li>
+  <li>The $H(n-1)$ floors <em>above</em> our first drop (which we can test with our remaining $n-1$ drops).</li>
+</ul>
+
+<p>This gives us a beautiful recurrence relation:
+\(H(n) = (n-1) + 1 + H(n-1) = n + H(n-1)\)</p>
+
+<h3 id="heading-solving-the-puzzle">Solving the Puzzle</h3>
+
+<p>Let's unroll this recurrence.</p>
+
+<ul>
+  <li>$H(1) = 1$ (With one drop, you can only test floor 1).</li>
+  <li>$H(2) = 2 + H(1) = 2 + 1 = 3$.</li>
+  <li>$H(3) = 3 + H(2) = 3 + 2 + 1 = 6$.</li>
+  <li>$H(n) = n + (n-1) + (n-2) + \dots + 1$.</li>
+</ul>
+
+<p>This is simply the sum of the first $n$ integers, which corresponds to the <strong>n-th triangular number</strong>.
+\(H(n) = \frac{n(n+1)}{2}\)</p>
+
+<p>Now we can return to the original problem. We need to find the smallest integer $n$ such that the maximum height we can test, $H(n)$, is at least 100 floors.
+\(\frac{n(n+1)}{2} \ge 100\)
+\(n(n+1) \ge 200\)</p>
+
+<p>We can see by inspection that $13 \times 14 = 182$ (too small) and $14 \times 15 = 210$ (just right).</p>
+
+<ul>
+  <li>With 13 drops, we can only guarantee testing up to $\frac{13 \times 14}{2} = 91$ floors.</li>
+  <li>With 14 drops, we can guarantee testing up to $\frac{14 \times 15}{2} = 105$ floors, which is more than enough for our 100-story building.</li>
+</ul>
+
+<p>Therefore, the minimum number of drops required in the worst case is <strong>14</strong>.</p>
+
+<hr />
+
+<h2 id="heading-the-general-solution-mathematical-proof">The General Solution: Mathematical Proof</h2>
+
+<p>The intuitive method works perfectly for 2 eggs. Lets discuss a method that works for any number of eggs ($k$) and any number of drops [$n$].</p>
+
+<p>Let's define $H(k, n)$ as the maximum height (number of floors) we can test with $k$ eggs and $n$ drops.</p>
+
+<p>Consider our first drop from some floor $a$.</p>
+
+<ol>
+  <li><strong>If the egg breaks:</strong> We have used 1 drop and lost 1 egg. We are left with $k-1$ eggs and $n-1$ drops. We must now test the $a-1$ floors below. The maximum number of floors we can handle in this situation is $H(k-1, n-1)$. So, $a-1 = H(k-1, n-1)$.</li>
+  <li><strong>If the egg survives:</strong> We have used 1 drop but still have $k$ eggs. We are left with $k$ eggs and $n-1$ drops. We can now test the floors above floor $a$. The maximum number of additional floors we can test is $H(k, n-1)$.</li>
+</ol>
+
+<p>The total height is the sum of the floors below, the current floor, and the floors above:
+\(H(k, n) = (\text{floors below}) + 1 + (\text{floors above})\)
+\(H(k, n) = H(k-1, n-1) + 1 + H(k, n-1)\)</p>
+
+<p>This recurrence relation allows us to build a table for any combination of eggs and drops, just as demonstrated in the video.</p>
+
+<p><strong>Base Cases:</strong></p>
+
+<ul>
+  <li>With 1 egg, you must scan linearly: $H(1, n) = n$</li>
+  <li>With 1 drop, you can only check floor 1: $H(k, 1) = 1$</li>
+</ul>
+
+<p>Using this, we can verify our previous result for $k=2$ eggs.</p>
+
+<ul>
+  <li>$H(2, 1) = 1$.</li>
+  <li>$H(2, 2) = H(1, 1) + 1 + H(2, 1) = 1 + 1 + 1 = 3$.</li>
+  <li>$H(2, 3) = H(1, 2) + 1 + H(2, 2) = 2 + 1 + 3 = 6$.</li>
+  <li>$H(2, 4) = H(1, 3) + 1 + H(2, 3) = 3 + 1 + 6 = 10$.</li>
+</ul>
+
+<p>This perfectly generates the triangular numbers we found earlier: 1, 3, 6, 10, …</p>
+
+<hr />
+
+<h2 id="heading-references">References</h2>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=c3s-a7e_iUE">James Tanton - Egg Dropping: Going beyond just solving the classic puzzle</a></li>
+</ul>
+
+                    </div>
+                </div>
+            </div>
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <div class="post-buttons">
+                        <a class="internal gotop" href="#page" title="Back to Top">Back to Top</a>
+                        
+                    </div>
+                    <nav class="pagination">
+                        
+                            <a class="internal" rel="prev" href="/2025/09/04/duck-and-fish/" title=" 'The Fox and Duck Puzzle: A Masterclass in Optimal Strategy'"> ← The Fox and Duck Puzzle: A Masterclass in Optimal Strategy</a>
+                        
+                        
+                    </nav>
+                </div>
+            </footer>
+            <div class="misc-content">
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="the-footer">
+    <div class="unit-foot">
+        <div class="unit-inner unit-foot-inner">
+            <div class="misc vcard">
+                <div class="about">
+                    <h4><a href="/">About</a></h4>
+                    
+                    <p><small>Theme <a href="https://github.com/yizeng/jekyll-theme-simple-texture" target="_blank">Simple Texture</a> developed by <a href="http://yizeng.me" target="_blank">Yi Zeng</a>, powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>.</small></p>
+                </div>
+                <div class="social-links">
+                    
+                        <a class="ico-gmail" href="mailto:rhagrawal1.0.7@gmail.com" rel="me" target="_blank" title="email"></a>
+                    
+                    <a class="ico-rss" href="/feed.xml" rel="me" target="_blank" title="feed"></a>
+                    
+                        
+                    
+                        
+                            <a class="ico-github" href="https://github.com/godofwarnings/" rel="me" target="_blank" title="github"></a>
+                        
+                    
+                        
+                            <a class="ico-instagram" href="https://www.instagram.com/leonardodipitt" rel="me" target="_blank" title="instagram"></a>
+                        
+                    
+                        
+                            <a class="ico-linkedin" href="https://www.linkedin.com/in/radhikeshagrawal/" rel="me" target="_blank" title="linkedin"></a>
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="internal back-to-top">Back to Top</a>
+</footer>
+
+    </div>
+
+    <script>
+$(document).ready(function () {
+    var offset = 50,
+        duration = 500,
+        width = 960;
+    $(window).scroll(function () {
+        if ($(window).width() > width) {
+            if ($(this).scrollTop() > offset) {
+                $('footer').css('top', '20px');
+                $('footer .back-to-top').fadeIn(duration);
+            } else {
+                $('footer').css('top', 'auto');
+                $('footer .back-to-top').fadeOut(duration);
+            }
+        }
+    });
+    $(window).resize(function () {
+        if ($(window).width() < width) {
+            $('footer').css('top', 'auto');
+            $('footer .back-to-top').fadeOut(duration);
+        }
+        if ($(window).width() >= width && $(this).scrollTop() > offset) {
+            $('footer').css('top', '20px');
+            $('footer .back-to-top').fadeIn(duration);
+        }
+    });
+
+    $('footer .back-to-top, .gotop').on('click', function (event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, duration);
+        return false;
+    });
+
+    $('.show-hidden').on('click', function () {
+        $(this).parent().next().toggleClass("hidden");
+        $(this).toggleClass("hidden");
+    });
+});
+</script>
+
+<!-- Show menu overlay + Jekyll Simple Search option -->
+<script src="/assets/javascripts/jekyll-search.jquery.js"></script>
+<script>
+$(document).ready(function () {
+    $('.search-field').simpleJekyllSearch({
+      jsonFile: '/search.json',
+      template: '<li><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></li>',
+      searchResults: '.search-wrapper .results',
+      searchResultsTitle: '<h4>Search results</h4>',
+      noResults: '<p>Oh shucks<br/><small>Nothing found :(</small></p>'
+    });
+});
+
+(function ($, window, undefined) {
+    var closeOverlay = function () {
+        $('.nav-wrapper, .search-wrapper').removeAttr('style');
+        $(".nav-form, .search-form").removeClass('active');
+        $("body").removeClass('nav-overlay search-overlay');
+    };
+
+    $('.nav-global .btn-search').on('click', function () {
+        $('.search-wrapper').css({display: "block"});
+        $(".search-form").addClass('active');
+        $(".search-form").find('input').focus();
+        $("body").addClass('search-overlay');
+    });
+
+    $('.nav-global .btn-menu').on('click', function () {
+        $('.nav-wrapper').css({display: "block"});
+        $(".nav-form").addClass('active');
+        $(".nav-form .search-field").prop('disabled', true);
+        $("body").addClass('nav-overlay');
+    });
+
+    $('.nav-wrapper .btn-close, .search-wrapper .btn-close').on('click', function () {
+        closeOverlay();
+    });
+
+    $(document).on('keyup', function (e) {
+        if (e.keyCode === 27) {
+            closeOverlay();
+        }
+    });
+})(jQuery, window);
+</script>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-buttons.min.js'></script>
+<script src="/assets/javascripts/unveil/jquery.unveil.min.js"></script>
+
+<script>
+    window.jQuery.fancybox || document.write('<script src="/assets/javascripts/fancybox/jquery.fancybox.pack.js?v=2.1.4"><\/script>')
+    window.jQuery.fancybox.helpers.buttons || document.write('<script src="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"><\/script>')
+</script>
+
+<script>
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/jquery.fancybox.css?v=2.1.4" type="text/css" />');
+    $("head").append('<link rel="stylesheet" href="/assets/javascripts/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" />');
+    $(".post-image").fancybox({
+        prevEffect: 'none',
+        nextEffect: 'none',
+        closeBtn: true,
+        helpers: {
+            title: {
+                type: 'float'
+            }
+        }
+    });
+    $(document).ready(function () {
+        $(".post-image > img").unveil(450);
+    });
+</script>
+
+</body>
+
+</html>

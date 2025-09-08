@@ -1,4 +1,226 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-09-04T03:08:42+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Radhikesh&apos;s Blog</title><subtitle>Personal blog for Radhikesh, a computer-science undergraduate at IIIT Hyderabad, India</subtitle><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><entry><title type="html">Anterograde Amnesia</title><link href="http://localhost:4000/2025/09/04/anterograde-amnesia/" rel="alternate" type="text/html" title="Anterograde Amnesia" /><published>2025-09-04T00:00:00+05:30</published><updated>2025-09-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/09/04/anterograde-amnesia</id><content type="html" xml:base="http://localhost:4000/2025/09/04/anterograde-amnesia/"></content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Psychology" /><category term="Neuroscience" /><category term="Memory" /><category term="Brain" /><category term="Amnesia" /></entry><entry><title type="html">Configure Power Line Frequency on Linux</title><link href="http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/" rel="alternate" type="text/html" title="Configure Power Line Frequency on Linux" /><published>2025-09-04T00:00:00+05:30</published><updated>2025-09-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux</id><content type="html" xml:base="http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-09-08T18:42:55+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Radhikesh&apos;s Blog</title><subtitle>Personal blog for Radhikesh, a computer-science undergraduate at IIIT Hyderabad, India</subtitle><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><entry><title type="html">The Egg Dropping Puzzle: An Intuitive Solution to a Classic Problem</title><link href="http://localhost:4000/2025/09/08/two-egg-puzzle/" rel="alternate" type="text/html" title="The Egg Dropping Puzzle: An Intuitive Solution to a Classic Problem" /><published>2025-09-08T00:00:00+05:30</published><updated>2025-09-08T00:00:00+05:30</updated><id>http://localhost:4000/2025/09/08/two-egg-puzzle</id><content type="html" xml:base="http://localhost:4000/2025/09/08/two-egg-puzzle/">&lt;blockquote&gt;
+  &lt;p&gt;Originally written on &lt;strong&gt;8 September 2025, 18:22&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-introduction&quot; id=&quot;markdown-toc-heading-introduction&quot;&gt;Introduction&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-problem-statement&quot; id=&quot;markdown-toc-heading-problem-statement&quot;&gt;Problem Statement&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-flawed-strategies-building-intuition&quot; id=&quot;markdown-toc-heading-flawed-strategies-building-intuition&quot;&gt;Flawed Strategies: Building Intuition&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-strategy-1-the-one-egg-method-linear-scan&quot; id=&quot;markdown-toc-heading-strategy-1-the-one-egg-method-linear-scan&quot;&gt;Strategy 1: The &quot;One Egg&quot; Method (Linear Scan)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-strategy-2-the-binary-search-method&quot; id=&quot;markdown-toc-heading-strategy-2-the-binary-search-method&quot;&gt;Strategy 2: The &quot;Binary Search&quot; Method&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-the-optimal-strategy-flipping-the-question&quot; id=&quot;markdown-toc-heading-the-optimal-strategy-flipping-the-question&quot;&gt;The Optimal Strategy: Flipping the Question&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-an-example-2-eggs-and-4-drops&quot; id=&quot;markdown-toc-heading-an-example-2-eggs-and-4-drops&quot;&gt;An Example: 2 Eggs and 4 Drops&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-the-logic-of-the-first-drop&quot; id=&quot;markdown-toc-heading-the-logic-of-the-first-drop&quot;&gt;The Logic of the First Drop&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-solving-the-puzzle&quot; id=&quot;markdown-toc-heading-solving-the-puzzle&quot;&gt;Solving the Puzzle&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-the-general-solution-mathematical-proof&quot; id=&quot;markdown-toc-heading-the-general-solution-mathematical-proof&quot;&gt;The General Solution: Mathematical Proof&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-references&quot; id=&quot;markdown-toc-heading-references&quot;&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;heading-introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The egg dropping puzzle is a famous brain teaser that challenges our assumptions about optimization. It&apos;s a fantastic problem because its elegant solution is both counter-intuitive and deeply satisfying once understood. It forces us to balance risk and information, a core concept in computer science and strategic planning.&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-problem-statement&quot;&gt;Problem Statement&lt;/h3&gt;
+
+&lt;p&gt;You are in a 100-story building and are given two identical eggs. You want to determine the &lt;strong&gt;threshold floor&lt;/strong&gt;, which is the lowest floor from which an egg will break when dropped. An egg that survives a fall can be reused, but a broken egg is lost.&lt;/p&gt;
+
+&lt;p&gt;The question is: What is the &lt;strong&gt;minimum number of drops&lt;/strong&gt; you need to guarantee you can find the threshold floor in the worst-case scenario?&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-flawed-strategies-building-intuition&quot;&gt;Flawed Strategies: Building Intuition&lt;/h2&gt;
+
+&lt;p&gt;Before jumping to the optimal solution, it&apos;s helpful to understand why more straightforward approaches don&apos;t work well.&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-strategy-1-the-one-egg-method-linear-scan&quot;&gt;Strategy 1: The &quot;One Egg&quot; Method (Linear Scan)&lt;/h3&gt;
+
+&lt;p&gt;If you only had one precious egg, your strategy is severely limited. You cannot risk breaking it on a high floor, as you would lose all ability to test the floors below. Your only choice is to start at floor 1 and work your way up, one by one.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Drop from floor 1. If it breaks, the threshold is 1.&lt;/li&gt;
+  &lt;li&gt;If not, drop from floor 2. If it breaks, the threshold is 2.&lt;/li&gt;
+  &lt;li&gt;…and so on.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the worst-case scenario (the threshold floor is 99, 100, or the eggs don&apos;t break at all), you would need up to 99 or 100 drops. With two eggs, we can certainly do better.&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-strategy-2-the-binary-search-method&quot;&gt;Strategy 2: The &quot;Binary Search&quot; Method&lt;/h3&gt;
+
+&lt;p&gt;A binary search seems promising. Let&apos;s try dropping the first egg from the middle, floor 50.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Case A: The egg breaks.&lt;/strong&gt; You&apos;ve used one drop. Now you have one egg left, and you know the threshold is somewhere between floor 1 and 49. With only one egg, you must revert to the linear scan method, checking floors 1, 2, 3… up to 49.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Worst-Case:&lt;/strong&gt; 1 (from floor 50) + 49 (linear scan) = &lt;strong&gt;50 drops&lt;/strong&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Case B: The egg survives.&lt;/strong&gt; You&apos;ve used one drop. You still have two eggs and now must find the threshold between floors 51 and 100. You could repeat the process and drop from floor 75.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The issue is the asymmetry in the worst-case outcomes. A single break forces us into a slow, linear scan. While better than 100 drops, 50 is far from optimal. The problem is that our first drop doesn&apos;t balance the work required in the &quot;break&quot; vs. &quot;survive&quot; scenarios.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-the-optimal-strategy-flipping-the-question&quot;&gt;The Optimal Strategy: Flipping the Question&lt;/h2&gt;
+
+&lt;p&gt;The key insight, is to change the question. Instead of asking:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&quot;Given 100 floors, what is the minimum number of drops ($n$)?&quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We ask the inverse:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&quot;Given a fixed number of drops ($n$), what is the &lt;strong&gt;maximum number of floors&lt;/strong&gt; ($H$) I can test?&quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This reframing makes the problem much more manageable. Let&apos;s say we allow ourselves a maximum of $n$ drops.&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-an-example-2-eggs-and-4-drops&quot;&gt;An Example: 2 Eggs and 4 Drops&lt;/h3&gt;
+
+&lt;p&gt;Let&apos;s work through a concrete example. Suppose you have &lt;strong&gt;2 eggs&lt;/strong&gt; and are allowed a maximum of &lt;strong&gt;4 drops&lt;/strong&gt;. What is the tallest building you can solve the puzzle for?&lt;/p&gt;
+
+&lt;p&gt;Let&apos;s say your first drop is from floor $x$.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Case 1: The egg breaks.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;You have used &lt;strong&gt;1 drop&lt;/strong&gt; and are left with &lt;strong&gt;1 egg&lt;/strong&gt; and &lt;strong&gt;3 drops&lt;/strong&gt;.&lt;/li&gt;
+      &lt;li&gt;With only one egg, you must check the floors below $x$ one by one.&lt;/li&gt;
+      &lt;li&gt;Since you have 3 drops left, you can check a maximum of &lt;strong&gt;3 floors&lt;/strong&gt; this way.&lt;/li&gt;
+      &lt;li&gt;To maximize the total height, you should plan for this worst case. So, the number of floors below your first drop ($x-1$) must be 3.&lt;/li&gt;
+      &lt;li&gt;This means your first drop &lt;strong&gt;must be from floor $x = 4$&lt;/strong&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Case 2: The egg survives.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;You dropped from floor 4 and the egg is fine. You have used &lt;strong&gt;1 drop&lt;/strong&gt; and are left with &lt;strong&gt;2 eggs&lt;/strong&gt; and &lt;strong&gt;3 drops&lt;/strong&gt;.&lt;/li&gt;
+      &lt;li&gt;Now, you need to figure out how many floors &lt;em&gt;above&lt;/em&gt; floor 4 you can test with your remaining 2 eggs and 3 drops. This is a smaller version of the same problem.&lt;/li&gt;
+      &lt;li&gt;Let&apos;s find the max height you can test with 2 eggs and 3 drops. Let&apos;s call it $H(3)$. Using the same logic, your next drop should be from 3 floors above your current position (floor 4), so from floor $4+3=7$. If it breaks, you use your last 2 drops to check floors 5 and 6. If it survives, you continue up. The total height you can check with 3 drops turns out to be 6 floors.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Putting it all together for 4 drops:&lt;/strong&gt;
+Your first drop is from floor 4.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;If it breaks, you check floors 1, 2, and 3. Total drops used: 1 (floor 4) + up to 3 (linear scan) = 4 drops max.&lt;/li&gt;
+  &lt;li&gt;If it survives, you move up. You know floors 1-4 are safe. You can then test an additional &lt;strong&gt;6 floors&lt;/strong&gt; above with your remaining 3 drops.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, the maximum total number of floors you can test is:
+\(\text{Total Floors} = \underbrace{(4 - 1)}_{\text{Floors below}} + \underbrace{1}_{\text{Floor of drop}} + \underbrace{6}_{\text{Floors above}} = 10 \text{ floors}\)
+With 4 drops, we can guarantee finding the threshold in a 10-story building.&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-the-logic-of-the-first-drop&quot;&gt;The Logic of the First Drop&lt;/h3&gt;
+
+&lt;p&gt;Now, let&apos;s generalize. Suppose we allow ourselves a maximum of $n$ drops.&lt;/p&gt;
+
+&lt;p&gt;Your first drop is from floor $x$. Two things can happen:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The egg breaks.&lt;/strong&gt; You have used &lt;strong&gt;1 drop&lt;/strong&gt; and have lost an egg. You are now left with &lt;strong&gt;1 egg&lt;/strong&gt; and &lt;strong&gt;$n-1$ drops&lt;/strong&gt;. With only one egg, you must use the remaining $n-1$ drops to check the floors &lt;em&gt;below&lt;/em&gt; $x$ (i.e., floors 1 to $x-1$) one by one. To guarantee success in the worst case, the number of floors you have to check, $x-1$, must be no more than the drops you have left, $n-1$. Therefore:
+ \(x - 1 \le n - 1 \implies x \le n\)
+ To maximize the total height, we should choose the highest possible floor for our first drop, so we choose &lt;strong&gt;$x = n$&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The egg survives.&lt;/strong&gt; You have used &lt;strong&gt;1 drop&lt;/strong&gt; but still have &lt;strong&gt;2 eggs&lt;/strong&gt;. You have &lt;strong&gt;$n-1$ drops&lt;/strong&gt; remaining. You can now move up from floor $x$ and solve the problem for a taller building with your remaining $n-1$ drops.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Combining these, the maximum number of floors we can test with $n$ drops, let&apos;s call it $H(n)$, is:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The $n-1$ floors below our first drop (checked linearly if it breaks).&lt;/li&gt;
+  &lt;li&gt;The 1 floor &lt;em&gt;at&lt;/em&gt; our first drop.&lt;/li&gt;
+  &lt;li&gt;The $H(n-1)$ floors &lt;em&gt;above&lt;/em&gt; our first drop (which we can test with our remaining $n-1$ drops).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This gives us a beautiful recurrence relation:
+\(H(n) = (n-1) + 1 + H(n-1) = n + H(n-1)\)&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-solving-the-puzzle&quot;&gt;Solving the Puzzle&lt;/h3&gt;
+
+&lt;p&gt;Let&apos;s unroll this recurrence.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$H(1) = 1$ (With one drop, you can only test floor 1).&lt;/li&gt;
+  &lt;li&gt;$H(2) = 2 + H(1) = 2 + 1 = 3$.&lt;/li&gt;
+  &lt;li&gt;$H(3) = 3 + H(2) = 3 + 2 + 1 = 6$.&lt;/li&gt;
+  &lt;li&gt;$H(n) = n + (n-1) + (n-2) + \dots + 1$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is simply the sum of the first $n$ integers, which corresponds to the &lt;strong&gt;n-th triangular number&lt;/strong&gt;.
+\(H(n) = \frac{n(n+1)}{2}\)&lt;/p&gt;
+
+&lt;p&gt;Now we can return to the original problem. We need to find the smallest integer $n$ such that the maximum height we can test, $H(n)$, is at least 100 floors.
+\(\frac{n(n+1)}{2} \ge 100\)
+\(n(n+1) \ge 200\)&lt;/p&gt;
+
+&lt;p&gt;We can see by inspection that $13 \times 14 = 182$ (too small) and $14 \times 15 = 210$ (just right).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;With 13 drops, we can only guarantee testing up to $\frac{13 \times 14}{2} = 91$ floors.&lt;/li&gt;
+  &lt;li&gt;With 14 drops, we can guarantee testing up to $\frac{14 \times 15}{2} = 105$ floors, which is more than enough for our 100-story building.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Therefore, the minimum number of drops required in the worst case is &lt;strong&gt;14&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-the-general-solution-mathematical-proof&quot;&gt;The General Solution: Mathematical Proof&lt;/h2&gt;
+
+&lt;p&gt;The intuitive method works perfectly for 2 eggs. Lets discuss a method that works for any number of eggs ($k$) and any number of drops [$n$].&lt;/p&gt;
+
+&lt;p&gt;Let&apos;s define $H(k, n)$ as the maximum height (number of floors) we can test with $k$ eggs and $n$ drops.&lt;/p&gt;
+
+&lt;p&gt;Consider our first drop from some floor $a$.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;If the egg breaks:&lt;/strong&gt; We have used 1 drop and lost 1 egg. We are left with $k-1$ eggs and $n-1$ drops. We must now test the $a-1$ floors below. The maximum number of floors we can handle in this situation is $H(k-1, n-1)$. So, $a-1 = H(k-1, n-1)$.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;If the egg survives:&lt;/strong&gt; We have used 1 drop but still have $k$ eggs. We are left with $k$ eggs and $n-1$ drops. We can now test the floors above floor $a$. The maximum number of additional floors we can test is $H(k, n-1)$.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The total height is the sum of the floors below, the current floor, and the floors above:
+\(H(k, n) = (\text{floors below}) + 1 + (\text{floors above})\)
+\(H(k, n) = H(k-1, n-1) + 1 + H(k, n-1)\)&lt;/p&gt;
+
+&lt;p&gt;This recurrence relation allows us to build a table for any combination of eggs and drops, just as demonstrated in the video.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Base Cases:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;With 1 egg, you must scan linearly: $H(1, n) = n$&lt;/li&gt;
+  &lt;li&gt;With 1 drop, you can only check floor 1: $H(k, 1) = 1$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Using this, we can verify our previous result for $k=2$ eggs.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$H(2, 1) = 1$.&lt;/li&gt;
+  &lt;li&gt;$H(2, 2) = H(1, 1) + 1 + H(2, 1) = 1 + 1 + 1 = 3$.&lt;/li&gt;
+  &lt;li&gt;$H(2, 3) = H(1, 2) + 1 + H(2, 2) = 2 + 1 + 3 = 6$.&lt;/li&gt;
+  &lt;li&gt;$H(2, 4) = H(1, 3) + 1 + H(2, 3) = 3 + 1 + 6 = 10$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This perfectly generates the triangular numbers we found earlier: 1, 3, 6, 10, …&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=c3s-a7e_iUE&quot;&gt;James Tanton - Egg Dropping: Going beyond just solving the classic puzzle&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Puzzles" /><category term="Mathematics" /><category term="Optimization" /><category term="Quant" /><category term="Brain-Teaser" /><category term="Dynamic-Programming" /><category term="Recursion" /><category term="Strategy" /><summary type="html">Originally written on 8 September 2025, 18:22</summary></entry><entry><title type="html">Anterograde Amnesia</title><link href="http://localhost:4000/2025/09/04/anterograde-amnesia/" rel="alternate" type="text/html" title="Anterograde Amnesia" /><published>2025-09-04T00:00:00+05:30</published><updated>2025-09-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/09/04/anterograde-amnesia</id><content type="html" xml:base="http://localhost:4000/2025/09/04/anterograde-amnesia/"></content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Psychology" /><category term="Neuroscience" /><category term="Memory" /><category term="Brain" /><category term="Amnesia" /></entry><entry><title type="html">Configure Power Line Frequency on Linux</title><link href="http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/" rel="alternate" type="text/html" title="Configure Power Line Frequency on Linux" /><published>2025-09-04T00:00:00+05:30</published><updated>2025-09-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux</id><content type="html" xml:base="http://localhost:4000/2025/09/04/configure-power-line-frequency-on-linux/">&lt;blockquote&gt;
   &lt;p&gt;Originally written on &lt;strong&gt;04 September 2025, 01:15&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -148,7 +370,165 @@ This mismatch often causes &lt;strong&gt;flickering under artificial lighting&lt
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;hr /&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Linux" /><category term="Hardware" /><category term="Configuration" /><category term="Linux" /><category term="Arch" /><category term="Manjaro" /><summary type="html">Originally written on 04 September 2025, 01:15</summary></entry><entry><title type="html">Retrograde Amnesia</title><link href="http://localhost:4000/2025/06/05/retrograde-amnesia/" rel="alternate" type="text/html" title="Retrograde Amnesia" /><published>2025-06-05T00:00:00+05:30</published><updated>2025-06-05T00:00:00+05:30</updated><id>http://localhost:4000/2025/06/05/retrograde-amnesia</id><content type="html" xml:base="http://localhost:4000/2025/06/05/retrograde-amnesia/"></content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Psychology" /><category term="Neuroscience" /><category term="Memory" /><category term="Brain" /><category term="Amnesia" /></entry><entry><title type="html">CI/CD: What the Heck is it?</title><link href="http://localhost:4000/2025/06/04/ci-cd/" rel="alternate" type="text/html" title="CI/CD: What the Heck is it?" /><published>2025-06-04T00:00:00+05:30</published><updated>2025-06-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/06/04/ci-cd</id><content type="html" xml:base="http://localhost:4000/2025/06/04/ci-cd/">&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+&lt;hr /&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Linux" /><category term="Hardware" /><category term="Configuration" /><category term="Linux" /><category term="Arch" /><category term="Manjaro" /><summary type="html">Originally written on 04 September 2025, 01:15</summary></entry><entry><title type="html">The Fox and Duck Puzzle: A Masterclass in Optimal Strategy</title><link href="http://localhost:4000/2025/09/04/duck-and-fish/" rel="alternate" type="text/html" title="The Fox and Duck Puzzle: A Masterclass in Optimal Strategy" /><published>2025-09-04T00:00:00+05:30</published><updated>2025-09-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/09/04/duck-and-fish</id><content type="html" xml:base="http://localhost:4000/2025/09/04/duck-and-fish/">&lt;blockquote&gt;
+  &lt;p&gt;Originally written on &lt;strong&gt;6 September 2025, 15:02&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-introduction&quot; id=&quot;markdown-toc-heading-introduction&quot;&gt;Introduction&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-problem-statement&quot; id=&quot;markdown-toc-heading-problem-statement&quot;&gt;Problem Statement&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-the-setup&quot; id=&quot;markdown-toc-heading-the-setup&quot;&gt;The Setup&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-the-simplest-strategy-a-simple-dash&quot; id=&quot;markdown-toc-heading-the-simplest-strategy-a-simple-dash&quot;&gt;The Simplest Strategy: A Simple Dash&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-the-optimal-strategy-a-two-phase-escape&quot; id=&quot;markdown-toc-heading-the-optimal-strategy-a-two-phase-escape&quot;&gt;The Optimal Strategy: A Two-Phase Escape&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-phase-1-gaining-an-advantage&quot; id=&quot;markdown-toc-heading-phase-1-gaining-an-advantage&quot;&gt;Phase 1: Gaining an Advantage&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-phase-2-the-optimal-dash&quot; id=&quot;markdown-toc-heading-phase-2-the-optimal-dash&quot;&gt;Phase 2: The Optimal Dash&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-the-derivation&quot; id=&quot;markdown-toc-heading-the-derivation&quot;&gt;The Derivation&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-setting-up-the-geometry&quot; id=&quot;markdown-toc-heading-setting-up-the-geometry&quot;&gt;Setting up the Geometry&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-the-time-equations&quot; id=&quot;markdown-toc-heading-the-time-equations&quot;&gt;The Time Equations&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#heading-the-final-equation&quot; id=&quot;markdown-toc-heading-the-final-equation&quot;&gt;The Final Equation&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-why-the-angled-path-is-better-the-intuition&quot; id=&quot;markdown-toc-heading-why-the-angled-path-is-better-the-intuition&quot;&gt;Why the Angled Path is Better (The Intuition)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-learning-takeaways&quot; id=&quot;markdown-toc-heading-learning-takeaways&quot;&gt;Learning Takeaways&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading-references&quot; id=&quot;markdown-toc-heading-references&quot;&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/duck-and-fox.jpeg&quot; align=&quot;right&quot; style=&quot;max-width:500px; margin: 0 0 15px 15px;&quot; alt=&quot;Fox and Duck&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;heading-introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The &quot;Fox and Duck&quot; puzzle is a classic mathematical brain teaser that beautifully demonstrates how the most direct path is not always the best one.&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-problem-statement&quot;&gt;Problem Statement&lt;/h3&gt;
+
+&lt;p&gt;Imagine a clever duck in the center of a perfectly circular pond and a hungry fox on the shore. The fox can run along the shore, and the duck can swim. The question is: how much faster does the fox need to be to guarantee it can catch the duck when it reaches the shore?&lt;/p&gt;
+
+&lt;p&gt;This problem isn&apos;t just a simple race; it&apos;s a game of wits, positioning, and optimal strategy. The solution requires a clever two-part plan and a bit of calculus to pin down the exact numbers. Let&apos;s dive in.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-the-setup&quot;&gt;The Setup&lt;/h2&gt;
+
+&lt;p&gt;To solve this, we need to define our variables.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;R&lt;/strong&gt;: The radius of the circular pond.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;v&lt;/strong&gt;: The constant swimming speed of the duck.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;kv&lt;/strong&gt;: The constant running speed of the fox.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;k&lt;/strong&gt;: The speed ratio. This is the crucial number we want to find the limit for. If the fox&apos;s speed is 3 times the duck&apos;s, then \(k=3\).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The goal is to find the maximum value of \(k\) for which the duck can still devise a strategy to escape.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-the-simplest-strategy-a-simple-dash&quot;&gt;The Simplest Strategy: A Simple Dash&lt;/h2&gt;
+
+&lt;p&gt;The most intuitive strategy is for the duck to pick a point on the shore and swim directly to it from the center. What&apos;s its best bet? To swim directly away from the fox.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The duck targets a point &lt;strong&gt;P&lt;/strong&gt; on the shore.&lt;/li&gt;
+  &lt;li&gt;The fox, on the opposite side, must run half the circumference to intercept the duck at &lt;strong&gt;P&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Duck&apos;s distance&lt;/strong&gt; = \(R\). &lt;strong&gt;Duck&apos;s time&lt;/strong&gt; = \(R/v\).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Fox&apos;s distance&lt;/strong&gt; = \(\pi R\) (half the circumference). &lt;strong&gt;Fox&apos;s time&lt;/strong&gt; = \(\pi R / (kv)\).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For the duck to escape, its time must be less than the fox&apos;s time:
+\(\frac{R}{v} &amp;lt; \frac{\pi R}{kv}\)
+\(1 &amp;lt; \frac{\pi}{k}\)
+\(k &amp;lt; \pi \approx 3.14159\)
+This strategy works, but it&apos;s not optimal. The duck can do better. It can beat a much faster fox.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-the-optimal-strategy-a-two-phase-escape&quot;&gt;The Optimal Strategy: A Two-Phase Escape&lt;/h2&gt;
+
+&lt;p&gt;The winning strategy is a two-part plan that prioritizes getting an advantageous position &lt;em&gt;before&lt;/em&gt; making the final dash.&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-phase-1-gaining-an-advantage&quot;&gt;Phase 1: Gaining an Advantage&lt;/h3&gt;
+
+&lt;p&gt;The duck&apos;s first goal is &lt;strong&gt;not&lt;/strong&gt; to get to the shore, but to get to a specific &quot;starting line&quot; within the pond. This is an inner circle with a radius of \(R/k\).&lt;/p&gt;
+
+&lt;p&gt;Here&apos;s how it works:
+The duck, starting at the center, swims in a spiral path outwards. It always keeps the center of the pond between itself and the fox. This forces the fox to run along the shore to keep up.&lt;/p&gt;
+
+&lt;p&gt;The key is &lt;strong&gt;angular speed&lt;/strong&gt;. The fox has to cover a large circumference on the shore, while the duck covers a much smaller one. As long as the duck is within a distance \(r &amp;lt; R/k\) from the center, it can turn (change its angle) faster than the fox can. The duck uses this advantage to maneuver until it&apos;s at a distance of exactly \(R/k\) from the center, with the fox positioned &lt;strong&gt;diametrically opposite&lt;/strong&gt; on the shore. Now, Phase 2 begins.&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-phase-2-the-optimal-dash&quot;&gt;Phase 2: The Optimal Dash&lt;/h3&gt;
+
+&lt;p&gt;Having forced the fox into the worst possible starting position, the duck now makes its break for the shore. But it does &lt;strong&gt;not&lt;/strong&gt; swim straight out. It swims at a carefully chosen angle. This is the part that often causes confusion.&lt;/p&gt;
+
+&lt;p&gt;Why swim at an angle? It&apos;s a strategic trade-off. By swimming at an angle, the duck makes its own path slightly longer. However, it forces the fox to run along an arc that, while being the &quot;shorter&quot; of the fox&apos;s two options, is still exceptionally long. This trade-off is what allows the duck to beat a much faster fox.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-the-derivation&quot;&gt;The Derivation&lt;/h2&gt;
+
+&lt;p&gt;For simplicity, let&apos;s assume the pond&apos;s radius \(R=1\) and the duck&apos;s speed \(v=1\).&lt;/p&gt;
+
+&lt;h3 id=&quot;heading-setting-up-the-geometry&quot;&gt;Setting up the Geometry&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;At the start of Phase 2, the duck is at point &lt;strong&gt;D&lt;/strong&gt; = \((1/k, 0)\).&lt;/li&gt;
+  &lt;li&gt;The fox is diametrically opposite at point &lt;strong&gt;F&lt;/strong&gt; = \((-1, 0)\).&lt;/li&gt;
+  &lt;li&gt;The duck swims to a point &lt;strong&gt;P&lt;/strong&gt; on the shore, defined by the angle \(\theta\). &lt;strong&gt;P&lt;/strong&gt; = \((\cos\theta, \sin\theta)\).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;heading-the-time-equations&quot;&gt;The Time Equations&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Duck&apos;s Time (\(T_{duck}\))&lt;/strong&gt;: The straight-line distance from D to P.
+  \(T_{duck} = \sqrt{(\cos\theta - 1/k)^2 + (\sin\theta)^2} = \sqrt{1 + \frac{1}{k^2} - \frac{2\cos\theta}{k}}\)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Fox&apos;s Time (\(T_{fox}\))&lt;/strong&gt;: The arc length from F to P.
+  \(T_{fox} = \frac{\text{Arc Length}}{k} = \frac{\pi - \theta}{k}\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;heading-the-final-equation&quot;&gt;The Final Equation&lt;/h3&gt;
+
+&lt;p&gt;The duck can escape if there is any angle \(\theta\) where \(T_{duck} \le T_{fox}\). The critical case is finding the speed \(k\) where the best possible outcome for the duck is a tie. Using calculus to find the optimal angle \(\theta\) that maximizes the duck&apos;s chances leads to a complex transcendental equation.&lt;/p&gt;
+
+&lt;p&gt;Let &lt;strong&gt;\(\alpha = \arccos(1/k)\)&lt;/strong&gt;. The final relationship is:
+\(\tan(\alpha) = \pi + \alpha\)
+This equation cannot be solved algebraically. Using numerical methods, we find the solution for \(\alpha\) is approximately &lt;strong&gt;1.3518 radians&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Since \(k = 1/\cos(\alpha)\), we can find our answer:
+\(k = \frac{1}{\cos(1.3518)} \approx \bf{4.6033}\)
+If the fox is more than ~4.6 times faster than the duck, escape is impossible. If it&apos;s less, the duck has a winning strategy.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-why-the-angled-path-is-better-the-intuition&quot;&gt;Why the Angled Path is Better (The Intuition)&lt;/h2&gt;
+
+&lt;p&gt;The most confusing part is why the angled path is superior to the simple straight dash. Let&apos;s compare them as two separate races.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Race 1 The Simple Dash.&lt;/strong&gt; The duck swims its shortest possible path. In response, the fox must run its longest possible path (exactly half the circle). This is a good strategy.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Race 2 The Optimal Dash.&lt;/strong&gt; The duck swims a &lt;strong&gt;slightly longer&lt;/strong&gt; angled path. In response, the fox gets to run a &lt;strong&gt;slightly shorter&lt;/strong&gt; arc. This seems worse for the duck, but it&apos;s not.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The key is that the tiny amount of extra time the duck adds to its swim is &lt;strong&gt;less than&lt;/strong&gt; the time benefit the fox gets. The duck is making a calculated sacrifice, accepting a slightly longer swim for itself to create a race that is overall much more favorable. This better time-to-distance trade-off is what pushes the escape threshold from \(k \approx 4.14\) to \(k \approx 4.60\).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heading-learning-takeaways&quot;&gt;Learning Takeaways&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Optimal strategy is often counter-intuitive&lt;/strong&gt;: The most direct path isn&apos;t always the best. Winning can require indirect setup moves.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Positioning is paramount&lt;/strong&gt;: Phase 1 is entirely about achieving an advantageous position before the final &quot;attack.&quot;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Understand trade-offs&lt;/strong&gt;: The duck accepts a small disadvantage (a longer path) to create a much larger strategic advantage (a more favorable race).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Math defines the boundaries&lt;/strong&gt;: Intuition can get you started, but only rigorous mathematics can find the precise tipping point of a complex system.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;heading-references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://math.stackexchange.com/questions/659448/the-fox-and-the-duck-puzzle&quot;&gt;Stack Exchange - The Fox and the Duck Puzzle&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Lady_and_the_monster_puzzle&quot;&gt;Wikipedia - Lady and the Monster Puzzle&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Puzzles" /><category term="Mathematics" /><category term="Game-Theory" /><category term="Quant" /><category term="Brain-Teaser" /><category term="Optimization" /><category term="Calculus" /><category term="Strategy" /><summary type="html">Originally written on 6 September 2025, 15:02</summary></entry><entry><title type="html">Retrograde Amnesia</title><link href="http://localhost:4000/2025/06/05/retrograde-amnesia/" rel="alternate" type="text/html" title="Retrograde Amnesia" /><published>2025-06-05T00:00:00+05:30</published><updated>2025-06-05T00:00:00+05:30</updated><id>http://localhost:4000/2025/06/05/retrograde-amnesia</id><content type="html" xml:base="http://localhost:4000/2025/06/05/retrograde-amnesia/"></content><author><name>Radhikesh Agrawal</name><email>rhagrawal1.0.7@gmail.com</email></author><category term="Psychology" /><category term="Neuroscience" /><category term="Memory" /><category term="Brain" /><category term="Amnesia" /></entry><entry><title type="html">CI/CD: What the Heck is it?</title><link href="http://localhost:4000/2025/06/04/ci-cd/" rel="alternate" type="text/html" title="CI/CD: What the Heck is it?" /><published>2025-06-04T00:00:00+05:30</published><updated>2025-06-04T00:00:00+05:30</updated><id>http://localhost:4000/2025/06/04/ci-cd</id><content type="html" xml:base="http://localhost:4000/2025/06/04/ci-cd/">&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#heading-cicd-what-the-heck-is-it&quot; id=&quot;markdown-toc-heading-cicd-what-the-heck-is-it&quot;&gt;CI/CD: What the Heck is it?&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#heading-ci---continuous-integration&quot; id=&quot;markdown-toc-heading-ci---continuous-integration&quot;&gt;CI - Continuous Integration&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#heading-cd---continuous-deliverydeployment&quot; id=&quot;markdown-toc-heading-cd---continuous-deliverydeployment&quot;&gt;CD - Continuous Delivery/Deployment&lt;/a&gt;&lt;/li&gt;
