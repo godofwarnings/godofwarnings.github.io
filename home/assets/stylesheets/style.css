@@ -465,3 +465,9 @@ body {
     transform: rotate(359deg);
   }
 }
+
+
+.highlight-text {
+  color: #FFA726; /* This is an example orange color */
+  font-weight: 600; /* Makes the text semi-bold */
+}
