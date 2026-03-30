@@ -90,3 +90,4 @@ paths:
   blog: /blog/
   categories: /blog/categories/
   tags: /blog/tags/
+  penumbra: /penumbra/
