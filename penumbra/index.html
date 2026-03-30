@@ -361,6 +361,31 @@
       transition: color 0.2s;
     }
     .lb-close:hover { color: var(--white); }
+    .lb-nav {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(8,8,8,0.6);
+      border: 1px solid var(--border-hl);
+      color: var(--text-dim);
+      width: 44px; height: 64px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 18px; z-index: 10;
+      transition: all 0.2s; backdrop-filter: blur(4px);
+    }
+    .lb-nav:hover { color: var(--white); background: rgba(8,8,8,0.85); border-color: var(--accent-mid); }
+    .lb-nav.prev { left: 0; border-radius: 0 2px 2px 0; }
+    .lb-nav.next { right: 0; border-radius: 2px 0 0 2px; }
+    .lb-nav:disabled { opacity: 0.2; pointer-events: none; }
+    .lb-counter {
+      position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-faint); background: rgba(8,8,8,0.7);
+      padding: 4px 12px; border-radius: 2px; white-space: nowrap;
+    }
+    .lb-img { transition: opacity 0.25s ease; }
+    .lb-img.fading { opacity: 0; }
+    .lb-panel { transition: opacity 0.2s ease; }
+    .lb-panel.fading { opacity: 0; }
     .lb-cat {
       font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 16px;
@@ -488,7 +513,7 @@
     </div>
   </div>
 
-  <a class="drive-cta" href="https://drive.google.com/drive/folders/1TnzujU1Xgxt0YWk9C4R8GJH1RLGuOE6H)" target="_blank" rel="noopener">
+  <a class="drive-cta" href="https://drive.google.com/drive/folders/1TnzujU1Xgxt0YWk9C4R8GJH1RLGuOE6H" target="_blank" rel="noopener">
     <svg class="drive-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" color="#c8813a">
       <path d="M12 2L2 19.5h20L12 2z" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M2 19.5l7-7 3 3 7-10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -534,6 +559,9 @@
 
 <div class="lb" id="lb">
   <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-nav prev" id="lb-prev">&#8592;</button>
+  <button class="lb-nav next" id="lb-next">&#8594;</button>
+  <span class="lb-counter" id="lb-counter"></span>
   <div class="lb-layout">
     <div class="lb-img-wrap">
       <img class="lb-img" id="lb-img" src="" alt="">
@@ -610,31 +638,85 @@ function filter() {
   empty.style.display = vis.length ? 'none' : 'block';
 }
 
-const lb     = document.getElementById('lb');
-const lbImg  = document.getElementById('lb-img');
-const lbCat  = document.getElementById('lb-cat');
-const lbName = document.getElementById('lb-name');
-const lbRsn  = document.getElementById('lb-reason');
-const lbDrv  = document.getElementById('lb-drive');
+const lb      = document.getElementById('lb');
+const lbImg   = document.getElementById('lb-img');
+const lbCat   = document.getElementById('lb-cat');
+const lbName  = document.getElementById('lb-name');
+const lbRsn   = document.getElementById('lb-reason');
+const lbDrv   = document.getElementById('lb-drive');
+const lbPrev  = document.getElementById('lb-prev');
+const lbNext  = document.getElementById('lb-next');
+const lbCount = document.getElementById('lb-counter');
+const lbPanel = document.querySelector('.lb-panel');
 
-function openLb(img) {
-  lbImg.src        = img.thumb_url ? img.thumb_url.replace('w800','w1600') : '';
+let visibleImgs = [];
+let currentIdx  = 0;
+
+function setLbContent(img, idx) {
+  lbImg.src          = img.thumb_url ? img.thumb_url.replace('w800','w1600') : '';
   lbCat.textContent  = img.cat_label;
   lbName.textContent = img.display;
   lbRsn.textContent  = img.reason;
   lbDrv.href         = img.view_url;
+  lbPrev.disabled    = idx === 0;
+  lbNext.disabled    = idx === visibleImgs.length - 1;
+  lbCount.textContent = (idx + 1) + ' / ' + visibleImgs.length;
+}
+
+function openLb(img) {
+  visibleImgs = IMAGES.filter(i => {
+    const wanted = activeVariant === 'all' ? ['src','upscaled','poster'] : [activeVariant];
+    return (activeCat === 'all' || i.category === activeCat) &&
+           wanted.includes(i.variant) &&
+           (!q || i.display.toLowerCase().includes(q) || i.reason.toLowerCase().includes(q));
+  });
+  currentIdx = visibleImgs.findIndex(i => i.final_name === img.final_name);
+  if (currentIdx < 0) currentIdx = 0;
+  setLbContent(visibleImgs[currentIdx], currentIdx);
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+
 function closeLb() {
   lb.classList.remove('open');
   document.body.style.overflow = '';
   lbImg.src = '';
 }
 
+function navigateLb(dir) {
+  const next = currentIdx + dir;
+  if (next < 0 || next >= visibleImgs.length) return;
+  lbImg.classList.add('fading');
+  lbPanel.classList.add('fading');
+  setTimeout(() => {
+    currentIdx = next;
+    setLbContent(visibleImgs[currentIdx], currentIdx);
+    lbImg.classList.remove('fading');
+    lbPanel.classList.remove('fading');
+  }, 220);
+}
+
+lbPrev.addEventListener('click', e => { e.stopPropagation(); navigateLb(-1); });
+lbNext.addEventListener('click', e => { e.stopPropagation(); navigateLb(1); });
+
 document.getElementById('lb-close').addEventListener('click', closeLb);
 lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft')  navigateLb(-1);
+  if (e.key === 'ArrowRight') navigateLb(1);
+});
+
+// Touch swipe
+let touchX = 0;
+lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, {passive: true});
+lb.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 50) navigateLb(dx < 0 ? 1 : -1);
+}, {passive: true});
 document.getElementById('search').addEventListener('input', e => { q = e.target.value.toLowerCase(); filter(); });
 document.querySelectorAll('.cat-tab').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.cat-tab').forEach(x => x.classList.remove('active'));
