@@ -505,6 +505,10 @@
       display: none; position: fixed; inset: 0; z-index: 300;
       background: rgba(4,4,4,0.96);
       backdrop-filter: blur(6px);
+      transition: background 0.4s ease;
+    }
+    html.light .lb {
+      background: rgba(230,220,210,0.97);
     }
     .lb.open { display: flex; align-items: center; justify-content: center; }
     .lb-layout {
@@ -519,7 +523,7 @@
     .lb-img-wrap {
       overflow: hidden;
       display: flex; align-items: center; justify-content: center;
-      background: #050505;
+      background: var(--bg);
     }
     .lb-img {
       max-width: 100%; max-height: 90vh;
@@ -542,7 +546,7 @@
     .lb-nav {
       position: absolute;
       top: 50%; transform: translateY(-50%);
-      background: rgba(8,8,8,0.6);
+      background: var(--bg-card);
       border: 1px solid var(--border-hl);
       color: var(--text-dim);
       width: 44px; height: 64px;
@@ -550,7 +554,7 @@
       cursor: pointer; font-size: 18px; z-index: 10;
       transition: all 0.2s; backdrop-filter: blur(4px);
     }
-    .lb-nav:hover { color: var(--white); background: rgba(8,8,8,0.85); border-color: var(--accent-mid); }
+    .lb-nav:hover { color: var(--text); background: var(--border); border-color: var(--accent-mid); }
     .lb-nav.prev { left: 0; border-radius: 0 2px 2px 0; }
     .lb-nav.next { right: 0; border-radius: 2px 0 0 2px; }
     .lb-nav:disabled { opacity: 0.2; pointer-events: none; }
@@ -558,7 +562,7 @@
       position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
       font-size: 12px; letter-spacing: 0.14em;
       font-family: var(--serif); font-style: italic;
-      color: var(--text-dim); background: rgba(8,8,8,0.82);
+      color: var(--text-dim); background: var(--bg-card);
       padding: 5px 16px; border-radius: 2px; white-space: nowrap;
       border: 1px solid var(--border-hl);
     }
@@ -572,7 +576,7 @@
     }
     .lb-name {
       font-family: var(--serif); font-size: 28px; font-style: italic;
-      font-weight: 300; color: var(--white); line-height: 1.2;
+      font-weight: 300; color: var(--text); line-height: 1.2;
       margin-bottom: 16px;
     }
     .lb-divider {
@@ -607,7 +611,7 @@
     }
     .lb-drive-name {
       font-family: var(--serif); font-size: 15px; font-style: italic;
-      font-weight: 600; color: var(--white);
+      font-weight: 600; color: var(--text);
     }
     .lb-drive-arr {
       margin-left: auto; color: var(--accent); font-size: 16px;
@@ -837,9 +841,17 @@ document.addEventListener('mouseenter', () => { torch.style.opacity = '1'; });
 /* ── Scroll vignette ── */
 const vignette = document.getElementById('vignette');
 window.addEventListener('scroll', () => {
-  const depth = Math.min(window.scrollY / 600, 1);
+  const isLight = document.documentElement.classList.contains('light');
+  const depth = isLight ? 0 : Math.min(window.scrollY / 600, 1);
   vignette.style.opacity = (depth * 0.75).toFixed(3);
 }, {passive: true});
+
+/* also clear vignette immediately when theme switches */
+function updateVignetteForTheme() {
+  if (document.documentElement.classList.contains('light')) {
+    vignette.style.opacity = '0';
+  }
+}
 
 /* ── Theme toggle ── */
 const themeToggle = document.getElementById('theme-toggle');
@@ -847,6 +859,7 @@ const themeKnob   = document.getElementById('theme-knob');
 function applyTheme(isLight) {
   document.documentElement.classList.toggle('light', isLight);
   themeKnob.textContent = isLight ? '☀️' : '☽';
+  updateVignetteForTheme();
 }
 // Restore saved preference
 const savedTheme = localStorage.getItem('penumbra-theme');
@@ -946,7 +959,7 @@ function openLb(img) {
   lbCount.textContent = (currentIdx + 1) + ' / ' + visibleImgs.length;
 
   // Show placeholder instantly, swap when image is ready
-  lbImg.src = PLACEHOLDER;
+  lbImg.src = getPlaceholder();
   if (target.thumb_url) {
     const preload = new Image();
     preload.onload = () => { lbImg.src = target.thumb_url.replace('w800','w1600'); };
@@ -963,7 +976,14 @@ function closeLb() {
   lbImg.src = '';
 }
 
-const PLACEHOLDER = `data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20800%201067%27%3E%3Cdefs%3E%3Cfilter%20id%3D%27t%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.65%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27%2F%3E%3CfeBlend%20in%3D%27SourceGraphic%27%20mode%3D%27multiply%27%2F%3E%3C%2Ffilter%3E%3Cstyle%3E%40keyframes%20glow%7Bfrom%7Bopacity%3A0.45%7Dto%7Bopacity%3A0.85%7D%7D.b%7Banimation%3Aglow%202s%20ease-in-out%20infinite%20alternate%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Crect%20width%3D%27800%27%20height%3D%271067%27%20fill%3D%27%23181818%27%2F%3E%3Crect%20width%3D%27800%27%20height%3D%271067%27%20filter%3D%27url%28%23t%29%27%20opacity%3D%270.18%27%20fill%3D%27%23888%27%2F%3E%3CradialGradient%20id%3D%27v%27%20cx%3D%2750%25%27%20cy%3D%2750%25%27%20r%3D%2770%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%231e1e1e%27%20stop-opacity%3D%270%27%2F%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23000%27%20stop-opacity%3D%270.5%27%2F%3E%3C%2FradialGradient%3E%3Crect%20width%3D%27800%27%20height%3D%271067%27%20fill%3D%27url%28%23v%29%27%2F%3E%3Crect%20class%3D%27b%27%20x%3D%2748%27%20y%3D%2748%27%20width%3D%27704%27%20height%3D%27971%27%20fill%3D%27none%27%20stroke%3D%27%23c8943a%27%20stroke-width%3D%270.8%27%20opacity%3D%270.7%27%2F%3E%3C%2Fsvg%3E`;
+function getPlaceholder() {
+  if (document.documentElement.classList.contains('light')) {
+    // Light theme: warm parchment with radiating sun-ray lines
+    return `data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20800%201067%27%3E%3Crect%20width%3D%27800%27%20height%3D%271067%27%20fill%3D%27%23ede7de%27%2F%3E%3CradialGradient%20id%3D%27s%27%20cx%3D%2750%25%27%20cy%3D%2745%25%27%20r%3D%2760%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23c8813a%27%20stop-opacity%3D%270.12%27%2F%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23c8813a%27%20stop-opacity%3D%270%27%2F%3E%3C%2FradialGradient%3E%3Crect%20width%3D%27800%27%20height%3D%271067%27%20fill%3D%27url%28%23s%29%27%2F%3E%3Cg%20stroke%3D%27%23c8813a%27%20stroke-opacity%3D%270.15%27%20stroke-width%3D%271%27%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%270%27%20y2%3D%270%27%2F%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%27200%27%20y2%3D%270%27%2F%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%27400%27%20y2%3D%270%27%2F%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%27600%27%20y2%3D%270%27%2F%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%27800%27%20y2%3D%270%27%2F%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%27800%27%20y2%3D%27400%27%2F%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%27800%27%20y2%3D%271067%27%2F%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%270%27%20y2%3D%271067%27%2F%3E%3Cline%20x1%3D%27400%27%20y1%3D%27480%27%20x2%3D%270%27%20y2%3D%27600%27%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%27400%27%20cy%3D%27480%27%20r%3D%2740%27%20fill%3D%27none%27%20stroke%3D%27%23c8813a%27%20stroke-opacity%3D%270.25%27%20stroke-width%3D%271%27%2F%3E%3Ccircle%20cx%3D%27400%27%20cy%3D%27480%27%20r%3D%2780%27%20fill%3D%27none%27%20stroke%3D%27%23c8813a%27%20stroke-opacity%3D%270.1%27%20stroke-width%3D%271%27%2F%3E%3C%2Fsvg%3E`;
+  }
+  // Dark theme: original grainy dark placeholder
+  return `data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20800%201067%27%3E%3Cdefs%3E%3Cfilter%20id%3D%27t%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.65%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27%2F%3E%3CfeBlend%20in%3D%27SourceGraphic%27%20mode%3D%27multiply%27%2F%3E%3C%2Ffilter%3E%3Cstyle%3E%40keyframes%20glow%7Bfrom%7Bopacity%3A0.45%7Dto%7Bopacity%3A0.85%7D%7D.b%7Banimation%3Aglow%202s%20ease-in-out%20infinite%20alternate%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Crect%20width%3D%27800%27%20height%3D%271067%27%20fill%3D%27%23181818%27%2F%3E%3Crect%20width%3D%27800%27%20height%3D%271067%27%20filter%3D%27url%28%23t%29%27%20opacity%3D%270.18%27%20fill%3D%27%23888%27%2F%3E%3CradialGradient%20id%3D%27v%27%20cx%3D%2750%25%27%20cy%3D%2750%25%27%20r%3D%2770%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%231e1e1e%27%20stop-opacity%3D%270%27%2F%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23000%27%20stop-opacity%3D%270.5%27%2F%3E%3C%2FradialGradient%3E%3Crect%20width%3D%27800%27%20height%3D%271067%27%20fill%3D%27url%28%23v%29%27%2F%3E%3Crect%20class%3D%27b%27%20x%3D%2748%27%20y%3D%2748%27%20width%3D%27704%27%20height%3D%27971%27%20fill%3D%27none%27%20stroke%3D%27%23c8943a%27%20stroke-width%3D%270.8%27%20opacity%3D%270.7%27%2F%3E%3C%2Fsvg%3E`;
+}
 
 function navigateLb(dir) {
   const next = currentIdx + dir;
@@ -987,7 +1007,7 @@ function navigateLb(dir) {
     lbCount.textContent = (currentIdx + 1) + ' / ' + visibleImgs.length;
 
     // Show placeholder immediately
-    lbImg.src = PLACEHOLDER;
+    lbImg.src = getPlaceholder();
     lbImg.classList.remove('fading');
     lbPanel.classList.remove('fading');
 
