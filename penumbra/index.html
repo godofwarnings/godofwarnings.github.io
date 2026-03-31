@@ -6,7 +6,7 @@
   <title>penumbra — visual archive</title>
   <meta name="description" content="A curated visual archive of artwork, film posters, album art, anime prints and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&family=Uncial+Antiqua&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg:         #080808;
@@ -21,6 +21,7 @@
       --accent-mid: rgba(200,129,58,0.35);
       --white:      #f4ede4;
       --serif:      'Cormorant Garamond', Georgia, serif;
+      --ancient:    'Uncial Antiqua', 'Palatino Linotype', serif;
       --sans:       'Josefin Sans', 'Helvetica Neue', sans-serif;
       --ease:       cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -89,6 +90,26 @@
       line-height: 0.9;
       letter-spacing: -0.02em;
       margin-bottom: 28px;
+    }
+    h1 .ancient-p {
+      font-family: var(--ancient);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.12em;
+      color: var(--accent);
+      display: inline-block;
+      line-height: 0.85;
+      vertical-align: baseline;
+      text-shadow:
+        0 0 40px rgba(200, 129, 58, 0.45),
+        0 0 80px rgba(200, 129, 58, 0.18);
+      filter: drop-shadow(0 2px 8px rgba(200,129,58,0.3));
+      transition: text-shadow 0.4s ease;
+    }
+    h1:hover .ancient-p {
+      text-shadow:
+        0 0 60px rgba(200, 129, 58, 0.7),
+        0 0 120px rgba(200, 129, 58, 0.3);
     }
     .hero-sub {
       font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -489,7 +510,7 @@
 
 <header class="hero">
   <div class="hero-label">Visual Archive</div>
-  <h1>penumbra</h1>
+  <h1><span class="ancient-p">p</span>enumbra</h1>
   <p class="hero-sub">
     <span>Film</span><span class="hero-dot">·</span>
     <span>Music</span><span class="hero-dot">·</span>
