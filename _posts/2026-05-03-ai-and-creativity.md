@@ -30,8 +30,9 @@ The energy that powers thought, that powered the humans who made the art that tr
 <!-- Suggested: Visualization of energy flow / neural networks / thermodynamic systems -->
 
 <img src="/assets/images/posts/ai-and-art/1.png"
-     style="display: block; margin: 0 auto; max-width: 500px;"
+     style="display: block; width: min(500px, 100vw); margin-left: 50%; transform: translateX(-50%);"
      alt="ANN">
+
 
 
 ## On Output, Meaning, and Perspective
@@ -43,7 +44,7 @@ What comes out of that process also carries, embedded within it, the insurmounta
 One of the arguments for AI art/music is: I've got ideas but I can't draw, or sing, or dance, so I'll let AI do it. I think that gets less compelling the longer I sit and think about it. The fact that I cannot draw , cannot sing or cannot dance — that's exactly why I find people who can do all this so extraordinary. The inability is part of the appreciation. What AI gives you in that situation is the output without the gap. If you use AI to generate/produce what you couldn't make yourself, you still have to ask: is this actually what I would have come up with if I had the skill/capability of doing so? Most of the time, honestly, people just post it on socials and move on. This sends its value plunging into the depths of Tartarus (because you never gave it any depth to begin with).
 
 <img src="/assets/images/posts/ai-and-art/2.png"
-     style="display: block; margin: 0 auto; max-width: min(600px, 100vw);"
+     style="display: block; width: min(600px, 100vw); margin-left: 50%; transform: translateX(-50%);"
      alt="ANN">
 
 ## Personal Use: Where AI Has Value
@@ -97,7 +98,7 @@ This is the part which gets missed though. There are musicians engaging with AI 
 Jordan Rudess — Dream Theater's keyboardist — has been working with MIT Media Lab on something called the jam_bot. The project resulted in a performance at MIT in September 2024, where Rudess improvised live alongside a real-time generative AI system across six distinct pieces. He described it as "a talented student" — something that listens and responds to what he's playing in real time, creating "this interesting connection between human and the computer(.".) You can watch his interview with Rick Beato to get a more detailed idea about his stance on this. Personally I don't think he's doing this for the clout or the money. The man has transcended any commercial need for either. This is just what curiosity looks like when it has no pressure behind it. He does acknowledge the legal questions around AI in music are "really important to figure out" and "need to be resolved in a big way." Thinking the technology is genuinely interesting and thinking it was built on stolen work are not mutually exclusive positions.[MIT Media Lab + 2](https://www.media.mit.edu/projects/jordan-rudess-genai/overview/).
 
 <img src="/assets/images/posts/ai-and-art/4.jpg"
-     style="display: block; margin: 0 auto; max-width: 600px;"
+     style="display: block; width: min(500px, 100vw); margin-left: 50%; transform: translateX(-50%);"
      alt="ANN">
 
 
