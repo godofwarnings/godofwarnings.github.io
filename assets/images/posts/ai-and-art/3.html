@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; background: transparent; overflow: hidden; }
+  @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+  #cw {
+    background: #F4EFE6;
+    border-radius: 10px;
+    padding: 28px 20px 20px;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+  }
+  #cw h2 {
+    text-align: center; font-size: 14px; font-weight: 400;
+    color: #2a2a2a; margin: 0 0 20px; letter-spacing: 0.01em;
+    line-height: 1.5; flex-shrink: 0;
+  }
+  .chart-wrap { position: relative; padding-left: 28px; flex: 1; min-height: 0; }
+  .y-label {
+    position: absolute; left: -14px; top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    font-size: 10px; color: #666; white-space: nowrap;
+  }
+  .canvas-wrap { position: relative; width: 100%; height: 100%; }
+  .leg { display: flex; justify-content: flex-end; gap: 20px; margin-top: 6px; font-size: 11px; color: #444; flex-shrink: 0; }
+  .li { display: flex; align-items: center; gap: 6px; }
+  .ld { width: 26px; height: 2.5px; border-radius: 2px; }
+  .src { font-size: 9px; color: #888; text-align: right; margin-top: 8px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div id="cw">
+  <h2>The Evolution of Music Generation: Human vs. AI (2020–2026)</h2>
+  <div class="chart-wrap">
+    <span class="y-label">% of new uploads</span>
+    <div class="canvas-wrap">
+      <canvas id="mc"></canvas>
+    </div>
+  </div>
+  <div class="leg">
+    <div class="li"><span class="ld" style="background:#2d7a5a;"></span>Human music %</div>
+    <div class="li"><span class="ld" style="background:#c8a020;"></span>AI music %</div>
+  </div>
+  <p class="src">Sources: Deezer (Apr 2026): 44% of new uploads AI-generated, 1–3% of streams AI. CISAC study (Dec 2024). Billboard AI music timeline.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const labels = ['Jan 2020','Apr 2020','Jul 2020','Oct 2020','Jan 2021','Apr 2021','Jul 2021','Oct 2021','Jan 2022','Apr 2022','Jul 2022','Oct 2022','Jan 2023','Apr 2023','Jul 2023','Oct 2023','Jan 2024','Apr 2024','Jul 2024','Oct 2024','Jan 2025','Apr 2025','Jul 2025','Oct 2025','Jan 2026','Apr 2026'];
+const aiData = [0.1,0.2,0.2,0.3,0.4,0.5,0.6,0.7,0.9,1.1,1.4,2.5,4.5,5.5,7.0,9.5,12.5,16.0,19.5,23.0,26.0,30.0,35.0,39.0,41.5,44.0];
+const humanData = aiData.map(v => (100 - v) + (Math.random() - 0.5) * 0.4);
+
+const annotPlugin = {
+  id: 'annot',
+  afterDraw(chart) {
+    const ctx = chart.ctx, xs = chart.scales.x, ys = chart.scales.y;
+    const cw = xs.right - xs.left; // actual drawn chart width in px
+
+    // Grid lines — always shown
+    [0,10,20,30,40,50,60,70,80,90,100].forEach(v => {
+      const y = ys.getPixelForValue(v);
+      ctx.save(); ctx.strokeStyle = 'rgba(80,70,55,0.1)'; ctx.lineWidth = 0.5;
+      ctx.beginPath(); ctx.moveTo(xs.left, y); ctx.lineTo(xs.right, y); ctx.stroke(); ctx.restore();
+    });
+
+    // Milestone vertical lines — always shown
+    [8,12,16,25].forEach(idx => {
+      const x = xs.getPixelForValue(idx);
+      ctx.save(); ctx.strokeStyle = 'rgba(60,50,40,0.25)'; ctx.lineWidth = 0.8;
+      ctx.setLineDash([4,3]); ctx.beginPath(); ctx.moveTo(x, ys.top); ctx.lineTo(x, ys.bottom); ctx.stroke(); ctx.restore();
+    });
+
+    // Box helper
+    function box(x, y, lines, w, bColor, anchor='right') {
+      const pad = 9, lh = 13, h = lines.length * lh + pad * 1.6;
+      const bx = anchor === 'left' ? x - w - 6 : x + 6;
+      const by = y - h / 2;
+      ctx.save(); ctx.fillStyle = bColor || '#1a1a19';
+      ctx.beginPath(); ctx.roundRect(bx, by, w, h, 5); ctx.fill();
+      ctx.fillStyle = '#ede9df'; ctx.font = '9.5px "Courier Prime", monospace';
+      lines.forEach((line, i) => ctx.fillText(line, bx + pad, by + pad + i * lh + 4));
+      ctx.restore();
+    }
+
+    // Tiny label helper (single line, no box)
+    function label(x, y, text, color) {
+      ctx.save(); ctx.fillStyle = color || '#2a4a3a';
+      ctx.font = '9px "Courier Prime", monospace';
+      ctx.fillText(text, x, y); ctx.restore();
+    }
+
+    if (cw >= 560) {
+      // ── WIDE: show all four boxes, well-spaced ──
+      box(xs.getPixelForValue(8),       ys.getPixelForValue(70), ['Dec 2022: Riffusion','(first free text-to-music','web app)'],         178, '#2a4a3a');
+      box(xs.getPixelForValue(12),      ys.getPixelForValue(52), ['Jan 2023: Google MusicLM','May 2023: Meta AudioCraft'],                200, '#3a3a2a');
+      box(xs.getPixelForValue(16),      ys.getPixelForValue(32), ['Dec 2023: Suno public','launch + Udio beta','(major inflection)'],    180, '#1a1a19');
+      box(xs.getPixelForValue(25),      ys.getPixelForValue(16), ['Apr 2026: 44% of new','uploads AI-generated'],                        176, '#1a1a19', 'left');
+      // Jukebox top label
+      label(xs.getPixelForValue(0) + 4, ys.top + 12, 'May 2020: OpenAI Jukebox', '#2a4a3a');
+
+    } else if (cw >= 360) {
+      // ── MEDIUM: two most important boxes only, compact text ──
+      box(xs.getPixelForValue(16), ys.getPixelForValue(38), ['Dec 2023: Suno','+ Udio launch'], 130, '#1a1a19');
+      box(xs.getPixelForValue(25), ys.getPixelForValue(18), ['Apr 2026: 44% AI'],               110, '#1a1a19', 'left');
+
+    } else {
+      // ── NARROW: no boxes, just tiny tick labels on the lines ──
+      label(xs.getPixelForValue(8)  + 4, ys.top + 14, '2022', '#2a4a3a');
+      label(xs.getPixelForValue(12) + 4, ys.top + 14, '2023', '#3a3a2a');
+      label(xs.getPixelForValue(16) + 4, ys.top + 14, 'Suno', '#1a1a19');
+      label(xs.getPixelForValue(25) + 4, ys.top + 14, '44%',  '#1a1a19');
+    }
+  }
+};
+Chart.register(annotPlugin);
+
+new Chart(document.getElementById('mc'), {
+  type: 'line',
+  data: { labels, datasets: [
+    { label: 'Human %', data: humanData, borderColor: '#2d7a5a', backgroundColor: 'transparent', borderWidth: 2.2, pointRadius: 0, tension: 0.38 },
+    { label: 'AI %',    data: aiData,    borderColor: '#c8a020', backgroundColor: 'transparent', borderWidth: 2.2, pointRadius: 0, tension: 0.38 }
+  ]},
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    animation: { duration: 1400, easing: 'easeInOutQuart' },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%` },
+        backgroundColor: '#1a1a19', titleColor: '#ede9df', bodyColor: '#ede9df',
+        titleFont: { family: '"Courier Prime", monospace', size: 11 },
+        bodyFont:  { family: '"Courier Prime", monospace', size: 11 },
+      }
+    },
+    scales: {
+      x: {
+        type: 'category',
+        ticks: { maxTicksLimit: 7, color: '#666', font: { family: '"Courier Prime", monospace', size: 10 },
+          callback(val, idx) { const l = this.getLabelForValue(val); return l && l.startsWith('Jan') ? l : null; }
+        },
+        grid: { display: false }, border: { color: 'rgba(0,0,0,0.15)' }
+      },
+      y: {
+        min: 0, max: 100,
+        ticks: { stepSize: 10, color: '#666', font: { family: '"Courier Prime", monospace', size: 10 }, callback: v => v + '%' },
+        grid: { display: false }, border: { color: 'rgba(0,0,0,0.15)' }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
