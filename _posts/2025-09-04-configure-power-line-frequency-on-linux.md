@@ -6,7 +6,8 @@ categories: [Linux, Hardware, Configuration]
 tags: [Linux, Arch, Manjaro]
 redirect_from:
   - /2025/09/04/
-image: /assets/images/posts/powerline.jpg
+image: /assets/images/posts/powerline_hero.png
+image_card: /assets/images/posts/powerline_card.png
 ---
 
 > Originally written on **04 September 2025, 01:15**
@@ -71,8 +72,11 @@ sudo nano /etc/udev/rules.d/99-logitech-brio.rules
 
 Add the following rule:
 
-```udev
-SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="094c", RUN+="/usr/bin/v4l2-ctl -d /dev/video%n --set-ctrl=power_line_frequency=1"
+```bash
+SUBSYSTEM=="usb",
+ATTRS{idVendor}=="046d",
+ATTRS{idProduct}=="094c",
+RUN+="/usr/bin/v4l2-ctl -d /dev/video%n --set-ctrl=power_line_frequency=1"
 ```
 
 > **Note:**

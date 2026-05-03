@@ -42,9 +42,10 @@ layout: default
       {% include category-group.html category=fcat %}
       {% assign fgroup = _group %}
       <a class="post-card-featured" href="{{ featured.url | relative_url }}">
-        {% if featured.image %}
-        <div class="post-card-featured-img" style="--card-img: url('{{ featured.image | relative_url }}')">
-          <img src="{{ featured.image | relative_url }}" alt="{{ featured.title }}">
+        {% assign featured_card_img = featured.image_card | default: featured.image %}
+        {% if featured_card_img %}
+        <div class="post-card-featured-img">
+          <img src="{{ featured_card_img | relative_url }}" alt="{{ featured.title }}">
         </div>
         {% else %}
         <div class="post-card-featured-img">
@@ -76,9 +77,10 @@ layout: default
         {% include category-group.html category=pcat %}
         {% assign pgroup = _group %}
         <a class="post-card-small" href="{{ post.url | relative_url }}">
-          {% if post.image %}
-          <div class="post-card-small-img" style="--card-img: url('{{ post.image | relative_url }}')">
-            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+          {% assign card_img = post.image_card | default: post.image %}
+          {% if card_img %}
+          <div class="post-card-small-img">
+            <img src="{{ card_img | relative_url }}" alt="{{ post.title }}">
           </div>
           {% else %}
           <div class="post-card-small-img">
