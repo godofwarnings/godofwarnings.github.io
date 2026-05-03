@@ -43,7 +43,7 @@ What comes out of that process also carries, embedded within it, the insurmounta
 One of the arguments for AI art/music is: I've got ideas but I can't draw, or sing, or dance, so I'll let AI do it. I think that gets less compelling the longer I sit and think about it. The fact that I cannot draw , cannot sing or cannot dance — that's exactly why I find people who can do all this so extraordinary. The inability is part of the appreciation. What AI gives you in that situation is the output without the gap. If you use AI to generate/produce what you couldn't make yourself, you still have to ask: is this actually what I would have come up with if I had the skill/capability of doing so? Most of the time, honestly, people just post it on socials and move on. This sends its value plunging into the depths of Tartarus (because you never gave it any depth to begin with).
 
 <img src="/assets/images/posts/ai-and-art/2.png"
-     style="display: block; margin: 0 auto; max-width: 600px;"
+     style="display: block; margin: 0 auto; max-width: min(600px, 100vw);"
      alt="ANN">
 
 ## Personal Use: Where AI Has Value
