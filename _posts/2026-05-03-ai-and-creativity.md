@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AI, Art, and the Question of Value"
-description: "A reflective piece on AI-generated art and music, exploring questions of value, authorship, energy, and meaning."
+description: "A small reflective piece on AI-generated art and music; exploring questions of value, authorship, and meaning."
 categories: [AI, Philosophy, Music, Art]
 tags: [AI, Creativity, Ethics, Music Industry, Thought Piece]
 redirect_from:
@@ -33,13 +33,10 @@ The energy that powers thought, that powered the humans who made the art that tr
      style="display: block; margin: 0 auto; max-width: 500px;"
      alt="ANN">
 
----
 
 ## On Output, Meaning, and Perspective
 
 What comes out of that process also carries, embedded within it, the insurmountable data and genius of the people who built these models and produced the work they were trained on. If you see AI-generated art as the accumulated weight of everything humanity has expressed, there's something genuinely interesting about it. If you see it as pattern-matching with no story behind it, no struggle, no cost, well that's also fair. Both can co-exist. Insisting only one of them is valid is where people go wrong.
-
----
 
 ## Skill, Inability, and Appreciation
 
@@ -49,13 +46,9 @@ One of the arguments for AI art/music is: I've got ideas but I can't draw, or si
      style="display: block; margin: 0 auto; max-width: 600px;"
      alt="ANN">
 
----
-
 ## Personal Use: Where AI Has Value
 
 That said, I use AI image generation myself, specifically for documenting dreams. There are scenes I cannot draw and couldn't pay anyone to draw, so I reconstruct them alongside a journal entry. That has real personal value to me. The difference is I'm not pretending it's something it isn't.
-
----
 
 ## AI in the Music Industry
 
@@ -81,8 +74,6 @@ Suno alone is generating seven million songs a day, compared to roughly ten thou
   ">
 </iframe>
 
----
-
 ## Industry Reactions and Criticism
 
 There are a lot of very big and respected musicians, some of which I respected and some of which I don't now, who are very pro-AI in music. Their status, fame and prior achievements play a big role in allowing them to take this stance. I won't say whether they are in the right or wrong but the point to be made is that not a lot of people consciously searches for this music or listens to it actively (that does not mean the music is bad though).
@@ -91,19 +82,13 @@ There are a lot of very big and respected musicians, some of which I respected a
 
 Suno's CEO Mikey Shulman once said that making music the traditional way "is not really enjoyable" (whats wrong with bro?) and that skill and practice are barriers for most people — he has since walked that back, but the product philosophy hasn't changed much. The open letter to him on Music Business Worldwide is worth reading in full, but something which stands out the most to me is this: Suno offers "the surface of real emotion without the substance of it... just a machine that's learned what those things sound like — by ingesting the work of humans who actually felt them." [Complete Music Update](https://completemusicupdate.com/suno-ceo-mikey-shulman-says-making-music-sucks-skill-doesnt-matter-and-everyone-building-ai-products-infringes-copyright/) [Music Business Worldwide](https://www.musicbusinessworldwide.com/an-open-letter-to-sunos-mikey-shulman/)
 
----
-
 ## Legal Battles
 
 The RIAA filed suit against Suno in 2024 seeking up to $150,000 per infringed work, with thousands of musicians coming together and signing open letters demanding they stop training on copyrighted material without consent. A settlement was reached with Warner, but suits from Universal and Sony continue. Their defence, like every AI company's, is fair use i.e. ingesting the life's work of artists without permission is legally fine because the output is different enough. Courts will decide that. [Prism News](https://www.prismnews.com/news/suno-faces-copyright-crisis-as-users-exploit-gaps-in-ai)
 
----
-
 ## Listener Psychology
 
 When people accidentally listen to AI music and enjoy it (and this does happen), their reaction when they find out has almost always the same: a sense of having been cheated or betrayed. It's not because what they heard was technically bad, but because they feel an implicit agreement was broken. Music  (and art in general) carries the assumption that someone was on the other side of it, that the sounds came out of something actually experienced. Take that away and for most people it doesn't just change the context, it changes the meaning.
-
----
 
 ## A More Interesting Direction
 
@@ -116,13 +101,9 @@ Jordan Rudess — Dream Theater's keyboardist — has been working with MIT Medi
      alt="ANN">
 
 
----
-
 ## Parallels with Mathematics
 
 Andrew Wiles' proof of Fermat's Last Theorem is not beautiful because of the proof itself but because of the story of how Andrew Wiles proved it, of his fascination with the conjecture since childhood, of how he spent 6 years working on it in secrecy, and of how it is a testament to human creativity and persistence. A machine producing the same result tomorrow would be a curiosity. It wouldn't produce the next generation of mathematicians. Mathematics itself, just like art, has lasting consequences and legacies that it leaves behind. Similarly, a machine can produce something that sounds like a song. What it cannot produce is the reason someone made it — what it cost them to say it, why it mattered enough to make at all. And I think Tao's position comes partly from his own circumstances. When you are arguably one of the greatest living mathematician, the question of whether AI takes something away from you personally has a very different answer than it does for someone just starting out. The threat is not symmetrical, and I don't think he fully accounts for that.
-
----
 
 ## Conclusion
 
