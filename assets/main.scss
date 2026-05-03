@@ -1,0 +1,67 @@
+---
+---
+@import "minima";
+
+/* ── Warm paper feel ── */
+body {
+  font-family: 'Atkinson Hyperlegible', Georgia, serif;
+  background-color: #fdfaf6;
+  color: #2c2c2c;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.post-title { font-style: italic; }
+
+.site-header {
+  background-color: #fdfaf6;
+  border-top: 4px solid #c0392b;
+  border-bottom: 1px solid #e0d5c8;
+}
+
+.site-title, .site-title:visited {
+  color: #2c2c2c;
+  font-family: 'Lora', Georgia, serif;
+}
+
+a { color: #c0392b; }
+a:hover { color: #e74c3c; }
+
+.post-content a {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(192,57,43,0.4);
+}
+.post-content a:hover {
+  text-decoration-color: rgba(192,57,43,1);
+}
+
+.post-list h3 a { color: #2c2c2c; }
+.post-list h3 a:hover { color: #c0392b; }
+
+.post-meta { color: #888; font-size: 0.9em; }
+
+code, pre {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.88em;
+  background-color: #f4efe8;
+}
+
+blockquote {
+  border-left: 3px solid #c0392b;
+  color: #555;
+  font-style: italic;
+}
+
+.site-footer {
+  background-color: #fdfaf6;
+  border-top: 1px solid #e0d5c8;
+  color: #888;
+}

@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<div class="til-page-wrap">
+  <header class="til-header">
+    <a class="back-link" href="{{ '/' | relative_url }}">← home</a>
+    <h1 class="til-page-title">Today I Learned</h1>
+    <p class="til-page-sub">Small things. Learned recently. Written down so I don't forget.</p>
+  </header>
+  <div class="til-entry">
+    <div class="til-entry-date">{{ page.date | date: "%B %-d, %Y" }}</div>
+    <h2 class="til-entry-title">{{ page.title }}</h2>
+    <div class="til-entry-body">{{ content }}</div>
+    {% if page.tags %}
+    <div class="til-entry-tags">
+      {% for tag in page.tags %}
+      <span class="til-tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>

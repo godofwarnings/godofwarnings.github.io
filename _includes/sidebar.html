@@ -1,0 +1,143 @@
+<!-- About — top of sidebar -->
+<div class="margin-widget">
+  <p class="margin-label">About <span class="dot"></span></p>
+  <p class="margin-about">
+    <strong>Radhikesh</strong> — writes code, breaks code,
+    occasionally writes about writing code.
+    Graduating eventually.
+  </p>
+</div>
+
+<!-- Categories -->
+<div class="margin-widget">
+  <p class="margin-label">Categories <span class="dot"></span></p>
+  <div class="sidebar-scroll-list" id="sidebarCats">
+    {% assign groups = "cs,math,psych,linux,misc" | split: "," %}
+    {% for group in groups %}
+    {% assign count = 0 %}
+    {% for post in site.posts %}
+    {% assign first_cat = post.categories[0] | default: 'Misc' %}
+    {% include category-group.html category=first_cat %}
+    {% if _group == group %}
+    {% assign count = count | plus: 1 %}
+    {% endif %}
+    {% endfor %}
+    {% if count > 0 %}
+    <div class="sidebar-filter-item" data-filter="{{ group }}" data-type="cat">
+      <span class="sidebar-filter-name">
+        {% case group %}
+        {% when 'cs' %}CS
+        {% when 'math' %}Math
+        {% when 'psych' %}Psychology
+        {% when 'linux' %}Linux
+        {% else %}Misc
+        {% endcase %}
+      </span>
+      <span class="sidebar-filter-count">{{ count }}</span>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Tags -->
+<div class="margin-widget">
+  <p class="margin-label">Tags <span class="dot"></span></p>
+  <div class="sidebar-scroll-list sidebar-tags-cloud" id="sidebarTags">
+    {% assign all_tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
+    {% for tag in all_tags %}
+    {% if tag != '' %}
+    <span class="sidebar-tag-item" data-tag="{{ tag | downcase }}">
+      {{ tag | replace: '-', ' ' }}
+    </span>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Currently -->
+<div class="margin-widget">
+  <p class="margin-label">Currently <span class="dot"></span></p>
+  <ul class="margin-currently">
+    {% if site.currently %}
+    {% for item in site.currently %}
+    <li><span class="curr-emoji">{{ item.emoji }}</span>{{ item.text }}</li>
+    {% endfor %}
+    {% else %}
+    <li><span class="curr-emoji">📖</span>The Pragmatic Programmer</li>
+    <li><span class="curr-emoji">🎵</span>Metallica on repeat</li>
+    <li><span class="curr-emoji">🔬</span>HEP-JEPA interpretability</li>
+    <li><span class="curr-emoji">☕</span>Too much chai</li>
+    {% endif %}
+  </ul>
+</div>
+
+<!-- Rotating quote -->
+<div class="margin-widget">
+  <p class="margin-label">A thought <span class="dot"></span></p>
+  <p class="margin-quote" id="marginQuote">
+    "The best way to understand something is to build it badly first."
+  </p>
+</div>
+
+<script>
+  /* Sidebar category filter */
+  document.querySelectorAll('.sidebar-filter-item[data-type="cat"]').forEach(el => {
+    el.addEventListener('click', () => {
+      const cat = el.dataset.filter;
+      /* sync pills */
+      document.querySelectorAll('.cat-pill').forEach(p =>
+        p.classList.toggle('active', p.dataset.cat === cat));
+      /* filter list */
+      document.querySelectorAll('#postList .post-item').forEach(item => {
+        item.style.display = item.dataset.cat === cat ? 'grid' : 'none';
+      });
+      /* highlight active */
+      document.querySelectorAll('.sidebar-filter-item[data-type="cat"]').forEach(e =>
+        e.classList.toggle('active', e === el));
+      /* clear tag state */
+      document.querySelectorAll('.sidebar-tag-item').forEach(t => t.classList.remove('active'));
+      document.getElementById('tagStrip').classList.remove('visible');
+    });
+  });
+
+  /* Sidebar tag filter */
+  document.querySelectorAll('.sidebar-tag-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const tag = el.dataset.tag;
+      /* deactivate cat pills */
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.sidebar-filter-item').forEach(e => e.classList.remove('active'));
+      /* filter posts */
+      document.querySelectorAll('#postList .post-item').forEach(item => {
+        const tags = (item.dataset.tags || '').split(' ').map(t => t.trim()).filter(Boolean);
+        item.style.display = tags.includes(tag) ? 'grid' : 'none';
+      });
+      /* highlight */
+      document.querySelectorAll('.sidebar-tag-item').forEach(t =>
+        t.classList.toggle('active', t === el));
+      /* show strip */
+      document.getElementById('tagStripLabel').textContent = '#' + tag;
+      document.getElementById('tagStrip').classList.add('visible');
+    });
+  });
+
+  /* Rotating quotes */
+  const quotes = [
+    '"The best way to understand something is to build it badly first."',
+    '"Sleep is a gift. Exam week is its theft."',
+    '"A proof is just a really convincing argument."',
+    '"Curiosity is the only compass that matters."',
+    '"There are two kinds of people: those who\'ve read GEB, and those who plan to."',
+  ];
+  let qi = 0;
+  const qEl = document.getElementById('marginQuote');
+  if (qEl) {
+    qEl.style.transition = 'opacity .3s';
+    setInterval(() => {
+      qi = (qi + 1) % quotes.length;
+      qEl.style.opacity = '0';
+      setTimeout(() => { qEl.textContent = quotes[qi]; qEl.style.opacity = '1'; }, 320);
+    }, 7000);
+  }
+</script>

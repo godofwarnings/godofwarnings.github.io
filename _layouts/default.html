@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inconsolata:wght@400;500;600&family=Caveat:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link id="hljs-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath:[['$','$'],['\\(','\\)']],
+    displayMath:[['$$','$$'],['\\[','\\]']],
+    processEscapes: true
+  },
+  options: { skipHtmlTags:['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+{% feed_meta %}
+{% seo %}
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="{{ '/blog/' | relative_url }}">
+      <span class="tilde">~</span>
+      {{ site.author.name | split: ' ' | first | downcase }}
+    </a>
+    <div class="header-right">
+      <a class="nav-link" href="{{ '/' | relative_url }}">Writing</a>
+      <a class="nav-link" href="{{ '/til/' | relative_url }}">TIL</a>
+      <a class="nav-link" href="{{ '/links/' | relative_url }}">Links</a>
+      <a class="nav-link" href="{{ '/about' | relative_url }}">About</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">☀️</button>
+    </div>
+  </div>
+</header>
+
+{{ content }}
+
+<footer class="site-footer">
+  <p class="footer-hand">thanks for reading ✦</p>
+  <p class="footer-mono">{{ site.author.name | downcase }} · hyderabad · CC BY-SA 4.0</p>
+</footer>
+
+<script>
+/* ============================================================
+   THEME — dark by default, persisted
+   ============================================================ */
+const html = document.documentElement;
+const themeBtn = document.getElementById('themeBtn');
+
+// Apply saved or default theme before paint
+(function() {
+  const t = localStorage.getItem('rth') || 'dark';
+  html.setAttribute('data-theme', t);
+  syncThemeUI(t);
+})();
+
+themeBtn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('rth', next);
+  syncThemeUI(next);
+  // swap hljs theme
+  document.getElementById('hljs-theme').href =
+    next === 'dark'
+      ? 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css'
+      : 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css';
+  // re-highlight
+  document.querySelectorAll('pre code[class*="hljs"]').forEach(b => {
+    delete b.dataset.highlighted;
+    hljs.highlightElement(b);
+  });
+  // redraw squiggle with new colour
+  if (typeof drawSquiggle === 'function') setTimeout(drawSquiggle, 60);
+});
+
+function syncThemeUI(t) {
+  if (themeBtn) {
+    themeBtn.textContent = t === 'dark' ? '☀️' : '🌙';
+    themeBtn.title = t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+});
+</script>
+</body>
+</html>

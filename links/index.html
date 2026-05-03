@@ -1,0 +1,26 @@
+---
+layout: default
+title: Links
+permalink: /links/
+---
+<div class="links-page-wrap">
+  <header class="til-header">
+    <a class="back-link" href="{{ '/' | relative_url }}">← home</a>
+    <h1 class="til-page-title">Links</h1>
+    <p class="til-page-sub">Things I found worth reading. With some commentary.</p>
+  </header>
+  <div class="links-list">
+    {% for link in site.links reversed %}
+    <div class="link-entry">
+      <div class="link-entry-meta">
+        <span class="link-entry-date">{{ link.date | date: "%b %-d, %Y" }}</span>
+        {% if link.via %}<span class="link-entry-via">via {{ link.via }}</span>{% endif %}
+      </div>
+      <a class="link-entry-title" href="{{ link.url }}" target="_blank" rel="noopener">
+        {{ link.title }} ↗
+      </a>
+      <div class="link-entry-body">{{ link.content }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

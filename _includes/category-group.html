@@ -1,0 +1,9 @@
+{% assign _cat = include.category %}
+{% assign _group = "misc" %}
+{% for pair in site.category_groups %}
+  {% for member in pair[1] %}
+    {% if member == _cat %}
+      {% assign _group = pair[0] %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}

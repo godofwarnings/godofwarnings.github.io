@@ -28,3 +28,9 @@ vendor/bundle
 
 # Ignore environment files
 .env
+
+# Jekyll generated files and caches
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/

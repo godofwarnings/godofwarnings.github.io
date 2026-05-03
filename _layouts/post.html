@@ -1,0 +1,131 @@
+---
+layout: default
+---
+{% assign cat = page.categories[0] | default: 'misc' | downcase %}
+{% assign words = content | number_of_words %}
+{% assign mins = words | divided_by: 200 | plus: 1 %}
+
+<!-- Hero image or gradient fallback -->
+<div class="post-hero {% unless page.image %}post-hero--gradient{% endunless %}" data-cat="{{ cat }}">
+  {% if page.image %}
+  <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}">
+  {% endif %}
+</div>
+
+<div class="post-page-wrap">
+  <article class="post-main">
+
+    <header class="post-header">
+      <a class="back-link" href="{{ '/' | relative_url }}">← back to writing</a>
+      <span class="post-header-cat-badge" data-cat="{{ cat }}">{{ cat | upcase }}</span>
+      <h1 class="post-header-title">{{ page.title }}</h1>
+      <div class="post-header-meta">
+        <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+        <span>~{{ mins }} min read</span>
+        <span>{{ site.author.name }}</span>
+      </div>
+    </header>
+
+    <div class="post-content">
+      {{ content }}
+    </div>
+
+    <footer class="post-footer">
+      <p class="post-signoff">— written somewhere in Hyderabad, probably too late at night.</p>
+      {% if page.tags %}
+      <div class="post-tags-footer">
+        {% for tag in page.tags %}
+        <a href="#">{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="post-nav">
+        {% if page.previous %}
+        <a class="post-nav-item prev" href="{{ page.previous.url | relative_url }}">
+          <div class="post-nav-dir">← Previous</div>
+          <div class="post-nav-title">{{ page.previous.title }}</div>
+        </a>
+        {% else %}<div></div>{% endif %}
+        {% if page.next %}
+        <a class="post-nav-item next" href="{{ page.next.url | relative_url }}">
+          <div class="post-nav-dir">Next →</div>
+          <div class="post-nav-title">{{ page.next.title }}</div>
+        </a>
+        {% endif %}
+      </div>
+    </footer>
+
+  </article>
+</div>
+
+<!-- Floating TOC button (only if post has headings) -->
+<div class="toc-float" id="tocFloat">
+  <button class="toc-float-btn" id="tocBtn" aria-label="Table of contents">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <rect x="0" y="2" width="16" height="1.5" rx=".75" fill="currentColor"/>
+      <rect x="3" y="6" width="13" height="1.5" rx=".75" fill="currentColor"/>
+      <rect x="0" y="10" width="16" height="1.5" rx=".75" fill="currentColor"/>
+      <rect x="3" y="14" width="13" height="1.5" rx=".75" fill="currentColor"/>
+    </svg>
+  </button>
+  <div class="toc-float-panel" id="tocPanel">
+    <p class="toc-float-label">On this page</p>
+    <nav id="tocNav"></nav>
+  </div>
+</div>
+
+<script>
+// Build floating TOC from headings in post
+(function() {
+  const content = document.querySelector('.post-content');
+  const nav = document.getElementById('tocNav');
+  const btn = document.getElementById('tocBtn');
+  const panel = document.getElementById('tocPanel');
+  const floatEl = document.getElementById('tocFloat');
+  if (!content || !nav) return;
+
+  const headings = content.querySelectorAll('h2, h3');
+  if (headings.length < 2) {
+    floatEl.style.display = 'none';
+    return;
+  }
+
+  // Build TOC links
+  const ul = document.createElement('ul');
+  headings.forEach(h => {
+    // ensure heading has an id
+    if (!h.id) {
+      h.id = h.textContent.trim().toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+    const li = document.createElement('li');
+    li.className = h.tagName === 'H3' ? 'toc-sub' : '';
+    const a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    a.addEventListener('click', () => panel.classList.remove('open'));
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+  nav.appendChild(ul);
+
+  // Toggle
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    panel.classList.toggle('open');
+  });
+  document.addEventListener('click', () => panel.classList.remove('open'));
+
+  // Highlight active heading on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        nav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+        const active = nav.querySelector(`a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  headings.forEach(h => obs.observe(h));
+})();
+</script>
