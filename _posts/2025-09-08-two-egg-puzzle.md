@@ -6,7 +6,7 @@ categories: [Puzzles, Mathematics, Optimization, Quant]
 tags: [Brain-Teaser, Dynamic-Programming, Recursion, Strategy]
 redirect_from:
   - /2025/09/08/
-image: /assets/images/posts/egg_1.jpg
+image: /assets/images/posts/breaking_egg.jpg
 ---
 
 > Originally written on **8 September 2025, 18:22**

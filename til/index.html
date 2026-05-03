@@ -1,27 +1,5 @@
 ---
-layout: default
+layout: til_index
 title: TIL
 permalink: /til/
 ---
-<div class="til-page-wrap">
-  <header class="til-header">
-    <a class="back-link" href="{{ '/' | relative_url }}">← home</a>
-    <h1 class="til-page-title">Today I Learned</h1>
-    <p class="til-page-sub">Small things. Learned recently. Written down so I don't forget.</p>
-  </header>
-  <div class="til-list">
-    {% for item in site.til reversed %}
-    <a class="til-card" href="{{ item.url | relative_url }}">
-      <div class="til-card-date">{{ item.date | date: "%b %-d, %Y" }}</div>
-      <div class="til-card-title">{{ item.title }}</div>
-      {% if item.tags %}
-      <div class="til-card-tags">
-        {% for tag in item.tags limit: 3 %}
-        <span class="til-tag">{{ tag }}</span>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </a>
-    {% endfor %}
-  </div>
-</div>

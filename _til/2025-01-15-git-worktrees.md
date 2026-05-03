@@ -1,6 +1,6 @@
 ---
 layout: til
-title: "git worktree lets you check out multiple branches at once"
+title: "git worktree lets you check out multiple branches simultaneously"
 date: 2025-01-15
 tags: [git, workflow]
 ---

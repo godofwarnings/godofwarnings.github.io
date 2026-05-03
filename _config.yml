@@ -10,7 +10,10 @@ minima:
 
 author:
   name: Radhikesh Agrawal
-  email: rhagrawal1.0.7@gmail.com
+  # bio: "CS undergrad at IIIT Hyderabad · ML research · writes code, breaks code, writes about it"
+  github: godofwarnings
+  linkedin: radhikeshagrawal
+  avatar: /assets/images/pfp.jpg
 
 plugins:
   - jekyll-feed

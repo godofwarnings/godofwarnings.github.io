@@ -6,6 +6,7 @@ categories: [Puzzles, Mathematics, Game-Theory, Quant]
 tags: [Brain-Teaser, Optimization, Calculus, Strategy]
 redirect_from:
   - /2025/09/06/
+image: /assets/images/posts/foxandduck.jpg
 ---
 
 > Originally written on **6 September 2025, 15:02**

@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<div class="section-page-wrap">
+    <header class="section-page-header">
+        <h1 class="section-page-title">Today I Learned</h1>
+        <p class="section-page-sub">Small things. Written down before I forget.</p>
+    </header>
+    <div class="til-grid">
+        {% for item in site.til reversed %}
+        <a class="til-card" href="{{ item.url | relative_url }}">
+            <div class="til-date-stamp">
+                <div class="til-date-day">{{ item.date | date: "%-d" }}</div>
+                <div class="til-date-month">{{ item.date | date: "%b" }}</div>
+            </div>
+            <div class="til-content">
+                <p class="til-title">{{ item.title }}</p>
+                {% if item.tags %}
+                <div class="til-tags">
+                    {% for tag in item.tags limit: 2 %}
+                    <span class="til-tag">{{ tag | downcase }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>

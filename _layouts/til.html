@@ -1,22 +1,14 @@
 ---
 layout: default
 ---
-<div class="til-page-wrap">
-  <header class="til-header">
-    <a class="back-link" href="{{ '/' | relative_url }}">← home</a>
-    <h1 class="til-page-title">Today I Learned</h1>
-    <p class="til-page-sub">Small things. Learned recently. Written down so I don't forget.</p>
-  </header>
-  <div class="til-entry">
-    <div class="til-entry-date">{{ page.date | date: "%B %-d, %Y" }}</div>
-    <h2 class="til-entry-title">{{ page.title }}</h2>
-    <div class="til-entry-body">{{ content }}</div>
-    {% if page.tags %}
-    <div class="til-entry-tags">
-      {% for tag in page.tags %}
-      <span class="til-tag">{{ tag }}</span>
-      {% endfor %}
+<div class="section-page-wrap">
+  <header class="post-header" style="padding-top:32px">
+    <a class="back-link" href="{{ '/til/' | relative_url }}">← back to TIL</a>
+    <span class="post-header-cat-badge">TIL</span>
+    <h1 class="post-header-title">{{ page.title }}</h1>
+    <div class="post-header-meta">
+      <span>{{ page.date | date: "%B %-d, %Y" }}</span>
     </div>
-    {% endif %}
-  </div>
+  </header>
+  <div class="post-content">{{ content }}</div>
 </div>

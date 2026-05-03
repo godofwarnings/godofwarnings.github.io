@@ -1,0 +1,48 @@
+- name: HEP-JEPA
+  emoji: "⚛️"
+  desc: Foundation model for particle jets using self-supervised JEPA training. Accepted at ICLR 2025 ML4PS workshop.
+  status: active
+  status_label: Active research
+  tags: [PyTorch, Self-Supervised, Graph NN, HEP]
+  paper: https://hep-jepa.github.io/
+  github: https://github.com/godofwarnings
+
+- name: GenAI Test Engine
+  emoji: "🤖"
+  desc: Zero-code GenAI-powered test scenario engine built at CHUBB. Reduced time to create test cases by ~90%.
+  status: complete
+  status_label: Completed
+  tags: [Python, LLMs, GenAI, Testing]
+  github: https://github.com/godofwarnings
+
+- name: GReddit
+  emoji: "🦀"
+  desc: Full-stack Reddit clone with Docker and nginx. Posts, comments, voting, subreddits, auth.
+  status: complete
+  status_label: Completed
+  tags: [Docker, nginx, Node.js, React]
+  github: https://github.com/godofwarnings
+
+- name: C Shell
+  emoji: "🐚"
+  desc: Unix shell in C from scratch. Pipes, I/O redirection, background processes, signal handling.
+  status: complete
+  status_label: Completed
+  tags: [C, Unix, Systems]
+  github: https://github.com/godofwarnings
+
+- name: Mental Health NLP
+  emoji: "🧠"
+  desc: Transformer classifier for mental health signal detection. Fine-tuned RoBERTa on Reddit posts.
+  status: complete
+  status_label: Completed
+  tags: [PyTorch, RoBERTa, NLP, HuggingFace]
+  github: https://github.com/godofwarnings
+
+- name: NFS Distributed FS
+  emoji: "💾"
+  desc: Distributed file system inspired by NFS. Client-server architecture with caching and consistency.
+  status: complete
+  status_label: Completed
+  tags: [C++, Distributed, Systems]
+  github: https://github.com/godofwarnings

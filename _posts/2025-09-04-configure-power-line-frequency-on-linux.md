@@ -6,6 +6,7 @@ categories: [Linux, Hardware, Configuration]
 tags: [Linux, Arch, Manjaro]
 redirect_from:
   - /2025/09/04/
+image: /assets/images/posts/powerline.jpg
 ---
 
 > Originally written on **04 September 2025, 01:15**
