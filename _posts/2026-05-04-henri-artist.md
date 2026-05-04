@@ -1,24 +1,17 @@
 ---
 
 layout: post
-
 title: "The Painter Who Could Not Live Inside His Own Work"
-
 description: "On Henri de Toulouse-Lautrec, loneliness, and what it means to create beauty you can never quite reach."
-
 categories: [Art, Philosophy]
-
 tags: [Toulouse-Lautrec, Painting, Loneliness, Post-Impressionism, Thought Piece]
-
 image: /assets/images/posts/henri-artist/hero.png
-
 image_card: /assets/images/posts/henri-artist/card.png
-
 redirect_from:
-  - /2026/05/05/
+  - /2026/05/04/
 ---
 
-> Originally written on **5 May 2026**  
+> Originally written on **4 May 2026**  
 
 * Table of Contents
 {:toc .toc}
